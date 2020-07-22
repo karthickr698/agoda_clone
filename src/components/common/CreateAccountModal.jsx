@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
-import Signin from './Signin';
+import CreateAccount from './CreateAccount';
 import Button from '@material-ui/core/Button';
 
 function getModalStyle() {
@@ -42,7 +42,7 @@ export default function SimpleModal() {
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <Signin />
+      <CreateAccount />
     </div>
   );
 
@@ -50,7 +50,7 @@ export default function SimpleModal() {
     <div>
       
       <Button variant="outlined" color="primary" onClick={handleOpen}>
-      <small>Sign in</small>
+      <small>Create Account</small>
       </Button>
       <Modal
         open={open}

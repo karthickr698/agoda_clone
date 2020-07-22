@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 // import Signin from './Signin';
 import SigninModal from "./SigninModal";
 import Button from '@material-ui/core/Button';
-
+import CreateAccountModal from './CreateAccountModal';
 
 export default function Navbar() {
   return (
@@ -48,7 +48,7 @@ export default function Navbar() {
                  border-right"
             >
               <Button variant="outlined" color="primary">
-                List your place
+                <small>List your place</small>
             </Button>
             </div>
 
@@ -59,11 +59,11 @@ export default function Navbar() {
                 Sign in
                 </button> */}
             <SigninModal />
-
+            <CreateAccountModal />
             
-            <Button variant="outlined" color="primary">
-            Create Account
-            </Button>
+            {/* <Button variant="outlined" color="primary">
+            <small>Create Account</small>
+            </Button> */}
           </form>
         </div>
       </nav>
