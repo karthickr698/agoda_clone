@@ -1,9 +1,12 @@
 import React from 'react';
+import Navbar from './components/common/Navbar';
+// import Signin from './components/common/Signin';
 
 function App() {
   return (
     <div>
-      hello world
+      <Navbar />
+      {/* <Signin /> */}
     </div>
   );
 }
