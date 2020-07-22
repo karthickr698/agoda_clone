@@ -63,7 +63,7 @@ export default class Signin extends Component {
               </div >
             </div>
             <div className="col-4 ml-2">
-              <img src={signinImage} alt="signin page image"/>
+              <img src={signinImage} alt="signin page"/>
               <div className="text-center">
               Up to 30% OFF with Agoda <br/>Insider Deals! Prices drop the <br/>moment you sign in.
               </div>

@@ -4,9 +4,57 @@ import {
     LOGIN_USER_FAILURE,
     LOGOUT_USER_REQUEST,
     LOGOUT_USER_SUCCESS,
-    LOGOUT_USER_FAILURE
+    LOGOUT_USER_FAILURE,
+    SIGNUP_USER_REQUEST,
+    SIGNUP_USER_SUCCESS,
+    SIGNUP_USER_FAILURE
   } from "./actionTypes";
   import axios from "axios";
+
+  export const signupUserRequest = () => ({
+    type: SIGNUP_USER_REQUEST
+  });
+  
+  export const signupUserSuccess = payload => ({
+    type: SIGNUP_USER_SUCCESS,
+    payload
+  });
+  
+  export const signupUserFailure = payload => ({
+    type: SIGNUP_USER_FAILURE,
+    error: payload
+  });
+
+  export const signupUserEmail = payload => {
+    return dispatch => {
+      dispatch(signupUserRequest());
+      return axios
+        .post("/signup", {
+          email: payload.email,
+          password: payload.password,
+          firstName: payload.firstName,
+          lastName: payload.lastName
+        })
+        .then(res => {
+          dispatch(signupUserSuccess(res.data));
+        })
+        .catch(() => dispatch(signupUserFailure()));
+    };
+  };
+
+  export const signupUserMobile = payload => {
+    return dispatch => {
+      dispatch(signupUserRequest());
+      return axios
+        .post("/signup", {
+          mobile: payload.mobile
+        })
+        .then(res => {
+          dispatch(signupUserSuccess(res.data));
+        })
+        .catch(() => dispatch(signupUserFailure()));
+    };
+  };
   
   export const loginUserRequest = () => ({
     type: LOGIN_USER_REQUEST
