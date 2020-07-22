@@ -6,7 +6,7 @@ import {
     LOGOUT_USER_SUCCESS,
     LOGOUT_USER_FAILURE
   } from "./actionTypes";
-  import axios from "../../utils/axiosInterceptor";
+  import axios from "axios";
   
   export const loginUserRequest = () => ({
     type: LOGIN_USER_REQUEST
@@ -22,7 +22,7 @@ import {
     error: payload
   });
   
-  export const loginUser = payload => {
+  export const loginUserEmail = payload => {
     return dispatch => {
       dispatch(loginUserRequest());
       return axios
@@ -37,6 +37,21 @@ import {
     };
   };
   
+  export const loginUserMobile = payload => {
+    return dispatch => {
+      dispatch(loginUserRequest());
+      return axios
+        .post("/login", {
+          mobile: payload.mobile,
+          password: payload.password
+        })
+        .then(res => {
+          dispatch(loginUserSuccess(res.data));
+        })
+        .catch(() => dispatch(loginUserFailure()));
+    };
+  };
+
   export const logoutUserRequest = payload => ({
     type: LOGOUT_USER_REQUEST,
     payload

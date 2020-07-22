@@ -1,21 +1,25 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { loginUserEmail } from '../../redux/authentication/actions';
 
-export default class EmailLogin extends Component {
-    constructor(props) {
-        super(props)
-    
-        this.state = {
-            email: '',
-            password: ''
-        }
+class EmailLogin extends Component {
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+      email: '',
+      password: ''
     }
-    handleChange = (e) => {
-        this.setState({
-            [e.name] : e.target.value
-        })
-    }
-    
+  }
+
+  handleChange = (e) => {
+    this.setState({
+        [e.target.name] : e.target.value
+    })
+  }
+  
   render() {
+    const { loginUserEmail } = this.props
     return (
       <div>
         <form>
@@ -42,11 +46,23 @@ export default class EmailLogin extends Component {
                 />
             </div>
             
-            <button onClick={""} type="submit" className="btn btn-block btn-primary">
+            <button onClick={() => loginUserEmail(this.state)} type="submit" className="btn btn-block btn-primary">
             Sign in
           </button>
         </form>
+        
       </div>
-    );
+    )
   }
 }
+
+const mapStateToProps = (state) => ({
+  isLoading: state.authReducer.isLoading
+})
+
+const mapDispatchToProps = dispatch => ({
+  loginUserEmail : payload => dispatch(loginUserEmail(payload))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(EmailLogin)
+

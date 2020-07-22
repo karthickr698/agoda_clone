@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux';
+import { loginUserMobile } from '../../redux/authentication/actions';
 
-export default class MobileLogin extends Component {
+class MobileLogin extends Component {
     constructor(props) {
         super(props)
     
@@ -43,7 +45,7 @@ export default class MobileLogin extends Component {
                 />
             </div>
             
-            <button onClick={''} type="submit" className="btn btn-block btn-primary">
+            <button onClick={() => loginUserMobile(this.state)} type="submit" className="btn btn-block btn-primary">
             Sign in
           </button>
         </form>
@@ -51,3 +53,14 @@ export default class MobileLogin extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  isLoading: state.authReducer.isLoading
+})
+
+const mapDispatchToProps = dispatch => ({
+  loginUserMobile : payload => dispatch(loginUserMobile(payload))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(MobileLogin)
+

@@ -36,7 +36,7 @@ export default class Signin extends Component {
               </div>
               <div className="row justify-content-md-center mt-3">
                   <div className="col-3 border border-secondary w-100 text-center mr-1 p-2">
-                  <i class="fa fa-facebook-square" aria-hidden="true"></i>
+                  <i className="fa fa-facebook-square" aria-hidden="true"></i>
                   <div>
                     <small>
                     facebook
@@ -44,7 +44,7 @@ export default class Signin extends Component {
                   </div>
                   </div>
                   <div className="col-3 border border-secondary w-100 text-center ml-1 p-2">
-                  <i class="fa fa-apple" aria-hidden="true"></i>
+                  <i className="fa fa-apple" aria-hidden="true"></i>
                   <div>
                     <small>
                     Apple
@@ -63,7 +63,7 @@ export default class Signin extends Component {
               </div >
             </div>
             <div className="col-4 ml-2">
-              <img src={signinImage} alt="signin page image" />
+              <img src={signinImage} alt="signin pic" />
               <div className="text-center">
               Up to 30% OFF with Agoda <br/>Insider Deals! Prices drop the <br/>moment you sign in.
               </div>
