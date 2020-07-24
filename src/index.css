@@ -11,3 +11,110 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+/* hotels list */
+.hotels-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.hotel {
+  padding: 10px;
+  margin: 16px 10px;
+  display: flex;
+  position: relative;
+  cursor: pointer;
+  border: 1px solid #aaa;
+  border-radius: 3px;
+}
+.hotel:hover {
+  background-color: lightblue;
+}
+.hotel__image {
+  display: block;
+  width: 200px;
+  height: 200px;
+  margin-right: 20px;
+}
+.hotel__text {
+  width: 100%;
+  color: #888;
+}
+.hotel__header {
+  display: flex;
+  justify-content: space-between;
+}
+.hotel__name {
+  font-size: 20px;
+  padding: 3px 0;
+  color: #07c;
+  font-weight: bold;
+  margin: 0;
+  line-height: 28px;
+}
+.hotel__rating {
+  display: block;
+  color: white;
+  background: darkblue;
+  font-size: 16px;
+  font-weight: bolder;
+  padding: 10px;
+  border-radius: 10px 10px 10px 0;
+}
+.hotel__main {
+  display: flex;
+  justify-content: space-between;
+  height: 160px;
+}
+.hotel__perks {
+  display: block;
+  color: green;
+}
+.hotel__rooms-remaining {
+  display: block;
+  color: red;
+  margin-top: 20px;
+}
+.hotel__main--right {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  margin-top: auto;
+}
+.hotel__price {
+  color: green;
+  font-size: 20px;
+}
+.hotel__see-rooms {
+  padding: 10px;
+  background-color: darkblue;
+  color: white;
+  font-weight: bolder;
+  cursor: pointer;
+  margin-top: 5px;
+}
+.hotel__see-rooms:hover {
+  box-shadow: 0 0 1px 1px #333;
+}
+.hotel__best-seller-flag {
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  padding: 10px 15px;
+  background-color: green;
+  color: white;
+  border-radius: 0 5px 5px 0;
+  box-shadow: 1px 1px 2px black;
+}
+.hotel__best-seller-flag::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 0;
+  height: 0;
+  border: 4px solid darkgreen;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+}

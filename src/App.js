@@ -1,12 +1,18 @@
 import React from 'react';
 import Navbar from './components/common/Navbar';
-// import CreateAccount from './components/common/CreateAccount';
+import LandingPageNav from './components/landingPageComponents/LandingPageNav';
+// import Homes from './components/landingPageComponents/Homes';
+import ExploreMore from './components/landingPageComponents/ExploreMore';
+import RecommendedPlaces from './components/landingPageComponents/RecommendedPlaces';
 
 function App() {
   return (
     <div>
       <Navbar />
-      {/* <CreateAccount /> */}
+      <LandingPageNav />
+      <ExploreMore />
+      <RecommendedPlaces />
+      {/* <Homes /> */}
     </div>
   );
 }

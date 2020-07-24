@@ -25,11 +25,11 @@ export default class Signin extends Component {
             <div className="col-6">
               <div>
                 <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
-                  <Tab eventKey="home" title="Email" >
+                  <Tab eventKey="profile" title="Email" >
                     <EmailSignup />
                   </Tab>
                   
-                  <Tab eventKey="profile" title="Mobile">
+                  <Tab eventKey="home" title="Mobile">
                     <MobileSignup />
                   </Tab>
                 </Tabs>
@@ -44,10 +44,10 @@ export default class Signin extends Component {
                   </div>
                   </div>
                   <div className="col-3 border border-secondary w-100 text-center ml-1 p-2">
-                  <i class="fa fa-apple" aria-hidden="true"></i>
+                  <i class="fa fa-google" aria-hidden="true"></i>
                   <div>
                     <small>
-                    Apple
+                    Google
                     </small>
                   </div>
                   </div>
