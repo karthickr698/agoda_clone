@@ -1,48 +1,87 @@
 import React from 'react'
-import apartment from '../../utils/entire-apartment.jpg';
-import bungalow from '../../utils/entire-bungalow.jpg';
-import house from '../../utils/entire-house.jpg';
-import villa from '../../utils/entire-villa.jpg';
+import charminar from '../../utils/charminar.jpg';
 
 
-export default function ExploreMore() {
+export default function DestinationsIndia() {
     return (
         <div className="container">
-            <h2 className="text-center mt-3"> Explore more travel vacation rentals </h2>
+            <h2 className="text-center mt-5 pt-5"> Top destinations in India </h2>
             <div className="row">
-                <div className="col mr-5" >
-                    <div className="card m-3 border-1" style={{width: '18rem'}}>
-                        <img src={apartment} className="card-img-top" alt="aprtments" />
-                        <div className="card-body">
-                            <h5 className="card-title">Apartments</h5>
-                            <p className="card-text text-muted">156,786 properties</p>
+                <div className="col-2" >
+                    <div className="p-2">
+                        <div className="card m-3 border-0 text-center" style={{width: '11rem'}}>
+                            <div className="text-center">
+                                <img src={charminar} className="img-fluid text-center rounded-circle w-75 card-img-top" alt="aprtments" />
+                            </div>
+                            <div className="card-body">
+                                <h5 className="card-title">NewDelhi</h5>
+                                <p className="card-text text-muted">7500 accommodations</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div className="col mr-5">
-                    <div className="card m-3 border-1" style={{width: '18rem'}}>
-                        <img src={house} className="card-img-top" alt="aprtments" />
-                        <div className="card-body">
-                            <h5 className="card-title">Apartments</h5>
-                            <p className="card-text text-muted">156,786 properties</p>
+                <div className="col-2" >
+                    <div className="p-2">
+                        <div className="card m-3 border-0 text-center" style={{width: '11rem'}}>
+                            <div className="text-center">
+                                <img src={charminar} className="img-fluid text-center rounded-circle w-75 card-img-top" alt="aprtments" />
+                            </div>
+                            <div className="card-body">
+                                <h5 className="card-title">NewDelhi</h5>
+                                <p className="card-text text-muted">7500 accommodations</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div className="col mr-5">
-                    <div className="card m-3 border-1" style={{width: '18rem'}}>
-                        <img src={villa} className="card-img-top" alt="aprtments" />
-                        <div className="card-body">
-                            <h5 className="card-title">Apartments</h5>
-                            <p className="card-text text-muted">156,786 properties</p>
+                <div className="col-2" >
+                    <div className="p-2">
+                        <div className="card m-3 border-0 text-center" style={{width: '11rem'}}>
+                            <div className="text-center">
+                                <img src={charminar} className="img-fluid text-center rounded-circle w-75 card-img-top" alt="aprtments" />
+                            </div>
+                            <div className="card-body">
+                                <h5 className="card-title">NewDelhi</h5>
+                                <p className="card-text text-muted">7500 accommodations</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div className="col ">
-                    <div className="card m-3 border-1" style={{width: '18rem'}}>
-                        <img src={bungalow} className="card-img-top" alt="aprtments" />
-                        <div className="card-body">
-                            <h5 className="card-title">Apartments</h5>
-                            <p className="card-text text-muted">156,786 properties</p>
+                <div className="col-2" >
+                    <div className="p-2">
+                        <div className="card m-3 border-0 text-center" style={{width: '11rem'}}>
+                            <div className="text-center">
+                                <img src={charminar} className="img-fluid text-center rounded-circle w-75 card-img-top" alt="aprtments" />
+                            </div>
+                            <div className="card-body">
+                                <h5 className="card-title">NewDelhi</h5>
+                                <p className="card-text text-muted">7500 accommodations</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-2" >
+                    <div className="p-2">
+                        <div className="card m-3 border-0 text-center" style={{width: '11rem'}}>
+                            <div className="text-center">
+                                <img src={charminar} className="img-fluid text-center rounded-circle w-75 card-img-top" alt="aprtments" />
+                            </div>
+                            <div className="card-body">
+                                <h5 className="card-title">NewDelhi</h5>
+                                <p className="card-text text-muted">7500 accommodations</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-2" >
+                    <div className="p-2">
+                        <div className="card m-3 border-0 text-center" style={{width: '11rem'}}>
+                            <div className="text-center">
+                                <img src={charminar} className="img-fluid text-center rounded-circle w-75 card-img-top" alt="aprtments" />
+                            </div>
+                            <div className="card-body">
+                                <h5 className="card-title">NewDelhi</h5>
+                                <p className="card-text text-muted">7500 accommodations</p>
+                            </div>
                         </div>
                     </div>
                 </div>

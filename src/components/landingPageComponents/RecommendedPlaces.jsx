@@ -6,7 +6,7 @@ import recommendedPlace from '../../utils/recommended.jpg';
 
 export default function ExploreMore() {
     return (
-        <div className="container">
+        <div className="container ">
             <h2 className="text-center mt-5 pt-5"> Recommended places to stay for your next trip! </h2>
             <div className="row">
                 <div className="col mr-5" >
