@@ -47,7 +47,6 @@ export default function SimpleModal() {
 
   return (
     <div>
-      
       <Button variant="outlined" color="primary" onClick={handleOpen}>
       <small>Create Account</small>
       </Button>
