@@ -10,7 +10,7 @@ export default function ExploreMore() {
         <div className="container text-center">
             <h2 className="text-center mt-3"> Explore more travel vacation rentals </h2>
             <div className="row">
-                <div className="col mr-5" >
+                <div className="col-sm-12 col-md-6 col-lg  mr-5" >
                         <div className="card m-3 border-1" style={{width: '18rem'}}>
                             <img src={apartment} className="card-img-top" alt="aprtments" />
                             <div className="card-body">
@@ -21,7 +21,7 @@ export default function ExploreMore() {
                 </div>
                 
                 
-                <div className="col mr-5">
+                <div className="col-sm-12 col-md-6 col-lg  mr-5">
                     <div className="card m-3 border-1" style={{width: '18rem'}}>
                         <img src={house} className="card-img-top" alt="aprtments" />
                         <div className="card-body">
@@ -30,7 +30,7 @@ export default function ExploreMore() {
                         </div>
                     </div>
                 </div>
-                <div className="col mr-5">
+                <div className="col-sm-12 col-md-6 col-lg  mr-5">
                     <div className="card m-3 border-1" style={{width: '18rem'}}>
                         <img src={villa} className="card-img-top" alt="aprtments" />
                         <div className="card-body">
@@ -39,7 +39,7 @@ export default function ExploreMore() {
                         </div>
                     </div>
                 </div>
-                <div className="col ">
+                <div className="col-sm-12 col-md-6 col-lg  ">
                     <div className="card m-3 border-1" style={{width: '18rem'}}>
                         <img src={bungalow} className="card-img-top" alt="aprtments" />
                         <div className="card-body">

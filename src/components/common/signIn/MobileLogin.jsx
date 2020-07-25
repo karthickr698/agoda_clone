@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import { loginUserMobile } from '../../redux/authentication/actions';
+import { loginUserMobile } from '../../../redux/authentication/actions';
 
 class MobileLogin extends Component {
     constructor(props) {
