@@ -18,9 +18,13 @@ class EmailLogin extends Component {
     })
   }
 
-  render() {
-    console.log(this.state, this.props)
+  handleClick = e => {
+    e.preventDefault()
     const { loginUserEmail } = this.props
+    loginUserEmail(this.state)
+  }
+
+  render() {
     return (
       <div>
         <form>
@@ -34,7 +38,6 @@ class EmailLogin extends Component {
               aria-describedby="emailHelp"
               onChange={this.handleChange}
             />
-
           </div>
           <div className="form-group">
             <label htmlFor="exampleInputPassword1">Password</label>
@@ -46,12 +49,10 @@ class EmailLogin extends Component {
               onChange={this.handleChange}
             />
           </div>
-
-          <button onClick={() => loginUserEmail(this.state)} type="submit" className="btn btn-block btn-primary">
+          <button onClick={this.handleClick} type="submit" className="btn btn-block btn-primary">
             Sign in
           </button>
         </form>
-
       </div>
     )
   }
@@ -66,4 +67,3 @@ const mapDispatchToProps = dispatch => ({
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EmailLogin)
-

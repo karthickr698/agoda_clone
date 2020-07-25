@@ -17,6 +17,12 @@ class MobileLogin extends Component {
         [e.target.name] : e.target.value
       })
     }
+
+    handleClick = e => {
+      e.preventDefault()
+      const { loginUserMobile } = this.props
+      loginUserMobile(this.state)
+    }
     
   render() {
     return (
@@ -32,7 +38,6 @@ class MobileLogin extends Component {
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
             />
-              
           </div>
           <div className="form-group">
             <label htmlFor="exampleInputPassword1">Password</label>
@@ -44,8 +49,7 @@ class MobileLogin extends Component {
             id="exampleInputPassword1"
             />
           </div>
-          
-          <button onClick={() => loginUserMobile(this.state)} type="submit" className="btn btn-block btn-primary">
+          <button onClick={this.handleClick} type="submit" className="btn btn-block btn-primary">
             Sign in
           </button>
         </form>
@@ -63,4 +67,3 @@ const mapDispatchToProps = dispatch => ({
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(MobileLogin)
-
