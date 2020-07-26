@@ -3,7 +3,6 @@ import { hotels } from "../../../utils/data.js";
 
 var getMatchCount = filterKey =>
   hotels.filter(hotel => hotel[filterKey]).length;
-
 var Filter = props => {
   var onChange = () => props.toggleFilter(props.filter.key);
   var matchCount = getMatchCount(props.filter.key);
@@ -12,8 +11,6 @@ var Filter = props => {
       <span>
         {props.filter.display}
       </span>
-     
-          
       <span>
         <label class="switch">
           <input type="checkbox" 

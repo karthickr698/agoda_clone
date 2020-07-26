@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
@@ -29,7 +27,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Homes() {
-  
   const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
   const classes = useStyles();
   const [values, setValues] = React.useState({

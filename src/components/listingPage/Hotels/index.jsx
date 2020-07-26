@@ -5,7 +5,6 @@ import { hotels } from "../../../utils/data.js";
 var renderHotel = hotel => <Hotel key={hotel.id} hotel={hotel} />;
 
 var HotelsList = props => {
-
   var filterCallback = hotel => {
     var everyCallback = filter => hotel[filter];
     return props.selectedFilters.every(everyCallback);

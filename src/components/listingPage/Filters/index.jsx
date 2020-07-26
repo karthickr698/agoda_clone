@@ -3,7 +3,6 @@ import Filter from "./Filter";
 import { filterOptions } from "../../../utils/data.js";
 
 var FiltersList = props => {
- 
   var renderFilter = filter => {
     var isChecked = props.selectedFilters.includes(filter.key);
     return (

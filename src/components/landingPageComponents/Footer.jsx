@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 export default function Footer() {
     return (
@@ -34,7 +34,6 @@ export default function Footer() {
                     <p>Affiliates</p>
                     <p>Connectivity Patrners</p>
                 </div>
-
             </div>
         </div>
     )

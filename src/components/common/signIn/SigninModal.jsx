@@ -48,7 +48,6 @@ export default function SimpleModal() {
 
   return (
     <div>
-      
       <Button variant="outlined" color="primary" onClick={handleOpen}>
       <small>Sign in</small>
       </Button>
