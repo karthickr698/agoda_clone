@@ -6,20 +6,19 @@ import RecommendedPlaces from './components/landingPageComponents/RecommendedPla
 import DestinationsIndia from './components/landingPageComponents/DestinationsIndia';
 import Footer from './components/landingPageComponents/Footer';
 import ListingComponent from './components/listingPage/ListingComponent';
+import Routes from './routes/Routes';
 
 function App() {
   return (
     <div>
-      <Navbar />
-      <ListingComponent />
-      {/* <LandingPageNav />
-      <ExploreMore />
-      <RecommendedPlaces />
-      <DestinationsIndia /> */}
-      <Footer />
+      <Routes />
+      {/* <ListingComponent /> */}
+      {/* <ExploreMore /> */}
+      {/* <RecommendedPlaces /> */}
+      {/* <DestinationsIndia /> */}
+      <Footer /> 
     </div>
   );
 }
 
 export default App;
-
