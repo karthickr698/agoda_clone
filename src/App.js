@@ -7,6 +7,8 @@ import DestinationsIndia from './components/landingPageComponents/DestinationsIn
 import Footer from './components/landingPageComponents/Footer';
 import ListingComponent from './components/listingPage/ListingComponent';
 import Routes from './routes/Routes';
+import EntityPage from './components/entityPageComponents/EntityPage';
+import ApartmentsPage from './components/entityPageComponents/ApartmentsPage';
 
 function App() {
   return (
@@ -17,6 +19,7 @@ function App() {
       {/* <RecommendedPlaces /> */}
       {/* <DestinationsIndia /> */}
       <Footer /> 
+
     </div>
   );
 }
