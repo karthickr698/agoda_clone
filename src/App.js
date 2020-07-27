@@ -18,8 +18,8 @@ function App() {
       <ExploreMore />
       <RecommendedPlaces />
       <DestinationsIndia /> */}
-      {/* <EntityPage /> */}
-      <ApartmentsPage />
+      <EntityPage />
+      {/* <ApartmentsPage /> */}
       <Footer />
     </div>
   );
