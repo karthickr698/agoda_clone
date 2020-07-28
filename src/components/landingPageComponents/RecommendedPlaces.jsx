@@ -1,8 +1,6 @@
-import React from 'react'
+import React from 'react';
 import apartment from '../../utils/entire-apartment.jpg';
 import recommendedPlace from '../../utils/recommended.jpg';
-
-
 
 export default function ExploreMore() {
     return (

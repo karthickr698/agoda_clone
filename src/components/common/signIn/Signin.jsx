@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import signinImage from "../../utils/signin.svg";
+import signinImage from "../../../utils/signin.svg";
 import EmailLogin from "./EmailLogin";
 import MobileLogin from './MobileLogin';
 import Tabs from 'react-bootstrap/Tabs';
@@ -24,11 +24,8 @@ export default class Signin extends Component {
   responseFacebook = (response) => {
     console.log(response)
   }
-
-
   
   render() {
-   
     return (
       <div>
         <div className="container">
@@ -91,12 +88,3 @@ export default class Signin extends Component {
     );
   }
 }
-
-
-
-// <i class="fa fa-google" aria-hidden="true"></i>
-//                   <div>
-//                     <small>
-//                     Google
-//                     </small>
-//                   </div>

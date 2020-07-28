@@ -1,7 +1,7 @@
 import React from "react";
-import Perk from "./Perk.js";
-import RoomsLeft from "./RoomsLeft.js";
-import BestsellerFlag from "./BestsellerFlag.js";
+import Perk from "./Perk.jsx";
+import RoomsLeft from "./RoomsLeft.jsx";
+import BestsellerFlag from "./BestsellerFlag.jsx";
 
 var Hotel = props => (
   <li className="hotel">
@@ -40,13 +40,13 @@ var Hotel = props => (
         </div>
         <div className="hotel__main--right">
           <span>
-            <span className="hotel__price">${props.hotel.pricePerNight}</span>{" "}
+            <span className="hotel__price">Rs.{props.hotel.pricePerNight}</span>{" "}
             per night
           </span>
           <span>Includes taxes and charges</span>
-          <button className="hotel__see-rooms">
+          {/* <button className="hotel__see-rooms">
             See our last available rooms >
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

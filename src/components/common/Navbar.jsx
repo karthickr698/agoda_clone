@@ -3,9 +3,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import logo from "../../utils/agoda-logo.png";
 import { Link } from "react-router-dom";
 // import Signin from './Signin';
-import SigninModal from "./SigninModal";
+import SigninModal from "./signIn/SigninModal";
 import Button from '@material-ui/core/Button';
-import CreateAccountModal from './CreateAccountModal';
+import CreateAccountModal from './signUp/CreateAccountModal';
 
 export default function Navbar() {
   return (

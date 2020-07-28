@@ -1,6 +1,5 @@
-import React from 'react'
+import React from 'react';
 import charminar from '../../utils/charminar.jpg';
-
 
 export default function DestinationsIndia() {
     return (

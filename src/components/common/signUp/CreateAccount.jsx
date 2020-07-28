@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import signinImage from "../../utils/signin.svg";
+import signinImage from "../../../utils/signin.svg";
 import EmailSignup from "./EmailSignup";
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';

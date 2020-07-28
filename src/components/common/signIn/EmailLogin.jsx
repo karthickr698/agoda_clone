@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { loginUserEmail } from '../../redux/authentication/actions';
+import { loginUserEmail } from '../../../redux/authentication/actions';
 
 class EmailLogin extends Component {
   constructor(props) {
