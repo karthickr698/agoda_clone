@@ -10,7 +10,7 @@ export default function Routes() {
             <Navbar />
             <Switch>
                 <Route exact path='/' component={LandingPageNav} />
-                <Route path='/listingPage' component={ListingComponent} />
+                <Route path='/:city/listingPage' component={ListingComponent} />
                 
             </Switch>
         </div>
