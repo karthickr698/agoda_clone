@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
 export default function ApartmentsPage() {
   return (
@@ -52,6 +53,7 @@ export default function ApartmentsPage() {
                 <img
                   src="https://cdn6.agoda.net/images/accommodation/popular-choice/Apartment-1.png"
                   className="rounded-circle"
+                  alt="rounded"
                 />
                 <h4>Private kitchens</h4>
               </div>
@@ -60,6 +62,7 @@ export default function ApartmentsPage() {
               <img
                 src="https://cdn6.agoda.net/images/accommodation/popular-choice/Apartment-2.png"
                 className="rounded-circle"
+                alt="rounded"
               />
               <h4 className="text-center">Private bathrooms</h4>
             </div>
@@ -67,6 +70,7 @@ export default function ApartmentsPage() {
               <img
                 src="https://cdn6.agoda.net/images/accommodation/popular-choice/Apartment-3.png"
                 className="rounded-circle"
+                alt="rounded"
               />
               <h4 className="text-center">Common space for gathering</h4>
             </div>
@@ -74,6 +78,7 @@ export default function ApartmentsPage() {
               <img
                 src="https://cdn6.agoda.net/images/accommodation/popular-choice/Apartment-4.png"
                 className="rounded-circle"
+                alt="rounded"
               />
               <h4 className="text-center">Facilities for groups</h4>
             </div>
@@ -81,6 +86,7 @@ export default function ApartmentsPage() {
               <img
                 src="https://cdn6.agoda.net/images/accommodation/popular-choice/Apartment-5.png"
                 className="rounded-circle"
+                alt="rounded"
               />
               <h4 className="text-center">Great for long stays</h4>
             </div>
@@ -93,89 +99,44 @@ export default function ApartmentsPage() {
         </h2>
         <div className="mt-4">
           <div className="card-deck">
-            <div className="card">
-              <img
-                className="card-img-top"
-                src="https://cdn6.agoda.net/images/accommodation/best-destinations/apartment-osaka.jpg"
-                alt="Card cap"
-              />
-              <div className="card-body">
-                <h5 className="card-title text-center">Osaka, Japan</h5>
-                <p className="card-text text-center text-muted">
-                  19,844 properties
-                </p>
-              </div>
-            </div>
-            <div className="card">
-              <img
-                className="card-img-top"
-                src="https://cdn6.agoda.net/images/accommodation/best-destinations/apartment-tokyo.jpg"
-                alt="Card cap"
-              />
-              <div className="card-body">
-                <h5 className="card-title text-center">Tokyo, Japan</h5>
-                <p className="card-text text-center text-muted">
-                  19,844 properties
-                </p>
-              </div>
-            </div>
-            <div className="card">
-              <img
-                className="card-img-top"
-                src="https://cdn6.agoda.net/images/accommodation/best-destinations/apartment-kuala-lumpur.jpg"
-                alt="Card cap"
-              />
-              <div className="card-body">
-                <h5 className="card-title text-center">Kual Lumpur, Malaysia</h5>
-                <p className="card-text text-center text-muted">
-                  19,844 properties
-                </p>
-              </div>
-            </div>
+            {['Osaka, Japan','Tokyo, Japan', 'Kuala Lumpur, Malaysia'].map(hotel => (
+                <Link to='/listingPage' style={{textDecoration:"none"}}>
+                  <div className="card">
+                    <img
+                      className="card-img-top"
+                      src="https://cdn6.agoda.net/images/accommodation/best-destinations/apartment-osaka.jpg"
+                      alt="Card cap"
+                    />
+                    <div className="card-body">
+                      <h5 className="card-title text-center">{hotel}</h5>
+                      <p className="card-text text-center text-muted">
+                        19,844 properties
+                      </p>
+                    </div>
+                  </div>
+                </Link>
+            ))}
           </div>
         </div>
-
         <div className="mt-4">
           <div className="card-deck">
-            <div className="card">
-              <img
-                className="card-img-top"
-                src="https://cdn6.agoda.net/images/accommodation/best-destinations/apartment-manila.jpg"
-                alt="Card cap"
-              />
-              <div className="card-body">
-                <h5 className="card-title text-center">Manila, Philippines</h5>
-                <p className="card-text text-center text-muted">
-                  19,844 properties
-                </p>
-              </div>
-            </div>
-            <div className="card">
-              <img
-                className="card-img-top"
-                src="https://cdn6.agoda.net/images/accommodation/best-destinations/apartment-bangkok.jpg"
-                alt="Card cap"
-              />
-              <div className="card-body">
-                <h5 className="card-title text-center">Bangkok, Thailand</h5>
-                <p className="card-text text-center text-muted">
-                  19,844 properties
-                </p>
-              </div>
-            </div>
-            <div className="card">
-              <img
-                className="card-img-top"
-                src="https://cdn6.agoda.net/images/accommodation/best-destinations/apartment-pattaya.jpg"
-                alt="Card cap"
-              />
-              <div className="card-body">
-                <h5 className="card-title text-center">Pattaya, Thailand</h5>
-                <p className="card-text text-center text-muted">
-                  19,844 properties
-                </p>
-              </div>
-            </div>
+            {['Manila, Philippines','Bangkok, Thailand', 'Pattaya, Thailand'].map(hotel => (
+                <Link to='/listingPage' style={{textDecoration:"none"}}>
+                  <div className="card">
+                    <img
+                      className="card-img-top"
+                      src="https://cdn6.agoda.net/images/accommodation/best-destinations/apartment-osaka.jpg"
+                      alt="Card cap"
+                    />
+                    <div className="card-body">
+                      <h5 className="card-title text-center">{hotel}</h5>
+                      <p className="card-text text-center text-muted">
+                        19,844 properties
+                      </p>
+                    </div>
+                  </div>
+                </Link>
+              ))}
           </div>
         </div>
       </div>
