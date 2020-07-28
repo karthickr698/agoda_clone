@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Hotels from "./Hotels";
+import AllHotels from "./Hotels/AllHotels";
 import Filters from "./Filters";
 
 class ListingComponent extends Component {
@@ -23,7 +23,7 @@ class ListingComponent extends Component {
           selectedFilters={this.state.selectedFilters}
           toggleFilter={this.toggleFilter}
         />
-        <Hotels selectedFilters={this.state.selectedFilters} />
+        <AllHotels selectedFilters={this.state.selectedFilters} />
       </div>
     );
   }
