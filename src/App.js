@@ -19,7 +19,6 @@ function App() {
       {/* <RecommendedPlaces /> */}
       {/* <DestinationsIndia /> */}
       <Footer /> 
-
     </div>
   );
 }
