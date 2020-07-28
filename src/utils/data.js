@@ -5,6 +5,8 @@ export var filterOptions = [
     { display: "I want free Breakfast", key: "includesBreakfast" },
     { display: "Book without credit card", key: "canBookwithoutCC" },
     { display: "Staycation", key: "isStaycation" },
+    { display: "Lowest to Highest", key: "low2high" },
+    { display: "Rating", key: "rating" }  
   ];
   
   export var hotels = [

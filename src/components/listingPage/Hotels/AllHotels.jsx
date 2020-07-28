@@ -2,8 +2,7 @@ import React from 'react'
 import Hotel from "./Hotel.jsx";
 import { hotels } from "../../../utils/data.js";
 
-export default function AllHotels() {
-  console.log(hotels)
+export default function AllHotels(props) {
   return (
     <div>
       {hotels.map(hotel =><Hotel key={hotel.id} hotel={hotel} /> )}

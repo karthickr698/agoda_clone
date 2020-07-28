@@ -1,32 +1,64 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import AllHotels from "./Hotels/AllHotels";
-import Filters from "./Filters";
+import FilterList from "./Filters/FilterList";
+import { updateTheFilters, getHotels } from '../../redux/listingPage/actions';
 
 class ListingComponent extends Component {
-  state = { selectedFilters: [] };
+  // constructor(props) {
+  //   super(props)
+  
+  //   this.state = {
+  //     selectedFilters: [this.props.selectedFilters]
+  //   }
+  // }
+
   toggleFilter = clickedFilterKey => {
     var newFilters;
-    var alreadySelected = this.state.selectedFilters.includes(clickedFilterKey);
+    var alreadySelected = this.props.selectedFilters.includes(clickedFilterKey);
     if (alreadySelected) {
-      newFilters = this.state.selectedFilters.filter(
+      newFilters = this.props.selectedFilters.filter(
         selectedFilter => selectedFilter !== clickedFilterKey
       );
     } else {
-      newFilters = this.state.selectedFilters.concat(clickedFilterKey);
+      newFilters = this.props.selectedFilters.concat(clickedFilterKey);
     }
-    this.setState({ selectedFilters: newFilters });
+    console.log(newFilters)
+    this.props.updateTheFilters(newFilters)
+
+    const newUrl = new URL(window.location.href)
+    console.log(newUrl)
+
+    newFilters.forEach(filter => newUrl.searchParams.set(filter, true))
+
+    console.log(newUrl.toString())
+
+    // window.location.href = newUrl.toString()
+
+    // this.setState({ selectedFilters: newFilters });
   };
   render() {
+    console.log(this.props)
     return (
       <div className="App">
-        <Filters
-          selectedFilters={this.state.selectedFilters}
+        <FilterList
+          selectedFilters={this.props.selectedFilters}
           toggleFilter={this.toggleFilter}
         />
-        <AllHotels selectedFilters={this.state.selectedFilters} />
+        <AllHotels hotels={this.props.hotels} />
       </div>
     );
   }
 }
 
-export default ListingComponent;
+const mapStateToProps = (state) => ({
+  selectedFilters : state.listingPageReducer.selectedFilters,
+  hotels: state.listingPageReducer.hotels
+})
+
+const mapDispatchToProps = dispatch => ({
+  updateTheFilters : payload => dispatch(updateTheFilters(payload)),
+  getHotels: payload => dispatch(getHotels(payload))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListingComponent)

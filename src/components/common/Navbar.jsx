@@ -22,22 +22,22 @@ export default function Navbar() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
-              <Link className="nav-link" href="#">
+              <Link to="" className="nav-link" href="#">
                 Flight + Hotel <span className="sr-only">(current)</span>
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" href="#">
+              <Link to="" className="nav-link" href="#">
                 Hotels & Homes
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" href="#">
+              <Link to="" className="nav-link" href="#">
                 Flights
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" href="#">
+              <Link to="" className="nav-link" href="#">
                 Today's deals
               </Link>
             </li>
