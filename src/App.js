@@ -13,12 +13,12 @@ function App() {
   return (
     <div>
       <Navbar />
-      {/* <ListingComponent /> */}
+      <ListingComponent />
       {/* <LandingPageNav />
       <ExploreMore />
       <RecommendedPlaces />
       <DestinationsIndia /> */}
-      <EntityPage />
+      {/* <EntityPage /> */}
       {/* <ApartmentsPage /> */}
       <Footer />
     </div>
