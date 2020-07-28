@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Hotels from "./Hotels";
 import Filters from "./Filters";
 
-class App extends Component {
+class ListingComponent extends Component {
   state = { selectedFilters: [] };
   toggleFilter = clickedFilterKey => {
     var newFilters;
@@ -29,4 +29,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default ListingComponent;
