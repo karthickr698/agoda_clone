@@ -118,6 +118,19 @@ export const logoutUserFailure = payload => ({
   error: payload
 });
 
+export const sendGoogleLoginData = (payload) => (dispatch) => {
+  dispatch(loginUserRequest());
+  return axios
+    .post("https://4bcc3670499d.ngrok.io/google", {
+      ...payload,
+    })
+    .then((res) => {
+      res.statusParam = "isAuthenticated";
+      dispatch(loginUserSuccess(res));
+    })
+    .catch((err) => console.log(err));
+};
+
 export const logoutUser = payload => {
   return dispatch => {
     dispatch(logoutUserRequest());
@@ -137,3 +150,4 @@ export const logoutUser = payload => {
       .catch(err => dispatch(logoutUserFailure(err.message)));
   };
 };
+
