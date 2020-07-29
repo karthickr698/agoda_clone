@@ -28,3 +28,6 @@ export default function ExploreMore() {
         </div>
     )
 }
+
+
+                // [[apartment, 'Apartments','156,786'],[bungalow, 'Vacation Rentals','517,245'],[house, 'Private Villas','567,245'],[villa, 'Bunglows','162,945']]
