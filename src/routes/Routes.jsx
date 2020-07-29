@@ -13,15 +13,15 @@ export default function Routes() {
     return (
         <div>
             <Navbar />
-            <EntityPage />
-            {/* <Switch>
+            <Switch>
                 <Route exact path='/' render={() => <>
                     <ExploreMore />
                     <RecommendedPlaces />
                 </>} />
-                <Route path='/listingPage' component={ListingComponent} />
                 <Route path='/apartments' component={ApartmentsPage} />
-            </Switch> */}
+                <Route path='/listingPage' component={ListingComponent} />
+                <Route path='/listingPage/:id' render={(props) => <EntityPage {...props}/>} />
+            </Switch>
             <Footer />
         </div>
     )

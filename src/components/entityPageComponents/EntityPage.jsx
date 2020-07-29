@@ -1,29 +1,32 @@
 import React from 'react';
-import { Flag, Segment } from 'semantic-ui-react'
+// import { Flag, Segment } from 'semantic-ui-react'
+import { connect } from 'react-redux'
 
-export default function EntityPage() {
+export const EntityPage = (props) => {
+    console.log(props)
+    const id = props.match.id              //IMPORTANT DOUBLE_CHECK this line
+    const { hotels } = props
+    let hotel = hotels.find(item => item.id === id)
+
     return (
         <div class="container mt-4">
             <div className="row">
                 <div className=" col-8 ">
                     <div className="row p-0 m-0">
                         <div className="col-7 p-0 m-0">
-                            <img src="https://pix6.agoda.net/hotelImages/109/10941418/10941418_19112710290084510021.jpg?s=1024x768" className="w-100 "/>
+                            <img alt='some hotel' src="https://pix6.agoda.net/hotelImages/109/10941418/10941418_19112710290084510021.jpg?s=1024x768" className="w-100 "/>
                         </div>
                         <div className="col-5 p-0 m-0 pl-3">
                             <div className="row p-0 m-0">
-                                <img src="https://pix6.agoda.net/hotelImages/109/10941418/10941418_20011713540087185943.png?s=1024x768"  className="w-100"/>
+                                <img alt='some hotel' src="https://pix6.agoda.net/hotelImages/109/10941418/10941418_20011713540087185943.png?s=1024x768"  className="w-100"/>
                             </div>
                             <div className="row p-0 m-0 pt-3">
-                                <div    className="col-6 p-0 m-0">
-                                <img src="https://pix6.agoda.net/hotelImages/109/10941418/10941418_20011713540087185943.png?s=1024x768"  className="w-100 p-0 m-0"/>
-
+                                <div className="col-6 p-0 m-0">
+                                    <img alt='some hotel' src="https://pix6.agoda.net/hotelImages/109/10941418/10941418_20011713540087185943.png?s=1024x768"  className="w-100 p-0 m-0"/>
                                 </div>
-                                <div    className="col-6 p-0 m-0 pl-1">
-                                <img src="https://pix6.agoda.net/hotelImages/109/10941418/10941418_20011713540087185943.png?s=1024x768"  className="w-100 p-0 m-0"/>
-
+                                <div className="col-6 p-0 m-0 pl-1">
+                                    <img alt='some hotel' src="https://pix6.agoda.net/hotelImages/109/10941418/10941418_20011713540087185943.png?s=1024x768"  className="w-100 p-0 m-0"/>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -214,7 +217,6 @@ export default function EntityPage() {
                         </div>
                     </div>
 
-
                     <div className="row mt-5">
                         <div className="col-2 border-right">
                             <i class="fa fa-wifi fa-4x" aria-hidden="true"></i>
@@ -229,7 +231,6 @@ export default function EntityPage() {
                             </div>
                         </div>
                     </div>
-
 
                     <div className="row mt-5">
                         <div className="col-2 border-right">
@@ -246,7 +247,6 @@ export default function EntityPage() {
                         </div>
                     </div>
 
-
                     <div className="row mt-5">
                         <div className="col-2 border-right">
                             <i class="fa fa-male fa-4x" aria-hidden="true"></i>
@@ -261,7 +261,6 @@ export default function EntityPage() {
                             </div>
                         </div>
                     </div>
-
 
                     <div className="row mt-5">
                         <div className="col-2 border-right">
@@ -282,18 +281,11 @@ export default function EntityPage() {
                                     <i class="fa fa-road" aria-hidden="true"></i>
                                     <span className="ml-1">Slippers</span>
                                 </div>
-
                             </div>
                         </div>
                     </div>
-
-
-
-
                 </div>
             </div>
-
-
 
             <hr className="mt-5"/>
             <div className="row">
@@ -333,7 +325,6 @@ export default function EntityPage() {
                         </div>
                     </div>
 
-
                     <div className="row mt-5">
                         <div className="col-2 border-right">
                         <i class="fa fa-hospital-o fa-4x" aria-hidden="true"></i>
@@ -349,7 +340,6 @@ export default function EntityPage() {
                         </div>
                     </div>
 
-
                     <div className="row mt-5">
                         <div className="col-2 border-right">
                         <i class="fa fa-shopping-bag fa-4x" aria-hidden="true"></i>
@@ -363,7 +353,6 @@ export default function EntityPage() {
                             </div>
                         </div>
                     </div>
-
 
                     <div className="row mt-5">
                         <div className="col-2 border-right">
@@ -380,8 +369,6 @@ export default function EntityPage() {
                     </div>
                 </div>
             </div>
-        
-
 
             <hr />
             <div className="row">
@@ -390,7 +377,6 @@ export default function EntityPage() {
                         <h3>What's nearby</h3>
                     </div>
                 </div>
-
                 <div className="col-8">
                     <div className="row">
                         <div className="col-2 border-right">
@@ -406,30 +392,20 @@ export default function EntityPage() {
                             <h5>Naniwa Church - 260 m</h5>
                             <h5>Osaka Jan Jan Yokocho - 270 m</h5>
                             <h5>Tetsugenji Temple - 340 m</h5>
-
                         </div>
                     </div>
-
-                   
-
-
-                  
-
-
-                    
-
-
-                   
-
-
-                    
-
-
-
                 </div>
             </div>
-
-            
         </div>
     )
 }
+
+const mapStateToProps = (state) => ({
+  hotels: state.listingPageReducer.hotels  
+})
+
+const mapDispatchToProps = dispatch => ({
+    
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(EntityPage)
