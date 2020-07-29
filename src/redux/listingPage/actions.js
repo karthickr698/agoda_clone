@@ -39,5 +39,5 @@ export const getHotels = (url) => dispatch => {
     .then(res => res.property)
     .then(hotels => {dispatch(addAllHotels(hotels))
     dispatch(getHotelsSuccess)})
-    .catch(err => dispatch(getHotelsFailure))
+    .catch(err => dispatch(getHotelsFailure()))
 }

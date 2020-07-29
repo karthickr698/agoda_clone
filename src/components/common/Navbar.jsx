@@ -2,12 +2,13 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import logo from "../../utils/agoda-logo.png";
 import { Link } from "react-router-dom";
-// import Signin from './Signin';
 import SigninModal from "./signIn/SigninModal";
 import Button from '@material-ui/core/Button';
 import CreateAccountModal from './signUp/CreateAccountModal';
+import { connect } from 'react-redux';
 
-export default function Navbar() {
+export const Navbar = props => {
+  const { isAuth } = props
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -43,30 +44,27 @@ export default function Navbar() {
             </li>
           </ul>
           <form className="form-inline my-2 my-lg-0">
-            <div
-              className="p-2
-                 border-right"
-            >
+            <div className="p-2 border-right">
               <Button variant="outlined" color="primary">
                 <small>List your place</small>
-            </Button>
+              </Button>
             </div>
-
-            {/* <button
-                    className="btn btn-primary my-2 my-sm-0 m-3"
-                    type="submit"
-                >
-                Sign in
-                </button> */}
-            <SigninModal />
-            <CreateAccountModal />
-            
-            {/* <Button variant="outlined" color="primary">
-            <small>Create Account</small>
-            </Button> */}
+            {isAuth? "username" : <SigninModal />}
+            {isAuth? null : <CreateAccountModal />}
           </form>
         </div>
       </nav>
     </div>
   );
 }
+
+const mapStateToProps = (state) => ({
+  isAuth: state.authReducer.isAuth
+})
+
+// const mapDispatchToProps = {
+  
+// }
+
+export default connect(mapStateToProps, null)(Navbar)
+
