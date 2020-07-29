@@ -1,6 +1,5 @@
 import React from "react";
 import Perk from "./Perk.jsx";
-import RoomsLeft from "./RoomsLeft.jsx";
 import BestsellerFlag from "./BestsellerFlag.jsx";
 
 var Hotel = props => (
@@ -36,7 +35,6 @@ var Hotel = props => (
             perk="Fitness center access"
             hasPerk={props.hotel.hasFitnessCenter}
           />
-          <RoomsLeft roomsRemaining={props.hotel.roomsRemaining} />
         </div>
         <div className="hotel__main--right">
           <span>
@@ -44,9 +42,7 @@ var Hotel = props => (
             per night
           </span>
           <span>Includes taxes and charges</span>
-          {/* <button className="hotel__see-rooms">
-            See our last available rooms >
-          </button> */}
+          
         </div>
       </div>
     </div>

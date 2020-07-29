@@ -137,19 +137,21 @@ def gettotalproperties():
     data = cur.fetchall()
     return json.dumps({"Count": data})
 
-@app.route('/getproperty/:id', methods=['GET'])
-def getPropertyById(id):
-    cur = mysql.connection.cursor()
-    
-    cur.execute('SELECT * FROM property WHERE id = %s JOIN rooms ON rooms.propId=property.id Join view ON rooms.id=view.room_id;', (id))
-    data = cur.fetchall()
-    return json.dumps({"property": data})
+
 
 @app.route('/getproperty', methods=['GET'])
 def getProperty():
     cur = mysql.connection.cursor()
     
     cur.execute('SELECT * FROM Mainproperties')
+    data = cur.fetchall()
+    return json.dumps({"property": data})
+
+@app.route('/getproperty/:id', methods=['GET'])
+def getPropertyById(id):
+    cur = mysql.connection.cursor()
+    
+    cur.execute('SELECT * FROM Mainproperties WHERE id = %s ;'%(id))
     data = cur.fetchall()
     return json.dumps({"property": data})
 
