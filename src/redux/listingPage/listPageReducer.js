@@ -1,8 +1,9 @@
-import { SELECTED_FILTERS, ADD_ALL_HOTELS } from "./actionTypes"
+import { SELECTED_FILTERS, ADD_ALL_HOTELS, GOT_HOTEL_ENTITY } from "./actionTypes"
 
 const initialState = {
     selectedFilters: [],
-    hotels: []
+    hotels: [],
+    hotel:{}
 }
 
 export default (state = initialState, { type, payload }) => {
@@ -14,6 +15,12 @@ export default (state = initialState, { type, payload }) => {
     case ADD_ALL_HOTELS:
         console.log(payload)
         return { ...state, hotels: payload}
+
+    case GOT_HOTEL_ENTITY:
+        return {
+            ...state,
+            hotel: payload
+        }
 
     default:
         return state
