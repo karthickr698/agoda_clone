@@ -1,8 +1,8 @@
 import React from 'react';
 import apartment from '../../utils/entire-apartment.jpg';
-// import bungalow from '../../utils/entire-bungalow.jpg';
-// import house from '../../utils/entire-house.jpg';
-// import villa from '../../utils/entire-villa.jpg';
+import bungalow from '../../utils/entire-bungalow.jpg';
+import house from '../../utils/entire-house.jpg';
+import villa from '../../utils/entire-villa.jpg';
 import { Link } from 'react-router-dom';
 
 
