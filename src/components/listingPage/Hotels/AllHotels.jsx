@@ -5,7 +5,7 @@ import { hotels } from "../../../utils/data.js";
 export default function AllHotels(props) {
   return (
     <div>
-      {hotels.map(hotel =><Hotel key={hotel.id} hotel={hotel} /> )}
+      {props.hotels.map(hotel => <Hotel key={hotel.id} hotel={hotel} />)}
     </div>
   )
 }
@@ -14,9 +14,9 @@ export default function AllHotels(props) {
 // var AllHotels = () => (
 //   console.log(hotels)
 //  return (<div>hello</div>)
-  
+
 //     // hotels.map(hotel => <div>{hotel.name}</div>)
-  
+
 // )
 
 // var HotelsList = props => {

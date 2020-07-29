@@ -9,33 +9,40 @@ class ListingComponent extends Component {
     super(props)
 
     this.state = {
-      selectedFilters: [this.props.selectedFilters]
+      // selectedFilters: [this.props.selectedFilters]
     }
   }
 
+  componentDidMount() {
+    const params = new URL(window.location.href);
+    const url = 'https://b008b94b880c.ngrok.io/getproperty' + params.search;
+    console.log(url);
+    this.props.getHotels(url);
+  }
+
   toggleFilter = clickedFilterKey => {
-    console.log('fuck', clickedFilterKey)
     var newFilters;
     var alreadySelected = this.props.selectedFilters.includes(clickedFilterKey);
     if (alreadySelected) {
       newFilters = this.props.selectedFilters.filter(
         selectedFilter => selectedFilter !== clickedFilterKey
       );
-    }
-    else {
+    } else {
       newFilters = this.props.selectedFilters.concat(clickedFilterKey);
     }
     console.log(newFilters)
     this.props.updateTheFilters(newFilters)
 
     const newUrl = new URL(window.location.href)
-    console.log('new', newUrl)
+    console.log(newUrl)
 
-    newFilters.forEach(filter => newUrl.searchParams.set(filter, true))
+    newFilters.forEach(filter => newUrl.searchParams.set(filter, 1))
 
     this.props.history.push(newUrl.search)
 
-    this.setState({ selectedFilters: newFilters });
+    // window.location.href = newUrl.toString()
+
+    // this.setState({ selectedFilters: newFilters });
   };
   render() {
     console.log(this.props)

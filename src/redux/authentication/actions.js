@@ -30,7 +30,7 @@ export const signupUserEmail = payload => {
   return dispatch => {
     dispatch(signupUserRequest());
     return axios
-      .post("http://127.0.0.1:5000/user/register", {
+      .post("https://b008b94b880c.ngrok.io/user/register", {
         email: payload.email,
         password: payload.password,
         firstName: payload.firstName,
@@ -77,7 +77,7 @@ export const loginUserEmail = payload => {
   return dispatch => {
     dispatch(loginUserRequest());
     return axios
-      .post("/http://127.0.0.1:5000/user/login", {
+      .post("https://b008b94b880c.ngrok.io/user/login", {
         email: payload.email,
         password: payload.password
       })
@@ -121,7 +121,7 @@ export const logoutUserFailure = payload => ({
 export const sendGoogleLoginData = (payload) => (dispatch) => {
   dispatch(loginUserRequest());
   return axios
-    .post("https://4bcc3670499d.ngrok.io/google", {
+    .post("https://b008b94b880c.ngrok.io//google", {
       ...payload,
     })
     .then((res) => {

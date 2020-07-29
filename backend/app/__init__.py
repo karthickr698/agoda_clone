@@ -2,7 +2,7 @@ from flask import Flask
 from config import app_config
 from flask_migrate import Migrate
 from app.models import *
-from .admin import admin as admin_blueprint
+
 
 
 
@@ -14,7 +14,7 @@ def create_app(config_name):
     db.init_app(app)
     migrate = Migrate(app, db)
 
-    app.register_blueprint(admin_blueprint, url_prefix='/admin')
+    #app.register_blueprint(admin_blueprint, url_prefix='/admin')
 
 
     return app

@@ -1,8 +1,9 @@
-import { SELECTED_FILTERS, 
+import {
+    SELECTED_FILTERS,
     ADD_ALL_HOTELS,
     GET_HOTELS_REQUEST,
     GET_HOTELS_SUCCESS,
-    GET_HOTELS_FAILURE    
+    GET_HOTELS_FAILURE
 } from "./actionTypes";
 import axios from 'axios'
 
@@ -35,9 +36,11 @@ export const getHotelsFailure = (payload) => ({
 export const getHotels = (url) => dispatch => {
     dispatch(getHotelsRequest())
     return axios
-    .get(url)
-    .then(res => res.property)
-    .then(hotels => {dispatch(addAllHotels(hotels))
-    dispatch(getHotelsSuccess)})
-    .catch(err => dispatch(getHotelsFailure))
+        .get(url)
+        .then(res => res.data.property)
+        .then(hotels => {
+            dispatch(addAllHotels(hotels))
+            dispatch(getHotelsSuccess)
+        })
+        .catch(err => dispatch(getHotelsFailure))
 }

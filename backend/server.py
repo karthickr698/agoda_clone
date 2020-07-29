@@ -73,7 +73,10 @@ def userLogin():
             "session_expiry": time.time() + 7200
         }
 
-        return json.dumps({ "message":"Login Successful", "error":False})
+        data = {
+            "email": email,
+        }
+        return json.dumps({"data": data})
     else:
         return json.dumps({"message": "Login Failed", "error": True})
 
@@ -107,7 +110,11 @@ def googleauth():
         cur.execute(''' INSERT INTO oauth( user_id,provider, provider_id,access_token) VALUES("%s", "%s","%s", "%s"); ''' % (temp,provider,googleId,access_token))
         mysql.connection.commit()
         cur.close()
-        return json.dumps({"message":"Created Account successfully!", "error":False})
+        data = {
+            "email": email,
+            "name":name
+        }
+        return json.dumps({"data": data})
 
 
 
@@ -141,17 +148,30 @@ def gettotalproperties():
 
 @app.route('/getproperty', methods=['GET'])
 def getProperty():
+    page = request.args.get('page')
+    isHome = request.args.get('isHome')
+    isFamilyFriendly = request.args.get('isFamilyFriendly')
+    
+    if (isHome == None):
+        isHome = "1"
+    if (isFamilyFriendly == None):
+        isFamilyFriendly = "0"
+
+    if (page == None):
+        page = 1
+    perpage = 10
+    startat = int(page) * perpage
     cur = mysql.connection.cursor()
     
-    cur.execute('SELECT * FROM Mainproperties')
+    cur.execute('SELECT * FROM Mainproperties WHERE isHome = (%s) and isFamilyFriendly = (%s)  limit %s, %s ',(isHome,isFamilyFriendly,startat,perpage))
     data = cur.fetchall()
     return json.dumps({"property": data})
 
-@app.route('/getproperty/:id', methods=['GET'])
+@app.route('/getproperty/<id>', methods=['GET'])
 def getPropertyById(id):
     cur = mysql.connection.cursor()
     
-    cur.execute('SELECT * FROM Mainproperties WHERE id = %s ;'%(id))
+    cur.execute('SELECT * FROM Mainproperties WHERE id = "%d" ;'%(int(id)))
     data = cur.fetchall()
     return json.dumps({"property": data})
 
