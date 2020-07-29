@@ -34,6 +34,7 @@ class Signin extends Component {
       googleId: response.googleId,
 
     });
+    this.props.handleClose()
   }
 
   responseFacebook = (response) => {

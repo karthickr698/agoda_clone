@@ -26,11 +26,18 @@ export const signupUserFailure = payload => ({
 });
 
 export const signupUserEmail = payload => {
+<<<<<<< HEAD
   console.log("register")
   return dispatch => {
     dispatch(signupUserRequest());
     return axios
       .post("https://b008b94b880c.ngrok.io/user/register", {
+=======
+  return dispatch => {
+    dispatch(signupUserRequest());
+    return axios
+      .post("/signup", {
+>>>>>>> 3ae2e0915f2486b374ab603fab15d5958d085173
         email: payload.email,
         password: payload.password,
         firstName: payload.firstName,
@@ -72,12 +79,19 @@ export const loginUserFailure = payload => ({
 });
 
 export const loginUserEmail = payload => {
+<<<<<<< HEAD
   console.log("login")
 
   return dispatch => {
     dispatch(loginUserRequest());
     return axios
       .post("https://b008b94b880c.ngrok.io/user/login", {
+=======
+  return dispatch => {
+    dispatch(loginUserRequest());
+    return axios
+      .post("/login", {
+>>>>>>> 3ae2e0915f2486b374ab603fab15d5958d085173
         email: payload.email,
         password: payload.password
       })
@@ -118,6 +132,7 @@ export const logoutUserFailure = payload => ({
   error: payload
 });
 
+<<<<<<< HEAD
 export const sendGoogleLoginData = (payload) => (dispatch) => {
   dispatch(loginUserRequest());
   return axios
@@ -131,6 +146,8 @@ export const sendGoogleLoginData = (payload) => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
+=======
+>>>>>>> 3ae2e0915f2486b374ab603fab15d5958d085173
 export const logoutUser = payload => {
   return dispatch => {
     dispatch(logoutUserRequest());
