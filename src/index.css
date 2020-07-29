@@ -234,3 +234,12 @@ input:checked + .slider:before {
   /* opacity: 0.5; */
   filter: brightness(80%);
 }
+
+.explore-more-wrapper{
+  display:flex;
+  justify-content: space-evenly;
+}
+
+.green-color{
+  color: rgb(19, 231, 47);
+}

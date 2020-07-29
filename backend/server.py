@@ -1,137 +1,138 @@
 from flask import Flask
 from flask import request
-from flask_cors import CORS
 from flask_mysqldb import MySQL
 import time
 import json
-import jwt
+from flask_cors import CORS;
 
 app = Flask(__name__)
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'karthick98'
-app.config['MYSQL_DB'] = 'food_delivery'
+app.config['MYSQL_DB'] = 'agoda'
 
 CORS(app)
 mysql = MySQL(app)
 
 @app.route("/")
 def home():
-    return "Home"
+    cur = mysql.connection.cursor()
+    
+    cur.execute('SELECT * FROM city ')
+    data = cur.fetchall()
+    return json.dumps({"city": data})
 
-# New User - Create Account
 @app.route("/user/register", methods=["POST"])
 def userRegister():
-    name = request.json["name"]
-    email = request.json["email"]
-    username = request.json["username"]
     password = request.json["password"]
+    email = request.json["email"]
+    firstName = request.json["firstName"]
+    lastName = request.json["lastName"]
 
     cur = mysql.connection.cursor()
 
-    cur.execute(''' SELECT username from user ''')
+    cur.execute(''' SELECT email from users ''')
     result = cur.fetchall()
 
     flag = False
 
-    if username in result:
+    if email in result:
         flag = True
 
     if flag:
         return json.dumps({"message":"Username already exists!", "error":True})
     else:
-        cur.execute(''' INSERT INTO user(name, email, username, password) VALUES("%s", "%s", "%s", "%s"); ''' %(name, email, username, password))
+        cur.execute(''' INSERT INTO users( email, password, first_name, last_name) VALUES("%s", "%s", "%s", "%s"); ''' %( email, password, firstName, lastName))
         mysql.connection.commit()
         cur.close()
 
         return json.dumps({"message":"Created Account successfully!", "error":False})
 
-# User - Login
+
 @app.route("/user/login", methods=["POST"])
 def userLogin():
-    username = request.json["username"]
+    email = request.json["email"]
     password = request.json["password"]
 
     cur = mysql.connection.cursor()
 
-    cur.execute(''' SELECT username,password FROM user ''')
+    cur.execute(''' SELECT email,password FROM users ''')
     result = cur.fetchall()
 
     flag = False
 
     for i in result:
-        if i[0] == username:
+        if i[0] == email:
             if i[1] == password:
                 flag = True
 
     if flag:
         payload = {
-            "username": username,
+            "username": email,
             "status": "Logged In",
             "session_expiry": time.time() + 7200
         }
 
-        key = "belly"
-
-        encode = jwt.encode(payload, key)
-
-        return json.dumps({"token":encode.decode(), "message":"Login Successful", "error":False})
+        data = {
+            "email": email,
+        }
+        return json.dumps({"data": data})
     else:
-        return json.dumps({"message":"Login Failed", "error":True})
+        return json.dumps({"message": "Login Failed", "error": True})
 
-# User Token Authentication
-@app.route("/user_token_validate", methods=['POST'])
-def userToken():
-    token = request.json["token"]
-
-    key = "belly"
-
-    data = jwt.decode(token, key)
-
-    current_time = time.time()
-
-    if data["session_expiry"] < current_time:
-        return json.dumps({
-            "error":True,
-            "message":"Invalid Token"
-        })
-    else:
-        return json.dumps({
-            "error":False,
-            "message":"Valid Token"
-        })
-        
-@app.route('/property', methods=['POST'])
-def addproperty():
-    location = request.json['location']
-    name = request.json['name']
-    rating = request.json['rating']
-    description = request.json['description']
-    phoneno = request.json['mobile']
-    owner = request.json['owner']
+@app.route("/google", methods=["POST"])
+def googleauth():
+    email = request.json["email"]
+    name = request.json["name"]
+    access_token = request.json["access_token"]
+    googleId = request.json["googleId"]
+    provider="Google"
 
     cur = mysql.connection.cursor()
-    
-    cur.execute(''' INSERT INTO hotel(name, location, rating, description, mobile, owner) VALUES("%s", "%s", "%s", "%s", "%s", "%s"); ''' % (
-        name, location, rating, description, phoneno, owner))
-    mysql.connection.commit()
-    cur.close()
 
-    return json.dumps({"message": "property Added successfully", "error": False})
+    cur.execute(''' SELECT email from users ''')
+    result = cur.fetchall()
+
+    flag=False
+    for i in result:
+        if (i[0] == email):
+            flag=True;
+        
+
+    if flag:
+
+        return json.dumps({"message":"Username already exists!", "error":True})
+    else:
+        cur.execute(''' INSERT INTO users( email, password, first_name, last_name) VALUES("%s", "%s","%s", "%s"); ''' % (email, name, email, name))
+        mysql.connection.commit()
+        temp=cur.lastrowid
+
+        cur.execute(''' INSERT INTO oauth( user_id,provider, provider_id,access_token) VALUES("%s", "%s","%s", "%s"); ''' % (temp,provider,googleId,access_token))
+        mysql.connection.commit()
+        cur.close()
+        data = {
+            "email": email,
+            "name":name
+        }
+        return json.dumps({"data": data})
+
 
 
 @app.route('/properties', methods=['GET'])
 def viewAllpropertys():
     cur = mysql.connection.cursor()
-    page_no = request.args.get('page_no')
+    page = request.args.get('page')
     rating = request.args.get('rating')
-    location = request.args.get('location')
-    bedrooms = request.args.get('bedrooms')
-    guestrating = request.args.get('guestrating')
-    perpage = 20
-    startat = page_no * perpage
+    size = request.args.get('size')
+    breakFast = request.args.get('breakFast')
+    creditCard = request.args.get('creditCard')
+    lower=request.args.get('lower')
+    perpage = 10
+    startat = page * perpage
+
+
     
-    cur.execute('SELECT * FROM property WHERE rating = %s AND location = %s AND bedrooms = %s AND guestRating = %s limit %s, %s;', (rating, location, bedrooms, guestrating,startat,perpage))
+    cur.execute('SELECT * FROM rooms WHERE rating in (%s) AND location in (%s) AND breakFast in (%s) AND creditCard in (%s) limit %s, %s ;', (rating, location, breakFast, creditCard,startat,perpage))
     data = list(cur.fetchall())
     return json.dumps({"propertys": data})
 
@@ -143,10 +144,55 @@ def gettotalproperties():
     data = cur.fetchall()
     return json.dumps({"Count": data})
 
-@app.route('/getproperty/:id', methods=['GET'])
-def getProperty(id):
+
+
+@app.route('/getproperty', methods=['GET'])
+def getProperty():
+    page = request.args.get('page')
+    isHome = request.args.get('isHome')
+    isFamilyFriendly = request.args.get('isFamilyFriendly')
+    includesBreakfast = request.args.get('includesBreakfast')
+    canBookwithoutCC = request.args.get('canBookwithoutCC')
+    low2high = request.args.get('low2high')
+    rating=request.args.get('rating')
+    
+    if (isHome == None):
+        isHome = "0"
+    if (isFamilyFriendly == None):
+        isFamilyFriendly = "0"
+    if (includesBreakfast == None):
+        includesBreakfast = "0"
+    if (canBookwithoutCC == None):
+        canBookwithoutCC = "0"
+
+    if (page == None):
+        page = 1
+    perpage = 20
+    startat = int(page) * perpage
+    cur = mysql.connection.cursor()
+    if (low2high == None and rating==None ):
+        cur.execute('SELECT * FROM Mainproperties WHERE isHome = (%s) or isFamilyFriendly = (%s) or includesBreakfast=(%s) or canBookwithoutCC=(%s)   limit %s, %s ',(isHome,isFamilyFriendly,includesBreakfast,canBookwithoutCC,startat,perpage))
+        data = cur.fetchall()
+        return json.dumps({"property": data})
+    elif (low2high == "1" and rating == "1"):
+        cur.execute('SELECT * FROM Mainproperties WHERE isHome = (%s) or isFamilyFriendly = (%s) or includesBreakfast=(%s) or canBookwithoutCC=(%s) ORDER BY rating DESC,pricePerNight ASC  limit %s, %s  ',(isHome,isFamilyFriendly,includesBreakfast,canBookwithoutCC,startat,perpage))
+        data = cur.fetchall()
+        return json.dumps({"property": data})
+    elif (rating == "1" and low2high == None):
+        cur.execute('SELECT * FROM Mainproperties WHERE isHome = (%s) or isFamilyFriendly = (%s) or includesBreakfast=(%s) or canBookwithoutCC=(%s) ORDER BY rating DESC  limit %s, %s  ',(isHome,isFamilyFriendly,includesBreakfast,canBookwithoutCC,startat,perpage))
+        data = cur.fetchall()
+        return json.dumps({"property": data})
+    else:
+        cur.execute('SELECT * FROM Mainproperties WHERE isHome = (%s) or isFamilyFriendly = (%s) or includesBreakfast=(%s) or canBookwithoutCC=(%s) ORDER BY pricePerNight ASC  limit %s, %s  ',(isHome,isFamilyFriendly,includesBreakfast,canBookwithoutCC,startat,perpage))
+        data = cur.fetchall()
+        return json.dumps({"property": data})
+
+@app.route('/getproperty/<id>', methods=['GET'])
+def getPropertyById(id):
     cur = mysql.connection.cursor()
     
-    cur.execute('SELECT * FROM property WHERE id = %s;', (id))
+    cur.execute('SELECT * FROM Mainproperties WHERE id = "%d" ;'%(int(id)))
     data = cur.fetchall()
     return json.dumps({"property": data})
+
+

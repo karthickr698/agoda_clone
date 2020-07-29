@@ -13,11 +13,12 @@ import {
   const initState = {
     isAuth: false,
     isLoading: false,
-    error: false
+    error: false,
+    currentUser: {}
   };
   
-  const reducer = (state = initState, action) => {
-    switch (action.type) {
+  const reducer = (state = initState, {type, payload}) => {
+    switch (type) {
       case SIGNUP_USER_REQUEST:
         return {
           isLoading: true,
@@ -26,7 +27,8 @@ import {
       case SIGNUP_USER_SUCCESS:
         return {
           isLoading: false,
-          isAuth: true
+          isAuth: true,
+          currentUser: payload
         };
       case SIGNUP_USER_FAILURE:
         return {
@@ -41,7 +43,8 @@ import {
       case LOGIN_USER_SUCCESS:
         return {
           isLoading: false,
-          isAuth: true
+          isAuth: true,
+          currentUser: payload
         };
       case LOGIN_USER_FAILURE:
         return {
@@ -55,7 +58,8 @@ import {
         };
       case LOGOUT_USER_SUCCESS:
         return {
-          isAuth: false
+          isAuth: false,
+          currentUser: {}
         };
       case LOGOUT_USER_FAILURE:
         return {

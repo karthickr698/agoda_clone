@@ -1,57 +1,57 @@
 import React from "react";
 import Perk from "./Perk.jsx";
-import RoomsLeft from "./RoomsLeft.jsx";
 import BestsellerFlag from "./BestsellerFlag.jsx";
+import { Link } from 'react-router-dom';
 
-var Hotel = props => (
-  <li className="hotel">
-    <img
-      src={props.hotel.imageSrc}
-      alt="hotel main entrance"
-      className="hotel__image"
-    />
-    <div className="hotel__text">
-      <div className="hotel__header">
-        <h3 className="hotel__name">{props.hotel.name}</h3>
-        <span className="hotel__rating">{props.hotel.rating}</span>
-      </div>
-      <div className="hotel__main">
-        <div>
-          <span>{props.hotel.reviewCount} reviews</span>
-          <Perk
-            perk="Free cancellation"
-            hasPerk={props.hotel.hasFreeCancellation}
-          />
-          <Perk
-            perk="Breakfast included"
-            hasPerk={props.hotel.includesBreakfast}
-          />
-          <Perk perk="Onsite parking" hasPerk={props.hotel.hasParking} />
-          <Perk perk="Pet friendly building" hasPerk={props.hotel.allowsPets} />
-          <Perk
-            perk="Order food to your room"
-            hasPerk={props.hotel.hasRoomService}
-          />
-          <Perk
-            perk="Fitness center access"
-            hasPerk={props.hotel.hasFitnessCenter}
-          />
-          <RoomsLeft roomsRemaining={props.hotel.roomsRemaining} />
+var Hotel = props => {
+return(
+  <Link to={`/listingPage/${props.hotel[0]}`} style={{textDecoration:'none'}}>
+    <li className="hotel">
+      <img
+        src={props.hotel[5]}
+        alt="hotel main entrance"
+        className="hotel__image"
+      />
+      <div className="hotel__text">
+        <div className="hotel__header">
+          <h3 className="hotel__name">{props.hotel[1]}</h3>
+          <span className="hotel__rating">{props.hotel[2]}</span>
         </div>
-        <div className="hotel__main--right">
-          <span>
-            <span className="hotel__price">Rs.{props.hotel.pricePerNight}</span>{" "}
-            per night
-          </span>
-          <span>Includes taxes and charges</span>
-          {/* <button className="hotel__see-rooms">
-            See our last available rooms >
-          </button> */}
+        <div className="hotel__main">
+          <div>
+            <span>{props.hotel[3]} reviews</span>
+            <Perk
+              perk="Free cancellation"
+              hasPerk={props.hotel[7] === '1' ? true : false}
+            />
+            <Perk
+              perk="Breakfast included"
+              hasPerk={props.hotel[8] === '1' ? true : false}
+            />
+            <Perk perk="Onsite parking" hasPerk={props.hotel[9] === '1' ? true : false} />
+            <Perk perk="Pet friendly building" hasPerk={props.hotel[10] === '1' ? true : false} />
+            <Perk
+              perk="Order food to your room"
+              hasPerk={props.hotel[11] === '1' ? true : false}
+            />
+            <Perk
+              perk="Fitness center access"
+              hasPerk={props.hotel[12] === '1' ? true : false}
+            />
+          </div>
+          <div className="hotel__main--right">
+            <span>
+              <span className="hotel__price">Rs.{props.hotel[4]}</span>{" "}
+              per night
+            </span>
+            <span>Includes taxes and charges</span>
+
+          </div>
         </div>
       </div>
-    </div>
-    <BestsellerFlag isBestseller={props.hotel.isBestSeller} />
-  </li>
-);
+      <BestsellerFlag isBestseller={props.hotel[14] === '1' ? true : false} />
+    </li>
+  </Link>
+)};
 
 export default Hotel;

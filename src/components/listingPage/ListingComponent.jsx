@@ -1,32 +1,95 @@
-import React, { Component } from "react";
-import Hotels from "./Hotels";
-import Filters from "./Filters";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import AllHotels from "./Hotels/AllHotels";
+import { updateTheFilters, getHotels } from '../../redux/listingPage/actions';
+import { filterOptions } from "../../utils/data.js";
 
 class ListingComponent extends Component {
-  state = { selectedFilters: [] };
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      selectedFilters: [this.props.selectedFilters]
+    }
+  }
+
+  componentDidMount() {
+    const params = new URL(window.location.href);
+    const url = 'https://87583a193985.ngrok.io/getproperty' + params.search;
+    this.props.getHotels(url);
+  }
+
   toggleFilter = clickedFilterKey => {
     var newFilters;
-    var alreadySelected = this.state.selectedFilters.includes(clickedFilterKey);
+    var alreadySelected = this.props.selectedFilters.includes(clickedFilterKey);
     if (alreadySelected) {
-      newFilters = this.state.selectedFilters.filter(
+      newFilters = this.props.selectedFilters.filter(
         selectedFilter => selectedFilter !== clickedFilterKey
       );
     } else {
-      newFilters = this.state.selectedFilters.concat(clickedFilterKey);
+      newFilters = this.props.selectedFilters.concat(clickedFilterKey);
     }
+    // console.log(newFilters)
+    this.props.updateTheFilters(newFilters)
+
+    const newUrl = new URL(window.location.href)
+    // console.log(newUrl)
+
+    newFilters.forEach(filter => newUrl.searchParams.set(filter, 1))
+
+    this.props.history.push(newUrl.search)
+    this.props.getHotels('http://localhost:5000/getproperty' + newUrl.search)
+
+    // window.location.href = newUrl.toString()
+
     this.setState({ selectedFilters: newFilters });
   };
+
   render() {
     return (
       <div className="App">
-        <Filters
-          selectedFilters={this.state.selectedFilters}
-          toggleFilter={this.toggleFilter}
-        />
-        <Hotels selectedFilters={this.state.selectedFilters} />
+
+        <div className="filters">
+          <h5 className="filters__header">Filter By:</h5>
+          <hr />
+          <ul className="filters-list">{
+            filterOptions.map(filter => {
+              // var isChecked = this.props.selectedFilters.includes(filter.key);
+              // console.log(isChecked, this.props.selectedFilters)
+              return (
+                <li key={filter.key} className="filter">
+                  <span>{filter.display}</span>
+                  <span>
+                    <label className="switch">
+                      <input 
+                        type="checkbox" 
+                        // checked={isChecked}
+                        onChange={() => this.toggleFilter(filter.key)}
+                      />
+                      <span className="slider round"></span>
+                    </label>
+                  </span>
+                </li>
+              )
+            })
+          }</ul>
+        </div> 
+
+        <AllHotels hotels={this.props.hotels} />
+
       </div>
     );
   }
 }
 
-export default ListingComponent;
+const mapStateToProps = (state) => ({
+  selectedFilters: state.listingPageReducer.selectedFilters,
+  hotels: state.listingPageReducer.hotels
+})
+
+const mapDispatchToProps = dispatch => ({
+  updateTheFilters: payload => dispatch(updateTheFilters(payload)),
+  getHotels: payload => dispatch(getHotels(payload))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListingComponent)

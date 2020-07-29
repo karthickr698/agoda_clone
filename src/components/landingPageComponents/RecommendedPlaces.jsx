@@ -1,6 +1,6 @@
 import React from 'react';
-import apartment from '../../utils/entire-apartment.jpg';
-import recommendedPlace from '../../utils/recommended.jpg';
+// import apartment from '../../utils/entire-apartment.jpg';
+import Crowne from '../../utils/Crowne.jpg';
 
 export default function ExploreMore() {
     return (
@@ -9,7 +9,7 @@ export default function ExploreMore() {
             <div className="row">
                 <div className="col mr-5" >
                     <div className="card m-3 border-1" style={{width: '18rem'}}>
-                        <img src={recommendedPlace} className="card-img-top" alt="aprtments" />
+                        <img src={Crowne} className="card-img-top" alt="aprtments" />
                         <div className="card-body">
                             <h5 className="card-title">ANA Crowne Plaza Osaka</h5>
                             <p className="card-text text-muted">Umeda</p>
@@ -18,7 +18,7 @@ export default function ExploreMore() {
                 </div>
                 <div className="col mr-5">
                     <div className="card m-3 border-1" style={{width: '18rem'}}>
-                        <img src={recommendedPlace} className="card-img-top" alt="aprtments" />
+                        <img src={Crowne} className="card-img-top" alt="aprtments" />
                         <div className="card-body">
                             <h5 className="card-title">Hotel Plaza Osaka</h5>
                             <p className="card-text text-muted">Juso</p>
@@ -27,7 +27,7 @@ export default function ExploreMore() {
                 </div>
                 <div className="col mr-5">
                     <div className="card m-3 border-1" style={{width: '18rem'}}>
-                        <img src={recommendedPlace} className="card-img-top" alt="aprtments" />
+                        <img src={Crowne} className="card-img-top" alt="aprtments" />
                         <div className="card-body">
                             <h5 className="card-title">RIHGA Royal Hotel Osaka</h5>
                             <p className="card-text text-muted">Umeda</p>
