@@ -151,21 +151,41 @@ def getProperty():
     page = request.args.get('page')
     isHome = request.args.get('isHome')
     isFamilyFriendly = request.args.get('isFamilyFriendly')
+    includesBreakfast = request.args.get('includesBreakfast')
+    canBookwithoutCC = request.args.get('canBookwithoutCC')
+    low2high = request.args.get('low2high')
+    rating=request.args.get('rating')
     
     if (isHome == None):
-        isHome = "1"
+        isHome = "0"
     if (isFamilyFriendly == None):
         isFamilyFriendly = "0"
+    if (includesBreakfast == None):
+        includesBreakfast = "0"
+    if (canBookwithoutCC == None):
+        canBookwithoutCC = "0"
 
     if (page == None):
         page = 1
-    perpage = 10
+    perpage = 20
     startat = int(page) * perpage
     cur = mysql.connection.cursor()
-    
-    cur.execute('SELECT * FROM Mainproperties WHERE isHome = (%s) and isFamilyFriendly = (%s)  limit %s, %s ',(isHome,isFamilyFriendly,startat,perpage))
-    data = cur.fetchall()
-    return json.dumps({"property": data})
+    if (low2high == None and rating==None ):
+        cur.execute('SELECT * FROM Mainproperties WHERE isHome = (%s) or isFamilyFriendly = (%s) or includesBreakfast=(%s) or canBookwithoutCC=(%s)   limit %s, %s ',(isHome,isFamilyFriendly,includesBreakfast,canBookwithoutCC,startat,perpage))
+        data = cur.fetchall()
+        return json.dumps({"property": data})
+    elif (low2high == "1" and rating == "1"):
+        cur.execute('SELECT * FROM Mainproperties WHERE isHome = (%s) or isFamilyFriendly = (%s) or includesBreakfast=(%s) or canBookwithoutCC=(%s) ORDER BY rating DESC,pricePerNight ASC  limit %s, %s  ',(isHome,isFamilyFriendly,includesBreakfast,canBookwithoutCC,startat,perpage))
+        data = cur.fetchall()
+        return json.dumps({"property": data})
+    elif (rating == "1" and low2high == None):
+        cur.execute('SELECT * FROM Mainproperties WHERE isHome = (%s) or isFamilyFriendly = (%s) or includesBreakfast=(%s) or canBookwithoutCC=(%s) ORDER BY rating DESC  limit %s, %s  ',(isHome,isFamilyFriendly,includesBreakfast,canBookwithoutCC,startat,perpage))
+        data = cur.fetchall()
+        return json.dumps({"property": data})
+    else:
+        cur.execute('SELECT * FROM Mainproperties WHERE isHome = (%s) or isFamilyFriendly = (%s) or includesBreakfast=(%s) or canBookwithoutCC=(%s) ORDER BY pricePerNight ASC  limit %s, %s  ',(isHome,isFamilyFriendly,includesBreakfast,canBookwithoutCC,startat,perpage))
+        data = cur.fetchall()
+        return json.dumps({"property": data})
 
 @app.route('/getproperty/<id>', methods=['GET'])
 def getPropertyById(id):

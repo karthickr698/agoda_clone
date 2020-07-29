@@ -39,6 +39,7 @@ class ListingComponent extends Component {
     newFilters.forEach(filter => newUrl.searchParams.set(filter, 1))
 
     this.props.history.push(newUrl.search)
+    this.props.getHotels('http://localhost:5000/getproperty' + newUrl.search)
 
     // window.location.href = newUrl.toString()
 
