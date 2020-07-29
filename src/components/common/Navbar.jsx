@@ -10,6 +10,7 @@ import { logoutUser } from "../../redux/authentication/actions";
 
 export const Navbar = props => {
   const { isAuth } = props
+  console.log("name", props.username)
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -50,8 +51,8 @@ export const Navbar = props => {
                 <small>List your place</small>
               </Button>
             </div>
-            {isAuth? <button onClick={(payload) => this.props.logoutUser(payload)}>signout</button> : <SigninModal />}
-            {isAuth? this.props.username : <CreateAccountModal />}
+            {isAuth ? <button className="btn btn-outline-primary mr-1" onClick={(payload) => props.logoutUser(payload)}>signout</button> : <SigninModal />}
+            {isAuth ? props.username.name : <CreateAccountModal />}
           </form>
         </div>
       </nav>
@@ -61,11 +62,11 @@ export const Navbar = props => {
 
 const mapStateToProps = (state) => ({
   isAuth: state.authReducer.isAuth,
-  username: state.authReducer.currentUser.name
+  username: state.authReducer.currentUser
 })
 
-const mapDispatchToProps = dispatch =>({
-  logoutUser : payload => dispatch(logoutUser(payload))
+const mapDispatchToProps = dispatch => ({
+  logoutUser: payload => dispatch(logoutUser(payload))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar)

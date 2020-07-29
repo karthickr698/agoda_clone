@@ -30,7 +30,7 @@ export const signupUserEmail = payload => {
   return dispatch => {
     dispatch(signupUserRequest());
     return axios
-      .post("https://b008b94b880c.ngrok.io/user/register", {
+      .post("https://87583a193985.ngrok.io/user/register", {
         email: payload.email,
         password: payload.password,
         firstName: payload.firstName,
@@ -77,7 +77,7 @@ export const loginUserEmail = payload => {
   return dispatch => {
     dispatch(loginUserRequest());
     return axios
-      .post("https://b008b94b880c.ngrok.io/user/login", {
+      .post("https://87583a193985.ngrok.iouser/login", {
         email: payload.email,
         password: payload.password
       })
@@ -119,16 +119,7 @@ export const logoutUserFailure = payload => ({
 });
 
 export const sendGoogleLoginData = (payload) => (dispatch) => {
-  dispatch(loginUserRequest());
-  return axios
-    .post("https://b008b94b880c.ngrok.io//google", {
-      ...payload,
-    })
-    .then((res) => {
-      res.statusParam = "isAuthenticated";
-      dispatch(loginUserSuccess(res));
-    })
-    .catch((err) => console.log(err));
+  dispatch(loginUserSuccess(payload));
 };
 
 export const logoutUser = payload => {
