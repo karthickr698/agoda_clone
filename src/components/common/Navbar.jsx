@@ -6,6 +6,7 @@ import SigninModal from "./signIn/SigninModal";
 import Button from '@material-ui/core/Button';
 import CreateAccountModal from './signUp/CreateAccountModal';
 import { connect } from 'react-redux';
+import { logoutUser } from "../../redux/authentication/actions";
 
 export const Navbar = props => {
   const { isAuth } = props
@@ -44,13 +45,13 @@ export const Navbar = props => {
             </li>
           </ul>
           <form className="form-inline my-2 my-lg-0">
-            <div className="p-2 border-right">
+            <div className="p-2 ">
               <Button variant="outlined" color="primary">
                 <small>List your place</small>
               </Button>
             </div>
-            {isAuth? "username" : <SigninModal />}
-            {isAuth? null : <CreateAccountModal />}
+            {isAuth? <button onClick={(payload) => this.props.logoutUser(payload)}>signout</button> : <SigninModal />}
+            {isAuth? this.props.username : <CreateAccountModal />}
           </form>
         </div>
       </nav>
@@ -59,12 +60,13 @@ export const Navbar = props => {
 }
 
 const mapStateToProps = (state) => ({
-  isAuth: state.authReducer.isAuth
+  isAuth: state.authReducer.isAuth,
+  username: state.authReducer.currentUser.name
 })
 
-// const mapDispatchToProps = {
-  
-// }
+const mapDispatchToProps = dispatch =>({
+  logoutUser : payload => dispatch(logoutUser(payload))
+})
 
-export default connect(mapStateToProps, null)(Navbar)
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar)
 

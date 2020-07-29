@@ -19,6 +19,7 @@ export default class Signin extends Component {
 
   responseGoogle = (response) => {
     console.log(response)
+    this.props.handleClose()
   }
 
   responseFacebook = (response) => {
