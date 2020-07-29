@@ -7,19 +7,21 @@ import Footer from '../components/landingPageComponents/Footer'
 import ExploreMore from '../components/landingPageComponents/ExploreMore';
 import RecommendedPlaces from '../components/landingPageComponents/RecommendedPlaces';
 import ApartmentsPage from '../components/entityPageComponents/ApartmentsPage.jsx'
+import EntityPage from '../components/entityPageComponents/EntityPage';
 
 export default function Routes() {
     return (
         <div>
             <Navbar />
-            <Switch>
+            <EntityPage />
+            {/* <Switch>
                 <Route exact path='/' render={() => <>
                     <ExploreMore />
                     <RecommendedPlaces />
                 </>} />
                 <Route path='/listingPage' component={ListingComponent} />
                 <Route path='/apartments' component={ApartmentsPage} />
-            </Switch>
+            </Switch> */}
             <Footer />
         </div>
     )
