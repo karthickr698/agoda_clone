@@ -3,7 +3,8 @@ import {
     ADD_ALL_HOTELS,
     GET_HOTELS_REQUEST,
     GET_HOTELS_SUCCESS,
-    GET_HOTELS_FAILURE
+    GET_HOTELS_FAILURE,
+    GOT_HOTEL_ENTITY
 } from "./actionTypes";
 import axios from 'axios'
 
@@ -32,7 +33,6 @@ export const getHotelsFailure = (payload) => ({
     payload
 })
 
-
 export const getHotels = (url) => dispatch => {
     dispatch(getHotelsRequest())
     return axios
@@ -44,3 +44,21 @@ export const getHotels = (url) => dispatch => {
         })
         .catch(err => dispatch(getHotelsFailure))
 }
+
+export const currentHotelEntityPage = (payload) => ({
+    type: GOT_HOTEL_ENTITY,
+    payload
+  })
+  
+export const getHotelEntityPage = id => (dispatch) => {
+    console.log('called id' + id)
+return axios
+    .get("https://87583a193985.ngrok.io/getproperty/" + id)
+    .then(res => {
+        console.log(res)
+        return res.data.property
+    })
+    .then(res => dispatch(currentHotelEntityPage(res)))
+    .catch((err) => console.log(err))
+};
+  

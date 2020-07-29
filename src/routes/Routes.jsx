@@ -19,7 +19,7 @@ export default function Routes() {
                     <RecommendedPlaces />
                 </>} />
                 <Route path='/apartments' component={ApartmentsPage} />
-                <Route path='/listingPage' component={ListingComponent} />
+                <Route exact path='/listingPage' component={ListingComponent} />
                 <Route path='/listingPage/:id' render={(props) => <EntityPage {...props}/>} />
             </Switch>
             <Footer />

@@ -3,8 +3,9 @@ import Perk from "./Perk.jsx";
 import BestsellerFlag from "./BestsellerFlag.jsx";
 import { Link } from 'react-router-dom';
 
-var Hotel = props => (
-  <Link to={`/listingPage/${props.hotel.id}`} style={{textDecoration:'none'}}>
+var Hotel = props => {
+return(
+  <Link to={`/listingPage/${props.hotel[0]}`} style={{textDecoration:'none'}}>
     <li className="hotel">
       <img
         src={props.hotel[5]}
@@ -51,6 +52,6 @@ var Hotel = props => (
       <BestsellerFlag isBestseller={props.hotel[14] === '1' ? true : false} />
     </li>
   </Link>
-);
+)};
 
 export default Hotel;

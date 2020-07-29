@@ -15,7 +15,7 @@ class ListingComponent extends Component {
 
   componentDidMount() {
     const params = new URL(window.location.href);
-    const url = 'https://b008b94b880c.ngrok.io/getproperty' + params.search;
+    const url = 'https://87583a193985.ngrok.io/getproperty' + params.search;
     this.props.getHotels(url);
   }
 
