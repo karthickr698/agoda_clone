@@ -1,10 +1,50 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { sendBillData } from '../../redux/listingPage/actions';
 
 export class PaymentPage extends Component {
+    constructor(props) {
+        super(props)
+    
+        this.state = {
+            email: '',
+            fullName: '',
+            phoneNumber: '',
+            address: ''
+        }
+    }
+    
+    handleChange = e => {
+        this.setState({[e.target.name] : [e.target.value]})
+    }
+
+    handleClick = e => {
+        e.preventDefault()
+        let { sendBillData, hotel, numberOfPeople } = this.props
+        numberOfPeople = numberOfPeople || 1
+
+        const getRandomInt = (min, max) => {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+        }
+
+        let receipt = 'rcptid_'+ getRandomInt(1,1000)
+        const params = {
+            amount: hotel[4] * numberOfPeople,
+            currency: 'INR',
+            receipt:  receipt,
+            email: this.state.email
+        }
+
+        console.log(params, this.state)
+
+        sendBillData(params)
+    }
+
     render() {
-        console.log(this.props)
-        const { hotel, numberOfPeople } = this.props
+        let { hotel, numberOfPeople } = this.props
+        numberOfPeople = numberOfPeople || 1
         return (
             <div className="container mt-5">
                 <div className="row">
@@ -12,28 +52,28 @@ export class PaymentPage extends Component {
                         <form>
                             <div className="form-group">
                                 <label htmlFor="exampleInputEmail1">Full Name</label>
-                                <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                                <input type="email" className="form-control" name='fullName' aria-describedby="emailHelp" onChange={this.handleChange}/>
                                 <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="exampleInputPassword1">Email address</label>
-                                <input type="password" className="form-control" id="exampleInputPassword1" />
+                                <label>Email address</label>
+                                <input type="email" className="form-control" name="email" onChange={this.handleChange}/>
                             </div>
                             <div className="row">
                                 <div className="col-6">
                                     <div className="form-group">
-                                        <label htmlFor="exampleInputPassword1">Phone number</label>
-                                        <input type="number" className="form-control" id="exampleInputPassword1" />
+                                        <label>Phone number</label>
+                                        <input type="number" className="form-control" name="phoneNumber" onChange={this.handleChange}/>
                                     </div>
                                 </div>
                                 <div className="col-6">
                                     <div className="form-group">
-                                        <label htmlFor="exampleInputPassword1">City of residence</label>
-                                        <input type="text" className="form-control" id="exampleInputPassword1" />
+                                        <label>City of residence</label>
+                                        <input type="text" className="form-control" name="address" onChange={this.handleChange}/>
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" className="btn btn-primary">Proceed to payment</button>
+                            <button type="submit" className="btn btn-primary" onClick={this.handleClick}>Proceed to payment</button>
                         </form>
                     </div>
                     <div className="col-4">
@@ -63,7 +103,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-
+    sendBillData : payload => dispatch(sendBillData(payload))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PaymentPage)
