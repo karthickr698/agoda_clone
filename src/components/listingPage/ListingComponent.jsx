@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import AllHotels from "./Hotels/AllHotels";
-import FilterList from "./Filters/FilterList";
 import { updateTheFilters, getHotels } from '../../redux/listingPage/actions';
+import { filterOptions } from "../../utils/data.js";
 
 class ListingComponent extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      // selectedFilters: [this.props.selectedFilters]
+      selectedFilters: [this.props.selectedFilters]
     }
   }
 
   componentDidMount() {
     const params = new URL(window.location.href);
-    const url = 'https://87583a193985.ngrok.io/getproperty' + params.search;
+    const url = 'http://localhost:5000/getproperty' + params.search;
     console.log(url);
     this.props.getHotels(url);
   }
@@ -30,11 +30,11 @@ class ListingComponent extends Component {
     } else {
       newFilters = this.props.selectedFilters.concat(clickedFilterKey);
     }
-    console.log(newFilters)
+    // console.log(newFilters)
     this.props.updateTheFilters(newFilters)
 
     const newUrl = new URL(window.location.href)
-    console.log(newUrl)
+    // console.log(newUrl)
 
     newFilters.forEach(filter => newUrl.searchParams.set(filter, 1))
 
@@ -42,15 +42,39 @@ class ListingComponent extends Component {
     this.props.getHotels('http://localhost:5000/getproperty' + newUrl.search)
 
   };
+
   render() {
-    console.log(this.props)
     return (
       <div className="App">
-        <FilterList
-          selectedFilters={this.props.selectedFilters}
-          toggleFilter={this.toggleFilter}
-        />
+
+        <div className="filters">
+          <h5 className="filters__header">Filter By:</h5>
+          <hr />
+          <ul className="filters-list">{
+            filterOptions.map(filter => {
+              // var isChecked = this.props.selectedFilters.includes(filter.key);
+              // console.log(isChecked, this.props.selectedFilters)
+              return (
+                <li key={filter.key} className="filter">
+                  <span>{filter.display}</span>
+                  <span>
+                    <label className="switch">
+                      <input
+                        type="checkbox"
+                        // checked={isChecked}
+                        onChange={() => this.toggleFilter(filter.key)}
+                      />
+                      <span className="slider round"></span>
+                    </label>
+                  </span>
+                </li>
+              )
+            })
+          }</ul>
+        </div>
+
         <AllHotels hotels={this.props.hotels} />
+
       </div>
     );
   }

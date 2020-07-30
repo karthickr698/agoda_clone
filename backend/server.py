@@ -4,8 +4,10 @@ from flask_mysqldb import MySQL
 import time
 import json
 from flask_cors import CORS;
+import razorpay;
 
 app = Flask(__name__)
+razorpay_client = razorpay.Client(auth=("rzp_test_9DjEQTF0xqxKcb", "2MCoTntgfG4uA3y4unhOFGJy"))
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'karthick98'
@@ -179,5 +181,45 @@ def getPropertyById(id):
     cur.execute('SELECT * FROM Mainproperties WHERE id = "%d" ;'%(int(id)))
     data = cur.fetchall()
     return json.dumps({"property": data})
+
+@app.route('/orders',methods=['POST'])
+def orders():
+    
+    amount = request.json["amount"]
+    currency = request.json["currency"]
+    receipt = request.json["receipt"]
+    email = request.json["email"]
+    datas = {
+        "amount": amount,
+        "currency": currency,
+        "receipt": receipt,
+        "payment_capture": '0'
+    };
+
+    dump = razorpay_client.order.create(data=datas)
+    # cur = mysql.connection.cursor()
+    # cur.execute(''' INSERT INTO orders( email, id) VALUES("%s", "%s"); ''' %( email,dump['id']))
+    # mysql.connection.commit()
+    # cur.close()
+    return json.dumps({"id": dump['id']})
+
+@app.route('/verifypay')
+def verifypay():
+    razorpay_payment_id = request.json["amount"]
+    razorpay_order_id = request.json["currency"]
+    razorpay_signature = request.json["receipt"]
+    email = request.json["email"]
+    datas = { 
+        "razorpay_payment_id": razorpay_payment_id,
+        "razorpay_order_id": razorpay_order_id,
+        "razorpay_signature": razorpay_signature
+    };
+
+    server_sign = razorpay_client.utility.verify_payment_signature(datas)
+    
+    if(server_sign==razorpay_signature):
+        return json.dumps({"message": "payment successful"})
+    else:
+        return json.dumps({"message":"payment unsuccessful"})
 
 
