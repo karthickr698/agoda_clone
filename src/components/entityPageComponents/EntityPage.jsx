@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getHotelEntityPage } from '../../redux/listingPage/actions';
+import DropdownComponent from './DropdownComponent';
 
 export class EntityPage extends React.Component{
     constructor(props) {
@@ -11,14 +12,14 @@ export class EntityPage extends React.Component{
         }
     }
 
-    componentDidMount(){
-        const { id } = this.props.match.params
-        this.props.currentHotelEntityPage(id)
-    }
+    // componentDidMount(){
+    //     const { id } = this.props.match.params
+    //     this.props.currentHotelEntityPage(id)
+    // }
 
     render(){ 
-        const { hotel, history } = this.props
-        console.log(this.props)
+        // const { hotel, history } = this.props
+        // console.log(this.props)
         return (
             <div className="container mt-4">
                 <div className="row">
@@ -43,7 +44,7 @@ export class EntityPage extends React.Component{
                         </div>
 
                         <div className=" mt-2 p-2 border border-secondary">
-                            <h3 >{hotel[1]}</h3> 
+                            {/* <h3 >{hotel[1]}</h3>  */}
                             <p>2-8-10 Motomachi, Namba, Osaka, Japan, 556-0016</p>
                         </div>
 
@@ -178,7 +179,10 @@ export class EntityPage extends React.Component{
                 <div className=" mt-3 d-flex p-2 justify-content-between">
                     <h3>Book your room</h3>
                     <span>
-                        <button onClick={() => history.push('/paymentPage')} className="btn btn-primary btn-lg">Reserve</button>
+                    <DropdownComponent />
+                    </span>
+                    <span>
+                        {/* <button onClick={() => history.push('/paymentPage')} className="btn btn-primary btn-lg">Reserve</button> */}
                     </span>
                 </div>
                 <hr />

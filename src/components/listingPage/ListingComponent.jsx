@@ -15,7 +15,7 @@ class ListingComponent extends Component {
 
   componentDidMount() {
     const params = new URL(window.location.href);
-    const url = 'https://873e14df80f1.ngrok.io/getproperty' + params.search;
+    const url = 'https://a9f0b0531d43.ngrok.io/getproperty' + params.search;
     this.props.getHotels(url);
   }
 
@@ -38,7 +38,7 @@ class ListingComponent extends Component {
     newFilters.forEach(filter => newUrl.searchParams.set(filter, 1))
 
     this.props.history.push(newUrl.search)
-    this.props.getHotels('https://873e14df80f1.ngrok.io/getproperty' + newUrl.search)
+    this.props.getHotels('https://a9f0b0531d43.ngrok.io/getproperty' + newUrl.search)
 
     // window.location.href = newUrl.toString()
     

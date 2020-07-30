@@ -53,7 +53,7 @@ export const currentHotelEntityPage = (payload) => ({
 export const getHotelEntityPage = id => (dispatch) => {
     console.log('called id' + id)
 return axios
-    .get("https://873e14df80f1.ngrok.io/getproperty/" + id)
+    .get("https://a9f0b0531d43.ngrok.io/getproperty/" + id)
     .then(res => {
         console.log(res)
         return res.data.property
