@@ -8,6 +8,7 @@ import ExploreMore from '../components/landingPageComponents/ExploreMore';
 import RecommendedPlaces from '../components/landingPageComponents/RecommendedPlaces';
 import ApartmentsPage from '../components/entityPageComponents/ApartmentsPage.jsx'
 import EntityPage from '../components/entityPageComponents/EntityPage';
+import PaymentPage from '../components/paymentPageComponents/PaymentPage';
 
 export default function Routes() {
     return (
@@ -21,6 +22,7 @@ export default function Routes() {
                 <Route path='/apartments' component={ApartmentsPage} />
                 <Route exact path='/listingPage' component={ListingComponent} />
                 <Route path='/listingPage/:id' render={(props) => <EntityPage {...props}/>} />
+                <Route path='/paymentPage' component={PaymentPage} />
             </Switch>
             <Footer />
         </div>

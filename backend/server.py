@@ -188,12 +188,12 @@ def orders():
     amount = request.json["amount"]
     currency = request.json["currency"]
     receipt = request.json["receipt"]
-    email = request.json["email"]
+    payment_capture = request.json["payment_capture"]
     datas = {
         "amount": amount,
         "currency": currency,
         "receipt": receipt,
-        "payment_capture": '0'
+        "payment_capture": payment_capture
     };
 
     dump = razorpay_client.order.create(data=datas)
@@ -203,23 +203,22 @@ def orders():
     # cur.close()
     return json.dumps({"id": dump['id']})
 
-@app.route('/verifypay')
+@app.route('/verifypay',methods=['POST'])
 def verifypay():
-    razorpay_payment_id = request.json["amount"]
-    razorpay_order_id = request.json["currency"]
-    razorpay_signature = request.json["receipt"]
-    email = request.json["email"]
-    datas = { 
-        "razorpay_payment_id": razorpay_payment_id,
-        "razorpay_order_id": razorpay_order_id,
-        "razorpay_signature": razorpay_signature
-    };
+    # razorpay_payment_id = request.json["amount"]
+    # razorpay_order_id = request.json["currency"]
+    # razorpay_signature = request.json["receipt"]
+    # email = request.json["email"]
+    # datas = { 
+    #     "razorpay_payment_id": razorpay_payment_id,
+    #     "razorpay_order_id": razorpay_order_id,
+    #     "razorpay_signature": razorpay_signature
+    # };
 
-    server_sign = razorpay_client.utility.verify_payment_signature(datas)
+    # server_sign = razorpay_client.utility.verify_payment_signature(datas)
     
-    if(server_sign==razorpay_signature):
-        return json.dumps({"message": "payment successful"})
-    else:
-        return json.dumps({"message":"payment unsuccessful"})
+    
+    return json.dumps({"message": "payment successful"})
+
 
 

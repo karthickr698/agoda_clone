@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getHotelEntityPage } from '../../redux/listingPage/actions'
+import { getHotelEntityPage } from '../../redux/listingPage/actions';
+import DropdownComponent from './DropdownComponent';
 
 export class EntityPage extends React.Component {
     constructor(props) {
@@ -18,7 +19,7 @@ export class EntityPage extends React.Component {
 
     render() {
         // console.log(this.props)
-        const { hotel } = this.props
+        const { hotel, history } = this.props
         console.log(hotel)
 
         return (
@@ -182,7 +183,10 @@ export class EntityPage extends React.Component {
                         <button className="btn btn-primary btn-lg   ">Book Now</button>
                     </span>
                     <span>
-                        <button className="btn btn-danger btn-lg   ">Reserve</button>
+                        <DropdownComponent />
+                    </span>
+                    <span>
+                        <button onClick={() => history.push('/paymentPage')} className="btn btn-primary btn-lg">Reserve</button>
                     </span>
                 </div>
                 <hr />

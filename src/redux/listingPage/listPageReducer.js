@@ -1,9 +1,19 @@
-import { SELECTED_FILTERS, ADD_ALL_HOTELS, GOT_HOTEL_ENTITY } from "./actionTypes"
+import {
+    SELECTED_FILTERS,
+    ADD_ALL_HOTELS,
+    GOT_HOTEL_ENTITY,
+    SET_NUMBER_OF_PEOPLE,
+    SENDING_BILL_DATA_REQUEST,
+    SENDING_BILL_DATA_SUCCESS,
+    SENDING_BILL_DATA_FAILURE
+} from "./actionTypes"
 
 const initialState = {
     selectedFilters: [],
     hotels: [],
-    hotel: []
+    hotel: [],
+    numberOfPeople: 0,
+    pay: false
 }
 
 export default (state = initialState, { type, payload }) => {
@@ -22,6 +32,32 @@ export default (state = initialState, { type, payload }) => {
                 ...state,
                 hotel: [...payload[0]]
             }
+
+        case SET_NUMBER_OF_PEOPLE:
+            return {
+                ...state,
+                numberOfPeople: payload
+            }
+
+        case SENDING_BILL_DATA_REQUEST:
+            return {
+                isLoading: true,
+                error: false
+            };
+
+        case SENDING_BILL_DATA_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                dataFromRazorpay: payload,
+                pay: true
+            };
+
+        case SENDING_BILL_DATA_FAILURE:
+            return {
+                isLoading: false,
+                error: true
+            };
 
         default:
             return state

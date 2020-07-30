@@ -44,6 +44,7 @@ class ListingComponent extends Component {
   };
 
   render() {
+    console.log(this.props.hotels)
     return (
       <div className="App">
 
