@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 export class PaymentPage extends Component {
     render() {
         console.log(this.props)
-        const { hotel } = this.props
+        const { hotel, numberOfPeople } = this.props
         return (
             <div className="container mt-5">
                 <div className="row">
@@ -45,8 +45,8 @@ export class PaymentPage extends Component {
                                 <div className="col-9 ml-1">
                                     <h1>{hotel[1]}</h1>
                                     <p>5290, Iljudong-ro, Seongsan-eup, Seongsan, Jeju Island</p>
-                                    <p>no. of persons</p>
-                                    <h3>{hotel[4]}</h3>
+                                    <p>no. of persons: {numberOfPeople}</p>
+                                    <h3>{hotel[4] * numberOfPeople}</h3>
                                 </div>
                             </div>
                         </div>
@@ -58,7 +58,8 @@ export class PaymentPage extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    hotel: state.listingPageReducer.hotel
+    hotel: state.listingPageReducer.hotel,
+    numberOfPeople: state.listingPageReducer.numberOfPeople
 })
 
 const mapDispatchToProps = dispatch => ({

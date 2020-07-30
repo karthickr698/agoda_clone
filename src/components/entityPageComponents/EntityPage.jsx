@@ -12,13 +12,13 @@ export class EntityPage extends React.Component{
         }
     }
 
-    // componentDidMount(){
-    //     const { id } = this.props.match.params
-    //     this.props.currentHotelEntityPage(id)
-    // }
+    componentDidMount(){
+        const { id } = this.props.match.params
+        this.props.currentHotelEntityPage(id)
+    }
 
     render(){ 
-        // const { hotel, history } = this.props
+        const { hotel, history } = this.props
         // console.log(this.props)
         return (
             <div className="container mt-4">
@@ -44,7 +44,7 @@ export class EntityPage extends React.Component{
                         </div>
 
                         <div className=" mt-2 p-2 border border-secondary">
-                            {/* <h3 >{hotel[1]}</h3>  */}
+                            <h3 >{hotel[1]}</h3> 
                             <p>2-8-10 Motomachi, Namba, Osaka, Japan, 556-0016</p>
                         </div>
 
@@ -182,7 +182,7 @@ export class EntityPage extends React.Component{
                     <DropdownComponent />
                     </span>
                     <span>
-                        {/* <button onClick={() => history.push('/paymentPage')} className="btn btn-primary btn-lg">Reserve</button> */}
+                        <button onClick={() => history.push('/paymentPage')} className="btn btn-primary btn-lg">Reserve</button>
                     </span>
                 </div>
                 <hr />

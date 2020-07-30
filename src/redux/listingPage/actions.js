@@ -4,7 +4,8 @@ import {
     GET_HOTELS_REQUEST,
     GET_HOTELS_SUCCESS,
     GET_HOTELS_FAILURE,
-    GOT_HOTEL_ENTITY
+    GOT_HOTEL_ENTITY,
+    SET_NUMBER_OF_PEOPLE
 } from "./actionTypes";
 import axios from 'axios'
 
@@ -15,6 +16,11 @@ export const updateTheFilters = (payload) => ({
 
 export const addAllHotels = (payload) => ({
     type: ADD_ALL_HOTELS,
+    payload
+})
+
+export const setNumberOfPeople = payload => ({
+    type: SET_NUMBER_OF_PEOPLE,
     payload
 })
 

@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { connect } from 'react-redux';
+import { setNumberOfPeople } from '../../redux/listingPage/actions'
 
-const DropdownComponent = (props) => {
+export const DropdownComponent = props => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggle = () => setDropdownOpen(prevState => !prevState);
@@ -12,14 +14,14 @@ const DropdownComponent = (props) => {
         Number of Persons
         </DropdownToggle>
       <DropdownMenu>
-        <DropdownItem>1</DropdownItem>
-        <DropdownItem>2</DropdownItem>
-        <DropdownItem>3</DropdownItem>
-        <DropdownItem>4</DropdownItem>
-        <DropdownItem>5</DropdownItem>
+        {[1,2,3,4,5].map(number => <DropdownItem onClick={() => props.setNumberOfPeople(number)}>{number}</DropdownItem>)}
       </DropdownMenu>
     </Dropdown>
   );
 }
 
-export default DropdownComponent;
+const mapDispatchToProps = dispatch => ({
+  setNumberOfPeople: payload => dispatch(setNumberOfPeople(payload))
+})
+
+export default connect(null, mapDispatchToProps)(DropdownComponent)
