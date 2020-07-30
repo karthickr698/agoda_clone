@@ -8,12 +8,12 @@ export default class PaymentPage extends Component {
                     <div className="col-8">
                         <form>
                             <div className="form-group">
-                                <label htmlFor="exampleInputEmail1">Email address</label>
+                                <label htmlFor="exampleInputEmail1">Full Name</label>
                                 <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
                                 <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="exampleInputPassword1">Password</label>
+                                <label htmlFor="exampleInputPassword1">Email address</label>
                                 <input type="password" className="form-control" id="exampleInputPassword1" />
                             </div>
                             <div className="row">
@@ -41,7 +41,7 @@ export default class PaymentPage extends Component {
                                 </div>
                                 <div className="col-9 ml-1">
                                     <h1>Hotel name</h1>
-                                    <p>Hotel Address</p>
+                                    <p>5290, Iljudong-ro, Seongsan-eup, Seongsan, Jeju Island</p>
                                     <p>no. of persons</p>
                                     <h3>Total price</h3>
                                 </div>

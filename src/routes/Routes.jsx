@@ -14,6 +14,7 @@ export default function Routes() {
     return (
         <div>
             <Navbar />
+            {/* <PaymentPage /> */}
             <Switch>
                 <Route exact path='/' render={() => <>
                     <ExploreMore />
