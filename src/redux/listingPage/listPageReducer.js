@@ -3,7 +3,7 @@ import { SELECTED_FILTERS, ADD_ALL_HOTELS, GOT_HOTEL_ENTITY } from "./actionType
 const initialState = {
     selectedFilters: [],
     hotels: [],
-    hotel:{}
+    hotel:[]
 }
 
 export default (state = initialState, { type, payload }) => {
@@ -19,7 +19,7 @@ export default (state = initialState, { type, payload }) => {
     case GOT_HOTEL_ENTITY:
         return {
             ...state,
-            hotel: payload
+            hotel: [...payload[0]]
         }
 
     default:

@@ -1,7 +1,6 @@
 import React from 'react';
-// import { Flag, Segment } from 'semantic-ui-react'
 import { connect } from 'react-redux';
-import { getHotelEntityPage } from '../../redux/listingPage/actions'
+import { getHotelEntityPage } from '../../redux/listingPage/actions';
 
 export class EntityPage extends React.Component{
     constructor(props) {
@@ -15,14 +14,11 @@ export class EntityPage extends React.Component{
     componentDidMount(){
         const { id } = this.props.match.params
         this.props.currentHotelEntityPage(id)
-
-        
     }
 
     render(){ 
-        // console.log(this.props)
-        const {hotel} = this.props
-        console.log(hotel[0][1])
+        const { hotel, history } = this.props
+        console.log(this.props)
         return (
             <div className="container mt-4">
                 <div className="row">
@@ -182,7 +178,7 @@ export class EntityPage extends React.Component{
                 <div className=" mt-3 d-flex p-2 justify-content-between">
                     <h3>Book your room</h3>
                     <span>
-                        <button className="btn btn-primary btn-lg   ">Reserve</button>
+                        <button onClick={() => history.push('/paymentPage')} className="btn btn-primary btn-lg">Reserve</button>
                     </span>
                 </div>
                 <hr />

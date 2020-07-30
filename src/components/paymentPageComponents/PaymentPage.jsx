@@ -1,7 +1,10 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-export default class PaymentPage extends Component {
+export class PaymentPage extends Component {
     render() {
+        console.log(this.props)
+        const { hotel } = this.props
         return (
             <div className="container mt-5">
                 <div className="row">
@@ -37,20 +40,30 @@ export default class PaymentPage extends Component {
                         <div className="container border border-right">
                             <div className="row m-2">
                                 <div className="col-3 ">
-                                    <img src="https://pix5.agoda.net/hotelImages/172/1723530/1723530_17050212580052742129.jpg?s=450x450" height="100" width="80" alt="hotel" />
+                                    <img src={hotel[5]} height="100" width="80" alt="hotel" />
                                 </div>
                                 <div className="col-9 ml-1">
-                                    <h1>Hotel name</h1>
+                                    <h1>{hotel[1]}</h1>
                                     <p>5290, Iljudong-ro, Seongsan-eup, Seongsan, Jeju Island</p>
                                     <p>no. of persons</p>
-                                    <h3>Total price</h3>
+                                    <h3>{hotel[4]}</h3>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
             </div>
         )
     }
 }
+
+const mapStateToProps = (state) => ({
+    hotel: state.listingPageReducer.hotel
+})
+
+const mapDispatchToProps = dispatch => ({
+
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(PaymentPage)
+
