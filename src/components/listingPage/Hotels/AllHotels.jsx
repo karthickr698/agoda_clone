@@ -1,6 +1,5 @@
 import React from 'react'
 import Hotel from "./Hotel.jsx";
-import { hotels } from "../../../utils/data.js";
 
 export default function AllHotels(props) {
   return (

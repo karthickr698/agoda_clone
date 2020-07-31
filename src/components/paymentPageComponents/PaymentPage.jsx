@@ -19,53 +19,26 @@ export class PaymentPage extends Component {
         this.setState({ [e.target.name]: [e.target.value] })
     }
 
-    // handleClick = e => {
-    //     e.preventDefault()
-    //     let { sendBillData, hotel, numberOfPeople } = this.props
-    //     numberOfPeople = numberOfPeople || 1
-
-    //     const getRandomInt = (min, max) => {
-    //         min = Math.ceil(min);
-    //         max = Math.floor(max);
-    //         return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
-    //     }
-
-    //     let receipt = 'rcptid_' + getRandomInt(1, 1000)
-    //     const params = {
-    //         amount: hotel[4] * numberOfPeople,
-    //         currency: 'INR',
-    //         receipt: receipt,
-    //         email: this.state.email
-    //     }
-
-    //     console.log(params, this.state)
-
-    //     sendBillData(params)
-    // }
-
     handleBooking = async (e) => {
         e.preventDefault()
 
         console.log("fuck")
-        let { data } = this.props
+        let { hotel, numberOfPeople } = this.props
         let order_res = await axios.post("https://c7b2859e52b7.ngrok.io/orders", {
-            "amount": 1000,
+            "amount": (hotel[4] * numberOfPeople) * 100,
             "currency": "INR",
-            "receipt": 32 + "#" + "karthick",
+            "receipt": 32 + "#karthick",
             "payment_capture": "1"
         })
         const options = {
-            "key": "rzp_test_9DjEQTF0xqxKcb",      // Enter the Key ID generated from the Dashboard
-            "amount": "9000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "key": "rzp_test_9DjEQTF0xqxKcb",
+            "amount": "9000",
             "currency": "INR",
             "name": "Book Trip",
             "description": "Transaction",
             "image": "/logo.svg",
-            "order_id": order_res.data.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+            "order_id": order_res.data.id,
             handler: async function (response) {
-                // alert(response.razorpay_payment_id);
-                // alert(response.razorpay_order_id);
-                // alert(response.razorpay_signature)
                 console.log(response)
                 let final_res = await axios.post("https://c7b2859e52b7.ngrok.io/verifypay", {
                     ...response

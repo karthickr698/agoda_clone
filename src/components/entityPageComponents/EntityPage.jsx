@@ -46,17 +46,25 @@ export class EntityPage extends React.Component {
                         </div>
 
                         <div className=" mt-2 p-2 border border-secondary">
+                            <button className="border btn-success p-2" disabled>
+                                Free Wifi
+                                </button>
+                            <span>
+                                <button className="border btn-warning ml-2 p-2" disabled>
+                                    Agoda Easy cancel
+                                </button>
+                            </span>
                             <h3 >{hotel[1]}</h3>
                             <p>2-8-10 Motomachi, Namba, Osaka, Japan, 556-0016</p>
                         </div>
 
                         <div className=" mt-2 p-2 border border-secondary">
-                            <h5 ><small>Property highlights</small></h5>
-                            <div className="row">
-                                <div className="col-6">
+                            <h5 >Property highlights</h5>
+                            <div className="row p-2">
+                                <div className="col-6 pl-5 border-right">
                                     <h5>Exceptional cleanliness</h5>
                                 </div>
-                                <div className="col-6">
+                                <div className="col-6 pl-5">
                                     <h5>Exceptional service</h5>
                                 </div>
                             </div>
@@ -104,7 +112,7 @@ export class EntityPage extends React.Component {
                     </div>
                     <div className="col-4">
                         <div className="row">
-                            <div className="container p-2 border border-secondary">
+                            <div className="container p-3 border border-secondary">
                                 <div className="row">
                                     <div className="col-2">
                                         <span className="hotel__rating p-1">8.9</span>
@@ -147,28 +155,32 @@ export class EntityPage extends React.Component {
                                         <span className="ml-auto">490m</span>
                                     </div>
                                     <div className="d-flex p-2 justify-content-between">
-                                        Namba
-                                        <span className="ml-auto">490m</span>
+                                        Dotombori
+                                        <span className="ml-auto">900m</span>
                                     </div>
                                     <div className="d-flex p-2 justify-content-between">
-                                        Namba
-                                        <span className="ml-auto">490m</span>
+                                        Tsutenkaku Tower
+                                        <span className="ml-auto">1.24 km</span>
                                     </div>
                                     <div className="d-flex p-2 justify-content-between">
-                                        Namba
-                                        <span className="ml-auto">490m</span>
+                                        Shittenoji Temple
+                                        <span className="ml-auto">1.91 km</span>
                                     </div>
                                     <div className="d-flex p-2 justify-content-between">
-                                        Namba
-                                        <span className="ml-auto">490m</span>
+                                        Osaka Castle
+                                        <span className="ml-auto">3.89 km</span>
                                     </div>
                                     <div className="d-flex p-2 justify-content-between">
-                                        Namba
-                                        <span className="ml-auto">490m</span>
+                                        Umeda Sky Building
+                                        <span className="ml-auto">4.19 km</span>
                                     </div>
                                     <div className="d-flex p-2 justify-content-between">
-                                        Namba
-                                        <span className="ml-auto">490m</span>
+                                        Universal Studios
+                                        <span className="ml-auto">6.01 km</span>
+                                    </div>
+                                    <div className="d-flex p-2 justify-content-between">
+                                        Osaka Aquarium
+                                        <span className="ml-auto">6.34 km</span>
                                     </div>
 
                                 </div>
@@ -178,26 +190,88 @@ export class EntityPage extends React.Component {
                     </div>
                 </div>
 
-                <div className=" mt-3 d-flex p-3 justify-content-between">
-                    <span>
-                        <button className="btn btn-primary btn-lg   ">Book Now</button>
-                    </span>
-                    <span>
-                        <DropdownComponent />
-                    </span>
-                    <span>
-                        <button onClick={() => history.push('/paymentPage')} className="btn btn-primary btn-lg">Reserve</button>
-                    </span>
+                <div className="container border  mt-3 p-3 border-success">
+                    <div className=" mt-3 d-flex p-2 justify-content-between">
+                        <h3>Book your room</h3>
+                        <span>
+                            <DropdownComponent />
+                        </span>
+                        <span>
+                            <button onClick={() => history.push('/paymentPage')} className="btn btn-primary btn-md p-2">Reserve</button>
+                        </span>
+                    </div>
+                </div>
+
+                <div className="container mt-3 border border-secondary">
+                    <div className="row ">
+                        <div className="col-4 ">
+                            <div className="container border-right">
+                                <div className="row mt-4">
+                                    <div className="col-2">
+                                        <span className="hotel__rating p-1">8.9</span>
+                                    </div>
+                                    <div className="col-9">
+                                        <h3 className="font-weight-bold">Excellent</h3>
+                                    </div>
+                                </div>
+                                <div className="row mt-4">
+                                    <div className="col-6">
+                                        <h5>Cleanliness</h5>
+                                    </div>
+                                    <div className="col-6 mt-2">
+                                        <span>
+                                            <div className="progress">
+                                                <div className="progress-bar progress-bar-striped" role="progressbar" style={{ width: 89 }} aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div className="row">
+                                    <div className="col-6">
+                                        <h5>Facilities</h5>
+                                    </div>
+                                    <div className="col-6 mt-2">
+                                        <span>
+                                            <div className="progress">
+                                                <div className="progress-bar progress-bar-striped" role="progressbar" style={{ width: 77 }} aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div className="row mb-3">
+                                    <div className="col-6">
+                                        <h5>Location</h5>
+                                    </div>
+                                    <div className="col-6 mt-2">
+                                        <span>
+                                            <div className="progress">
+                                                <div className="progress-bar progress-bar-striped" role="progressbar" style={{ width: 86 }} aria-valuenow="10" aria-valuemin="0" aria-valuemax=""></div>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-8">
+                            <div className="container mt-3">
+                                <h3>More about the hotel:</h3>
+                                <p>
+                                    The facilities and services provided by Seom Story Pension ensure a pleasant stay for guests. Facilities like free Wi-Fi in all rooms, convenience store, kitchen, express check-in/check-out, car park are readily available for the convenience of each guest.
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <hr />
-                <div className="row">
+                <div className="row mt-2">
                     <div className="col-4">
                         <div className="row">
                             <h3>What they offer</h3>
                         </div>
-                        {/* <div className="row">
-                            <button className="btn btn-primary btn-lg">See availability</button>
-                        </div> */}
+
                     </div>
 
                     <div className="col-8">
