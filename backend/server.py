@@ -4,8 +4,10 @@ from flask_mysqldb import MySQL
 import time
 import json
 from flask_cors import CORS;
+import razorpay;
 
 app = Flask(__name__)
+razorpay_client = razorpay.Client(auth=("rzp_test_9DjEQTF0xqxKcb", "2MCoTntgfG4uA3y4unhOFGJy"))
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'karthick98'
@@ -30,14 +32,13 @@ def userRegister():
     lastName = request.json["lastName"]
 
     cur = mysql.connection.cursor()
-
     cur.execute(''' SELECT email from users ''')
     result = cur.fetchall()
 
     flag = False
-
-    if email in result:
-        flag = True
+    for i in result:
+        if i[0] == email:
+            flag = True
 
     if flag:
         return json.dumps({"message":"Username already exists!", "error":True})
@@ -46,8 +47,7 @@ def userRegister():
         mysql.connection.commit()
         cur.close()
 
-        return json.dumps({"message":"Created Account successfully!", "error":False})
-
+        return json.dumps({"message":"Created Account successfully!", "error":False,"name":firstName})
 
 @app.route("/user/login", methods=["POST"])
 def userLogin():
@@ -56,34 +56,28 @@ def userLogin():
 
     cur = mysql.connection.cursor()
 
-    cur.execute(''' SELECT email,password FROM users ''')
+    cur.execute(''' SELECT email,password,first_name FROM users ''')
     result = cur.fetchall()
 
     flag = False
+    name=""
 
     for i in result:
         if i[0] == email:
             if i[1] == password:
                 flag = True
+                name=i[2]
 
     if flag:
-        payload = {
-            "username": email,
-            "status": "Logged In",
-            "session_expiry": time.time() + 7200
-        }
-
-        data = {
-            "email": email,
-        }
-        return json.dumps({"data": data})
+        return json.dumps({"name": name,"status": "Logged In","error": False})
     else:
         return json.dumps({"message": "Login Failed", "error": True})
 
 @app.route("/google", methods=["POST"])
 def googleauth():
     email = request.json["email"]
-    name = request.json["name"]
+    first_name = request.json["first_name"]
+    last_name = request.json["last_name"]
     access_token = request.json["access_token"]
     googleId = request.json["googleId"]
     provider="Google"
@@ -100,21 +94,15 @@ def googleauth():
         
 
     if flag:
-
         return json.dumps({"message":"Username already exists!", "error":True})
     else:
-        cur.execute(''' INSERT INTO users( email, password, first_name, last_name) VALUES("%s", "%s","%s", "%s"); ''' % (email, name, email, name))
+        cur.execute(''' INSERT INTO users( email, password, first_name, last_name) VALUES("%s", "%s","%s", "%s"); ''' % (email, email,first_name, last_name))
         mysql.connection.commit()
         temp=cur.lastrowid
-
         cur.execute(''' INSERT INTO oauth( user_id,provider, provider_id,access_token) VALUES("%s", "%s","%s", "%s"); ''' % (temp,provider,googleId,access_token))
         mysql.connection.commit()
         cur.close()
-        data = {
-            "email": email,
-            "name":name
-        }
-        return json.dumps({"data": data})
+        return json.dumps({"name": name,"status": "Logged In","error": False})
 
 
 
@@ -135,16 +123,6 @@ def viewAllpropertys():
     cur.execute('SELECT * FROM rooms WHERE rating in (%s) AND location in (%s) AND breakFast in (%s) AND creditCard in (%s) limit %s, %s ;', (rating, location, breakFast, creditCard,startat,perpage))
     data = list(cur.fetchall())
     return json.dumps({"propertys": data})
-
-@app.route('/gettotalproperties', methods=['GET'])
-def gettotalproperties():
-    cur = mysql.connection.cursor()
-    
-    cur.execute('SELECT COUNT(*) FROM property;')
-    data = cur.fetchall()
-    return json.dumps({"Count": data})
-
-
 
 @app.route('/getproperty', methods=['GET'])
 def getProperty():
@@ -171,21 +149,30 @@ def getProperty():
     startat = int(page) * perpage
     cur = mysql.connection.cursor()
     if (low2high == None and rating==None ):
+        cur.execute('SELECT COUNT(*) FROM Mainproperties WHERE isHome = (%s) or isFamilyFriendly = (%s) or includesBreakfast=(%s) or canBookwithoutCC=(%s) ', (isHome, isFamilyFriendly, includesBreakfast, canBookwithoutCC))
+        count=cur.fetchall()
         cur.execute('SELECT * FROM Mainproperties WHERE isHome = (%s) or isFamilyFriendly = (%s) or includesBreakfast=(%s) or canBookwithoutCC=(%s)   limit %s, %s ',(isHome,isFamilyFriendly,includesBreakfast,canBookwithoutCC,startat,perpage))
         data = cur.fetchall()
-        return json.dumps({"property": data})
+        print(count)
+        return json.dumps({"property": data,"count":count})
     elif (low2high == "1" and rating == "1"):
+        cur.execute('SELECT COUNT(*) FROM Mainproperties WHERE isHome = (%s) or isFamilyFriendly = (%s) or includesBreakfast=(%s) or canBookwithoutCC=(%s) ', (isHome, isFamilyFriendly, includesBreakfast, canBookwithoutCC))
+        count=cur.fetchall()
         cur.execute('SELECT * FROM Mainproperties WHERE isHome = (%s) or isFamilyFriendly = (%s) or includesBreakfast=(%s) or canBookwithoutCC=(%s) ORDER BY rating DESC,pricePerNight ASC  limit %s, %s  ',(isHome,isFamilyFriendly,includesBreakfast,canBookwithoutCC,startat,perpage))
         data = cur.fetchall()
-        return json.dumps({"property": data})
+        return json.dumps({"property": data,"count":count})
     elif (rating == "1" and low2high == None):
+        cur.execute('SELECT COUNT(*) FROM Mainproperties WHERE isHome = (%s) or isFamilyFriendly = (%s) or includesBreakfast=(%s) or canBookwithoutCC=(%s) ', (isHome, isFamilyFriendly, includesBreakfast, canBookwithoutCC))
+        count=cur.fetchall()
         cur.execute('SELECT * FROM Mainproperties WHERE isHome = (%s) or isFamilyFriendly = (%s) or includesBreakfast=(%s) or canBookwithoutCC=(%s) ORDER BY rating DESC  limit %s, %s  ',(isHome,isFamilyFriendly,includesBreakfast,canBookwithoutCC,startat,perpage))
         data = cur.fetchall()
-        return json.dumps({"property": data})
+        return json.dumps({"property": data,"count":count})
     else:
+        cur.execute('SELECT COUNT(*) FROM Mainproperties WHERE isHome = (%s) or isFamilyFriendly = (%s) or includesBreakfast=(%s) or canBookwithoutCC=(%s) ', (isHome, isFamilyFriendly, includesBreakfast, canBookwithoutCC))
+        count=cur.fetchall()
         cur.execute('SELECT * FROM Mainproperties WHERE isHome = (%s) or isFamilyFriendly = (%s) or includesBreakfast=(%s) or canBookwithoutCC=(%s) ORDER BY pricePerNight ASC  limit %s, %s  ',(isHome,isFamilyFriendly,includesBreakfast,canBookwithoutCC,startat,perpage))
         data = cur.fetchall()
-        return json.dumps({"property": data})
+        return json.dumps({"property": data,"count":count})
 
 @app.route('/getproperty/<id>', methods=['GET'])
 def getPropertyById(id):
@@ -194,5 +181,44 @@ def getPropertyById(id):
     cur.execute('SELECT * FROM Mainproperties WHERE id = "%d" ;'%(int(id)))
     data = cur.fetchall()
     return json.dumps({"property": data})
+
+@app.route('/orders',methods=['POST'])
+def orders():
+    
+    amount = request.json["amount"]
+    currency = request.json["currency"]
+    receipt = request.json["receipt"]
+    payment_capture = request.json["payment_capture"]
+    datas = {
+        "amount": amount,
+        "currency": currency,
+        "receipt": receipt,
+        "payment_capture": payment_capture
+    };
+
+    dump = razorpay_client.order.create(data=datas)
+    # cur = mysql.connection.cursor()
+    # cur.execute(''' INSERT INTO orders( email, id) VALUES("%s", "%s"); ''' %( email,dump['id']))
+    # mysql.connection.commit()
+    # cur.close()
+    return json.dumps({"id": dump['id']})
+
+@app.route('/verifypay',methods=['POST'])
+def verifypay():
+    # razorpay_payment_id = request.json["amount"]
+    # razorpay_order_id = request.json["currency"]
+    # razorpay_signature = request.json["receipt"]
+    # email = request.json["email"]
+    # datas = { 
+    #     "razorpay_payment_id": razorpay_payment_id,
+    #     "razorpay_order_id": razorpay_order_id,
+    #     "razorpay_signature": razorpay_signature
+    # };
+
+    # server_sign = razorpay_client.utility.verify_payment_signature(datas)
+    
+    
+    return json.dumps({"message": "payment successful"})
+
 
 

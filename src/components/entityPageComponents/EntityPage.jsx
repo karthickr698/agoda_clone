@@ -3,61 +3,63 @@ import { connect } from 'react-redux';
 import { getHotelEntityPage } from '../../redux/listingPage/actions';
 import DropdownComponent from './DropdownComponent';
 
-export class EntityPage extends React.Component{
+export class EntityPage extends React.Component {
     constructor(props) {
         super(props)
-    
+
         this.state = {
-             
+
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         const { id } = this.props.match.params
         this.props.currentHotelEntityPage(id)
     }
 
-    render(){ 
-        const { hotel, history } = this.props
+    render() {
         // console.log(this.props)
+        const { hotel, history } = this.props
+        console.log(hotel)
+
         return (
             <div className="container mt-4">
                 <div className="row">
                     <div className=" col-8 ">
                         <div className="row p-0 m-0">
                             <div className="col-7 p-0 m-0">
-                                <img alt='some hotel' src="https://pix6.agoda.net/hotelImages/109/10941418/10941418_19112710290084510021.jpg?s=1024x768" className="w-100 "/>
+                                <img alt='some hotel' src="https://pix6.agoda.net/hotelImages/109/10941418/10941418_19112710290084510021.jpg?s=1024x768" className="w-100 " />
                             </div>
                             <div className="col-5 p-0 m-0 pl-3">
                                 <div className="row p-0 m-0">
-                                    <img alt='some hotel' src="https://pix6.agoda.net/hotelImages/109/10941418/10941418_20011713540087185943.png?s=1024x768"  className="w-100"/>
+                                    <img alt='some hotel' src="https://pix6.agoda.net/hotelImages/109/10941418/10941418_20011713540087185943.png?s=1024x768" className="w-100" />
                                 </div>
                                 <div className="row p-0 m-0 pt-3">
                                     <div className="col-6 p-0 m-0">
-                                        <img alt='some hotel' src="https://pix6.agoda.net/hotelImages/109/10941418/10941418_20011713540087185943.png?s=1024x768"  className="w-100 p-0 m-0"/>
+                                        <img alt='some hotel' src="https://pix6.agoda.net/hotelImages/109/10941418/10941418_20011713540087185943.png?s=1024x768" className="w-100 p-0 m-0" />
                                     </div>
                                     <div className="col-6 p-0 m-0 pl-1">
-                                        <img alt='some hotel' src="https://pix6.agoda.net/hotelImages/109/10941418/10941418_20011713540087185943.png?s=1024x768"  className="w-100 p-0 m-0"/>
+                                        <img alt='some hotel' src="https://pix6.agoda.net/hotelImages/109/10941418/10941418_20011713540087185943.png?s=1024x768" className="w-100 p-0 m-0" />
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <div className=" mt-2 p-2 border border-secondary">
-                                <button className="border btn-success p-2" disabled>
-                                    Free Wifi
+                            <button className="border btn-success p-2" disabled>
+                                Free Wifi
                                 </button>
-                                <span>
+                            <span>
                                 <button className="border btn-warning ml-2 p-2" disabled>
                                     Agoda Easy cancel
                                 </button>
-                                </span>
-                            <h3 >{hotel[1]}</h3> 
+                            </span>
+                            <h3 >{hotel[1]}</h3>
                             <p>2-8-10 Motomachi, Namba, Osaka, Japan, 556-0016</p>
                         </div>
 
                         <div className=" mt-2 p-2 border border-secondary">
-                            <h5 >Property highlights</h5> 
+                            <h5 >Property highlights</h5>
                             <div className="row p-2">
                                 <div className="col-6 pl-5 border-right">
                                     <h5>Exceptional cleanliness</h5>
@@ -69,43 +71,43 @@ export class EntityPage extends React.Component{
                         </div>
 
                         <div className=" mt-2 p-2 border border-secondary">
-                        <div className="row mt-4">
-                            <div className="col">
+                            <div className="row mt-4">
+                                <div className="col">
                                     <div className="text-center">
-                                    <i className="fa fa-train fa-3x text-center" aria-hidden="true"></i>
+                                        <i className="fa fa-train fa-3x text-center" aria-hidden="true"></i>
 
                                     </div>
                                     <p className="text-center"> <small>570 meters to public transportation</small> </p>
-                            </div>
-                            <div className="col">
+                                </div>
+                                <div className="col">
                                     <div className="text-center">
-                                    <i className="fa fa-wifi fa-3x" aria-hidden="true"></i>
+                                        <i className="fa fa-wifi fa-3x" aria-hidden="true"></i>
 
                                     </div>
                                     <p className="text-center"> <small>Free Wi-Fi in all rooms!</small> </p>
-                            </div>
-                            <div className="col">
-                                    <div className="text-center"> 
-                                    <i className="fa fa-snowflake-o fa-3x" aria-hidden="true"></i>
+                                </div>
+                                <div className="col">
+                                    <div className="text-center">
+                                        <i className="fa fa-snowflake-o fa-3x" aria-hidden="true"></i>
 
                                     </div>
                                     <p className="text-center"> <small>Air Conditioning</small> </p>
-                            </div>
-                            <div className="col">
+                                </div>
+                                <div className="col">
                                     <div className="text-center">
-                                    <i className="fa fa-magic fa-3x" aria-hidden="true"></i>
+                                        <i className="fa fa-magic fa-3x" aria-hidden="true"></i>
 
                                     </div>
                                     <p className="text-center"> <small>Smoking Place</small> </p>
-                            </div>
-                            <div className="col">
+                                </div>
+                                <div className="col">
                                     <div className="text-center">
-                                    <i className="fa fa-fire fa-3x" aria-hidden="true"></i>
+                                        <i className="fa fa-fire fa-3x" aria-hidden="true"></i>
 
                                     </div>
                                     <p className="text-center"> <small>Fire Place</small> </p>
+                                </div>
                             </div>
-                        </div>
                         </div>
                     </div>
                     <div className="col-4">
@@ -180,10 +182,10 @@ export class EntityPage extends React.Component{
                                         Osaka Aquarium
                                         <span className="ml-auto">6.34 km</span>
                                     </div>
-                                    
+
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -240,11 +242,11 @@ export class EntityPage extends React.Component{
                                         <h5>Cleanliness</h5>
                                     </div>
                                     <div className="col-6 mt-2">
-                                    <span>
-                                        <div className="progress">
-                                            <div className="progress-bar progress-bar-striped" role="progressbar" style={{width : 89}} aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </span>
+                                        <span>
+                                            <div className="progress">
+                                                <div className="progress-bar progress-bar-striped" role="progressbar" style={{ width: 89 }} aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </span>
                                     </div>
                                 </div>
 
@@ -253,11 +255,11 @@ export class EntityPage extends React.Component{
                                         <h5>Facilities</h5>
                                     </div>
                                     <div className="col-6 mt-2">
-                                    <span>
-                                        <div className="progress">
-                                            <div className="progress-bar progress-bar-striped" role="progressbar" style={{width : 77}} aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </span>
+                                        <span>
+                                            <div className="progress">
+                                                <div className="progress-bar progress-bar-striped" role="progressbar" style={{ width: 77 }} aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </span>
                                     </div>
                                 </div>
 
@@ -266,11 +268,11 @@ export class EntityPage extends React.Component{
                                         <h5>Location</h5>
                                     </div>
                                     <div className="col-6 mt-2">
-                                    <span>
-                                        <div className="progress">
-                                            <div className="progress-bar progress-bar-striped" role="progressbar" style={{width : 86}} aria-valuenow="10" aria-valuemin="0" aria-valuemax=""></div>
-                                        </div>
-                                    </span>
+                                        <span>
+                                            <div className="progress">
+                                                <div className="progress-bar progress-bar-striped" role="progressbar" style={{ width: 86 }} aria-valuenow="10" aria-valuemin="0" aria-valuemax=""></div>
+                                            </div>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -279,10 +281,10 @@ export class EntityPage extends React.Component{
                             <div className="container mt-3">
                                 <h3>More about the hotel:</h3>
                                 <p>
-                                The facilities and services provided by Seom Story Pension ensure a pleasant stay for guests. Facilities like free Wi-Fi in all rooms, convenience store, kitchen, express check-in/check-out, car park are readily available for the convenience of each guest.
+                                    The facilities and services provided by Seom Story Pension ensure a pleasant stay for guests. Facilities like free Wi-Fi in all rooms, convenience store, kitchen, express check-in/check-out, car park are readily available for the convenience of each guest.
                                 </p>
-                                
-                            </div>  
+
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -292,7 +294,7 @@ export class EntityPage extends React.Component{
                         <div className="row">
                             <h3>What they offer</h3>
                         </div>
-                        
+
                     </div>
 
                     <div className="col-8">
@@ -314,7 +316,7 @@ export class EntityPage extends React.Component{
 
                         <div className="row mt-5">
                             <div className="col-2 border-right">
-                            <i className="fa fa-wheelchair fa-4x" aria-hidden="true"></i>
+                                <i className="fa fa-wheelchair fa-4x" aria-hidden="true"></i>
                             </div>
                             <div className="col-10 ">
                                 <h2>Accessibility</h2>
@@ -348,7 +350,7 @@ export class EntityPage extends React.Component{
 
                         <div className="row mt-5">
                             <div className="col-2 border-right">
-                            <i className="fa fa-cutlery fa-4x" aria-hidden="true"></i>
+                                <i className="fa fa-cutlery fa-4x" aria-hidden="true"></i>
                             </div>
                             <div className="col-10 ">
                                 <h2>Dining, drinking, and snacking</h2>
@@ -378,13 +380,13 @@ export class EntityPage extends React.Component{
 
                         <div className="row mt-5">
                             <div className="col-2 border-right">
-                            <i className="fa fa-bed fa-4x" aria-hidden="true"></i>
+                                <i className="fa fa-bed fa-4x" aria-hidden="true"></i>
                             </div>
                             <div className="col-10 ">
                                 <h2>Available in all rooms</h2>
                                 <div className="row">
                                     <div className="col">
-                                    <i className="fa fa-shower" aria-hidden="true"></i>
+                                        <i className="fa fa-shower" aria-hidden="true"></i>
                                         <span className="ml-1">Shower</span>
                                     </div>
                                     <div className="col">
@@ -401,7 +403,7 @@ export class EntityPage extends React.Component{
                     </div>
                 </div>
 
-                <hr className="mt-5"/>
+                <hr className="mt-5" />
                 <div className="row">
                     <div className="col-4">
                         <div className="row">
@@ -419,12 +421,12 @@ export class EntityPage extends React.Component{
                                 <div className="row">
                                     <div className="col"><h4>Osaka International Airport (ITM)</h4></div>
                                     <div className="col"><h4>Kobe Airport (UKB)</h4></div>                            </div>
-                                </div>
+                            </div>
                         </div>
 
                         <div className="row mt-5">
                             <div className="col-2 border-right">
-                            <i className="fa fa-train fa-4x" aria-hidden="true"></i>
+                                <i className="fa fa-train fa-4x" aria-hidden="true"></i>
                             </div>
                             <div className="col-10 ">
                                 <h2>Public transportation</h2>
@@ -433,7 +435,7 @@ export class EntityPage extends React.Component{
                                         <h4>Daikokucho Subway Station</h4>
                                     </div>
                                     <div className="col">
-                                    <h4>JR Namba Station</h4>
+                                        <h4>JR Namba Station</h4>
                                     </div>
                                 </div>
                             </div>
@@ -441,7 +443,7 @@ export class EntityPage extends React.Component{
 
                         <div className="row mt-5">
                             <div className="col-2 border-right">
-                            <i className="fa fa-hospital-o fa-4x" aria-hidden="true"></i>
+                                <i className="fa fa-hospital-o fa-4x" aria-hidden="true"></i>
                             </div>
                             <div className="col-10 ">
                                 <h2>Hospital or clinic</h2>
@@ -456,7 +458,7 @@ export class EntityPage extends React.Component{
 
                         <div className="row mt-5">
                             <div className="col-2 border-right">
-                            <i className="fa fa-shopping-bag fa-4x" aria-hidden="true"></i>
+                                <i className="fa fa-shopping-bag fa-4x" aria-hidden="true"></i>
                             </div>
                             <div className="col-10 ">
                                 <h2>Shopping</h2>
@@ -470,7 +472,7 @@ export class EntityPage extends React.Component{
 
                         <div className="row mt-5">
                             <div className="col-2 border-right">
-                            <i className="fa fa-money fa-4x" aria-hidden="true"></i>
+                                <i className="fa fa-money fa-4x" aria-hidden="true"></i>
                             </div>
                             <div className="col-10 ">
                                 <h2>Cash Withdrawal</h2>
@@ -494,7 +496,7 @@ export class EntityPage extends React.Component{
                     <div className="col-8">
                         <div className="row">
                             <div className="col-2 border-right">
-                            <i className="fa fa-map fa-4x" aria-hidden="true"></i>
+                                <i className="fa fa-map fa-4x" aria-hidden="true"></i>
                             </div>
                             <div className="col-10 ">
                                 <h2>Nearby landmarks</h2>

@@ -40,12 +40,10 @@ class ListingComponent extends Component {
     this.props.history.push(newUrl.search)
     this.props.getHotels('http://c0d7dbf728b1.ngrok.io/getproperty' + newUrl.search)
 
-    // window.location.href = newUrl.toString()
-    
-    this.setState({ selectedFilters: newFilters });
   };
 
   render() {
+    console.log(this.props.hotels)
     return (
       <div className="App">
 
@@ -61,8 +59,8 @@ class ListingComponent extends Component {
                   <span>{filter.display}</span>
                   <span>
                     <label className="switch">
-                      <input 
-                        type="checkbox" 
+                      <input
+                        type="checkbox"
                         // checked={isChecked}
                         onChange={() => this.toggleFilter(filter.key)}
                       />
@@ -73,7 +71,7 @@ class ListingComponent extends Component {
               )
             })
           }</ul>
-        </div> 
+        </div>
 
         <AllHotels hotels={this.props.hotels} />
 

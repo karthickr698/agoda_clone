@@ -6,7 +6,6 @@ import {
     GET_HOTELS_FAILURE,
     GOT_HOTEL_ENTITY,
     SET_NUMBER_OF_PEOPLE,
-    SAVE_RAZORPAY_DATA,
     SENDING_BILL_DATA_REQUEST,
     SENDING_BILL_DATA_SUCCESS,
     SENDING_BILL_DATA_FAILURE
@@ -58,10 +57,10 @@ export const getHotels = (url) => dispatch => {
 export const currentHotelEntityPage = (payload) => ({
     type: GOT_HOTEL_ENTITY,
     payload
-  })
-  
-export const getHotelEntityPage = id => dispatch => {
-    console.log('called id ' + id)
+})
+
+export const getHotelEntityPage = id => (dispatch) => {
+    console.log('called id' + id)
     return axios
         .get("http://c0d7dbf728b1.ngrok.io/getproperty/" + id)
         .then(res => {
@@ -74,31 +73,28 @@ export const getHotelEntityPage = id => dispatch => {
 
 export const sendingBillDataRequest = () => ({
     type: SENDING_BILL_DATA_REQUEST
-  });
-  
-  export const sendingBillDataSuccess = payload => ({
+});
+
+export const sendingBillDataSuccess = payload => ({
     type: SENDING_BILL_DATA_SUCCESS,
     payload
-  });
-  
-  export const sendingBillDataFailure = payload => ({
+});
+
+export const sendingBillDataFailure = payload => ({
     type: SENDING_BILL_DATA_FAILURE,
     error: payload
-  });
-  
+});
 
-// export const saveRazorpayData = (payload) => ({
-//     type: SAVE_RAZORPAY_DATA,
-//     payload
-// })
-
-export const sendBillData = params => dispatch => {
+export const sendBillData = payload => dispatch => {
     return axios
-        .post("http://c0d7dbf728b1.ngrok.io/orders/" ,params)
-        .then(res => {
-            console.log(res)
-            return res.data
+        .post("http://c0d7dbf728b1.ngrok.io/orders", {
+            email: payload.email,
+            amount: payload.amount,
+            currency: payload.currency,
+            receipt: payload.receipt
         })
-        .then(res => dispatch(sendingBillDataSuccess(res)))
-        .catch(err => console.log(err))
+        .then(res => {
+            dispatch(sendingBillDataSuccess(res.data.id));
+        })
+        .catch((err) => dispatch(sendingBillDataFailure(err)));
 };

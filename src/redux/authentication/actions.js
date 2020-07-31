@@ -119,16 +119,7 @@ export const logoutUserFailure = payload => ({
 });
 
 export const sendGoogleLoginData = (payload) => (dispatch) => {
-  dispatch(loginUserRequest());
-  return axios
-    .post("http://localhost:5000/google", {
-      ...payload,
-    })
-    .then((res) => {
-      res.statusParam = "isAuthenticated";
-      dispatch(loginUserSuccess(res));
-    })
-    .catch((err) => console.log(err));
+  dispatch(loginUserSuccess(payload));
 };
 
 export const logoutUser = payload => {

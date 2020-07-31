@@ -21,19 +21,21 @@ class Signin extends Component {
 
   responseGoogle = (response) => {
     console.log(response)
-    const { email, name } = response.profileObj;
+    const { email, givenName, familyName } = response.profileObj;
     const {
       access_token,
     } = response.tokenObj;
-
-    this.props.sendGoogleLoginData({
-
-      name: name,
+    let datas = {
+      name: givenName,
+      last_name: familyName,
       email: email,
       accessToken: access_token,
       googleId: response.googleId,
+    }
 
-    });
+    console.log(datas)
+
+    this.props.sendGoogleLoginData(datas);
     this.props.handleClose()
   }
 
@@ -87,7 +89,7 @@ class Signin extends Component {
                 <div className="col-6">
                   <button className="btn btn-outline-primary">
                     Create account
-                        </button>
+                  </button>
                 </div>
               </div >
             </div>
