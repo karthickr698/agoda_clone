@@ -15,9 +15,10 @@ export default function Routes() {
     return (
         <div>
             <Navbar />
-            {/* <SearchForm /> */}
+            
             <Switch>
                 <Route exact path='/' render={() => <>
+                    <SearchForm />
                     <ExploreMore />
                     <RecommendedPlaces />
                 </>} />
