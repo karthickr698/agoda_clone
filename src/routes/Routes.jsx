@@ -25,6 +25,7 @@ export default function Routes() {
                 <Route path='/paymentPage' component={PaymentPage} />
             </Switch>
             <Footer />
+            <div>test</div>
         </div>
     )
 }
