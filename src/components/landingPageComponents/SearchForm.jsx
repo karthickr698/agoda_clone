@@ -2,8 +2,19 @@ import React, { Component } from 'react'
 import DropdownComponent from '../entityPageComponents/DropdownComponent';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown'
+import PlacesAutocomplete from 'react-places-autocomplete';
 
 export default class SearchForm extends Component {
+
+      constructor(props) {
+        super(props);
+        this.state = { address: '' };
+      }
+     
+      handleChange = address => {
+        this.setState({ address });
+      };
+     
     render() {
         return (
             <div className="jumbotron " id="landingPageImg">
@@ -11,14 +22,44 @@ export default class SearchForm extends Component {
                         <div className="row">
                             <div className="col-2"></div>
                             <div className="col-8">
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
+                                {/* <div class="input-group mb-3"> */}
+                                    {/* <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1">
                                             <i class="fa fa-search" aria-hidden="true"></i>
                                         </span>
-                                    </div>
-                                    <input  style={{ height: "40px" }} type="search" class="form-control"  placeholder="Enter City" aria-label="Username" aria-describedby="basic-addon1" />
-                                </div>
+                                    </div> */}
+                                    <PlacesAutocomplete
+                                        value={this.state.address}
+                                        onChange={this.handleChange}
+                                        onSelect={this.handleSelect}
+                                    >
+                                        {({getInputProps, suggestions, getSuggestionItemProps, loading}) => (<>
+                                             <div className="input-group mb-3">
+                                                <input  {...getInputProps({placeholder: "Enter City"})} style={{ height: "40px" }} type="search" class="form-control"  aria-label="Username" aria-describedby="basic-addon1" />
+                                             </div>
+                                            <div>
+                                                {loading ? <div>...loading</div>: null}
+                                                
+                                                {suggestions.map(suggestion => {
+                                                    const style = {
+                                                        backgroundColor : suggestion.active ? "#fae3d9" : "#fff"
+                                                    };
+                                                    
+                                                    console.log(suggestion)
+
+                                                    return(
+                                                        <div {...getSuggestionItemProps(suggestion, { style })}> 
+                                                            {suggestion.description}
+                                                        </div>
+                                                    );
+                                                })}
+
+                                            </div>
+
+
+                                        </> )}
+                                    </PlacesAutocomplete>
+                                {/* </div> */}
                             </div>
                         </div>
                         <div className="row">
