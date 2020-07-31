@@ -189,10 +189,33 @@ export class EntityPage extends React.Component{
                 </div>
 
                 <div className="container border  mt-3 p-3 border-success">
-                    <div className=" mt-3 d-flex p-2 justify-content-between">
-                        <h3>Book your room</h3>
+                    <div className=" mt-3 d-flex p-2 justify-content-between align-items-center ">
+                        <span className="d-flex justify-content-between">
+                            <span className="mr-2">
+                                <label>Start:</label>
+                            </span>
+                           <span>
+                            <input
+                                className="form-control"
+                                type="date"
+                                aria-label="Search"
+                            />
+                           </span>
+                       </span>
+                       <span className="d-flex justify-content-between">
+                            <span>
+                                <label>End:</label>
+                            </span>
+                           <span>
+                            <input
+                                className="form-control"
+                                type="date"
+                                aria-label="Search"
+                            />
+                           </span>
+                       </span>
                         <span>
-                        <DropdownComponent />
+                            <DropdownComponent />
                         </span>
                         <span>
                             <button onClick={() => history.push('/paymentPage')} className="btn btn-primary btn-md p-2">Reserve</button>

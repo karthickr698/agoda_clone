@@ -15,11 +15,18 @@ return(
       <div className="hotel__text">
         <div className="hotel__header">
           <h3 className="hotel__name">{props.hotel[1]}</h3>
+          <div className="row">
+            <div className="col">
+            <span className=" m-1 p-1 rounded font-weight-bolder">{props.hotel[3]} reviews</span>
+            </div>
+            <div className="col">
           <span className="hotel__rating">{props.hotel[2]}</span>
+
+            </div>
+          </div>
         </div>
         <div className="hotel__main">
           <div>
-            <span>{props.hotel[3]} reviews</span>
             <Perk
               perk="Free cancellation"
               hasPerk={props.hotel[7] === '1' ? true : false}
@@ -39,13 +46,12 @@ return(
               hasPerk={props.hotel[12] === '1' ? true : false}
             />
           </div>
-          <div className="hotel__main--right">
+          <div className="hotel__main--right ">
             <span>
               <span className="hotel__price">Rs.{props.hotel[4]}</span>{" "}
               per night
             </span>
             <span>Includes taxes and charges</span>
-
           </div>
         </div>
       </div>

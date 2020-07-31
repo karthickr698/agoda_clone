@@ -63,7 +63,7 @@ export const currentHotelEntityPage = (payload) => ({
 export const getHotelEntityPage = id => dispatch => {
     console.log('called id ' + id)
     return axios
-        .get("http://c7b2859e52b7.ngrok.io/getproperty/" + id)
+        .get("http://c0d7dbf728b1.ngrok.io/getproperty/" + id)
         .then(res => {
             console.log(res)
             return res.data.property
@@ -94,7 +94,7 @@ export const sendingBillDataRequest = () => ({
 
 export const sendBillData = params => dispatch => {
     return axios
-        .post("http://c7b2859e52b7.ngrok.io/orders/" ,params)
+        .post("http://c0d7dbf728b1.ngrok.io/orders/" ,params)
         .then(res => {
             console.log(res)
             return res.data
