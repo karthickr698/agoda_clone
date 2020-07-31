@@ -116,6 +116,7 @@ export class PaymentPage extends Component {
                                         <h1>{hotel[1]}</h1>
                                         <p>5290, Iljudong-ro, Seongsan-eup, Seongsan, Jeju Island</p>
                                         <p>no. of persons: {numberOfPeople}</p>
+                                        <p>no. of days: {numberOfDays}</p>
                                         <h3>{hotel[4] * numberOfPeople * numberOfDays}</h3>
                                     </div>
                                 </div>
