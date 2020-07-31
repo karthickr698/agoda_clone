@@ -8,7 +8,8 @@ import {
     SET_NUMBER_OF_PEOPLE,
     SENDING_BILL_DATA_REQUEST,
     SENDING_BILL_DATA_SUCCESS,
-    SENDING_BILL_DATA_FAILURE
+    SENDING_BILL_DATA_FAILURE,
+    SET_NUMBER_OF_DAYS
 } from "./actionTypes";
 import axios from 'axios'
 
@@ -59,10 +60,15 @@ export const currentHotelEntityPage = (payload) => ({
     payload
 })
 
+export const setNumberOfDays = payload => ({
+    type: SET_NUMBER_OF_DAYS,
+    payload
+})
+
 export const getHotelEntityPage = id => (dispatch) => {
     console.log('called id' + id)
     return axios
-        .get("http://localhost:5000/getproperty/" + id)
+        .get("http://c0d7dbf728b1.ngrok.io/getproperty/" + id)
         .then(res => {
             console.log(res)
             return res.data.property
@@ -87,7 +93,7 @@ export const sendingBillDataFailure = payload => ({
 
 export const sendBillData = payload => dispatch => {
     return axios
-        .post("http://localhost:5000/orders", {
+        .post("http://c0d7dbf728b1.ngrok.io/orders", {
             email: payload.email,
             amount: payload.amount,
             currency: payload.currency,

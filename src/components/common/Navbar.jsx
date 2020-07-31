@@ -10,7 +10,6 @@ import { logoutUser } from "../../redux/authentication/actions";
 
 export const Navbar = props => {
   const { isAuth } = props
-  console.log("name", props.username)
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -46,11 +45,11 @@ export const Navbar = props => {
             </li>
           </ul>
           <form className="form-inline my-2 my-lg-0">
-            <div className="p-2 ">
+            {/* <div className="p-2 ">
               <Button variant="outlined" color="primary">
                 <small>List your place</small>
               </Button>
-            </div>
+            </div> */}
             {isAuth ? <button className="btn btn-outline-primary mr-1" onClick={(payload) => props.logoutUser(payload)}>signout</button> : <SigninModal />}
             {isAuth ? props.username.name : <CreateAccountModal />}
           </form>

@@ -59,7 +59,7 @@ code {
 .hotel__name {
   font-size: 20px;
   padding: 3px 0;
-  color: #07c;
+  color: rgb(10, 10, 10);
   font-weight: bold;
   margin: 0;
   line-height: 28px;
@@ -92,6 +92,11 @@ code {
   flex-direction: column;
   text-align: right;
   margin-top: auto;
+  border: 1px solid rgb(184, 192, 216);
+  padding: 10px;
+  border-style:solid;
+    border-width:thin;
+    border-radius: 10px;
 }
 .hotel__price {
   color: green;
@@ -104,8 +109,8 @@ code {
   font-weight: bolder;
   cursor: pointer;
   margin-top: 5px;
-}
-.hotel__see-rooms:hover {
+} 
+ .hotel__see-rooms:hover {
   box-shadow: 0 0 1px 1px #333;
 }
 .hotel__best-seller-flag {
@@ -242,4 +247,13 @@ input:checked + .slider:before {
 
 .green-color{
   color: rgb(19, 231, 47);
+}
+
+#landingPageImg{
+  background-image: url(../src/utils/bg-agoda.png);
+  /* background-repeat: no-repeat; */
+  background-size: 100% 100%;
+  padding: 100px;
+  /* opacity: 0.5; */
+  /* filter: brightness(80%); */
 }

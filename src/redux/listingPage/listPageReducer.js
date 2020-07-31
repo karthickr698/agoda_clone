@@ -5,7 +5,8 @@ import {
     SET_NUMBER_OF_PEOPLE,
     SENDING_BILL_DATA_REQUEST,
     SENDING_BILL_DATA_SUCCESS,
-    SENDING_BILL_DATA_FAILURE
+    SENDING_BILL_DATA_FAILURE,
+    SET_NUMBER_OF_DAYS
 } from "./actionTypes"
 
 const initialState = {
@@ -13,6 +14,7 @@ const initialState = {
     hotels: [],
     hotel: [],
     numberOfPeople: 0,
+    numberOfDays: '',
     pay: false
 }
 
@@ -31,6 +33,24 @@ export default (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 hotel: [...payload[0]]
+            }
+        
+        case SET_NUMBER_OF_DAYS:
+            let { startDate, endDate, min_date } = payload
+            startDate = startDate[0] || min_date
+            endDate = endDate[0] || '0-0-0'
+            startDate = startDate.split('-')
+            endDate = endDate.split('-')
+            startDate = new Date(...startDate)
+            endDate = new Date(...endDate)
+            startDate = parseInt(startDate.getTime() / 1000)
+            endDate = parseInt(endDate.getTime() / 1000)
+            let numberOfDays = Math.ceil((endDate - startDate) / (60*60*24))
+            numberOfDays = numberOfDays < 0 ? 1 : numberOfDays + 1
+            console.log("No of days : " + numberOfDays)
+            return { 
+                ...state,
+                numberOfDays: numberOfDays
             }
 
         case SET_NUMBER_OF_PEOPLE:

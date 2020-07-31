@@ -23,9 +23,9 @@ export class PaymentPage extends Component {
         e.preventDefault()
 
         console.log("fuck")
-        let { hotel, numberOfPeople } = this.props
+        let { hotel, numberOfPeople, numberOfDays } = this.props
         let order_res = await axios.post("https://c7b2859e52b7.ngrok.io/orders", {
-            "amount": (hotel[4] * numberOfPeople) * 100,
+            "amount": (hotel[4] * numberOfPeople * numberOfDays) * 100,
             "currency": "INR",
             "receipt": 32 + "#karthick",
             "payment_capture": "1"
@@ -65,7 +65,7 @@ export class PaymentPage extends Component {
     }
 
     render() {
-        let { hotel, numberOfPeople } = this.props
+        let { hotel, numberOfPeople, numberOfDays } = this.props
         numberOfPeople = numberOfPeople || 1
         if (this.props.pay) {
             return (
@@ -116,7 +116,8 @@ export class PaymentPage extends Component {
                                         <h1>{hotel[1]}</h1>
                                         <p>5290, Iljudong-ro, Seongsan-eup, Seongsan, Jeju Island</p>
                                         <p>no. of persons: {numberOfPeople}</p>
-                                        <h3>{hotel[4] * numberOfPeople}</h3>
+                                        <p>no. of days: {numberOfDays}</p>
+                                        <h3>{hotel[4] * numberOfPeople * numberOfDays}</h3>
                                     </div>
                                 </div>
                             </div>
@@ -131,7 +132,8 @@ export class PaymentPage extends Component {
 const mapStateToProps = (state) => ({
     hotel: state.listingPageReducer.hotel,
     numberOfPeople: state.listingPageReducer.numberOfPeople,
-    pay: state.listingPageReducer.pay
+    pay: state.listingPageReducer.pay,
+    numberOfDays: state.listingPageReducer.numberOfDays
 })
 
 const mapDispatchToProps = dispatch => ({

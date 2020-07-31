@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getHotelEntityPage } from '../../redux/listingPage/actions';
+import { getHotelEntityPage, setNumberOfDays } from '../../redux/listingPage/actions';
 import DropdownComponent from './DropdownComponent';
 
 export class EntityPage extends React.Component {
@@ -8,19 +8,38 @@ export class EntityPage extends React.Component {
         super(props)
 
         this.state = {
-
+            startDate: [this.getDateRange()],
+            endDate: ''
         }
+    }
+
+    getDateRange = () => {
+        const today = new Date()
+        let year = today.getFullYear()
+        let month = today.getMonth() + 1
+        let day = today.getDate()
+        day = day < 10 ? '0' + day : day
+        month = month < 10 ? '0' + month : month
+        let min_date = year+'-'+month+'-'+day
+        return min_date
     }
 
     componentDidMount() {
         const { id } = this.props.match.params
         this.props.currentHotelEntityPage(id)
+        this.setState({min_date: this.getDateRange()})
+    }
+
+    handleChange = e => {
+        this.setState({ 
+            [e.target.name] : [e.target.value]
+        })
     }
 
     render() {
-        // console.log(this.props)
-        const { hotel, history } = this.props
-        console.log(hotel)
+        
+        const { hotel, history, setNumberOfDays } = this.props
+        const {min_date, startDate, endDate } = this.state
 
         return (
             <div className="container mt-4">
@@ -35,10 +54,10 @@ export class EntityPage extends React.Component {
                                     <img alt='some hotel' src="https://pix6.agoda.net/hotelImages/109/10941418/10941418_20011713540087185943.png?s=1024x768" className="w-100" />
                                 </div>
                                 <div className="row p-0 m-0 pt-3">
-                                    <div className="col-6 p-0 m-0">
+                                    <div className="col-6 p-0 mt-3">
                                         <img alt='some hotel' src="https://pix6.agoda.net/hotelImages/109/10941418/10941418_20011713540087185943.png?s=1024x768" className="w-100 p-0 m-0" />
                                     </div>
-                                    <div className="col-6 p-0 m-0 pl-1">
+                                    <div className="col-6 p-0 mt-3 pl-1">
                                         <img alt='some hotel' src="https://pix6.agoda.net/hotelImages/109/10941418/10941418_20011713540087185943.png?s=1024x768" className="w-100 p-0 m-0" />
                                     </div>
                                 </div>
@@ -191,13 +210,47 @@ export class EntityPage extends React.Component {
                 </div>
 
                 <div className="container border  mt-3 p-3 border-success">
-                    <div className=" mt-3 d-flex p-2 justify-content-between">
-                        <h3>Book your room</h3>
+                    <div className=" mt-3 d-flex p-2 justify-content-between align-items-center ">
+                        <span className="d-flex justify-content-between">
+                            <span className="mr-2">
+                                <label>Start:</label>
+                            </span>
+                           <span>
+                            <input
+                                className="form-control"
+                                type="date"
+                                aria-label="Search"
+                                min={min_date}
+                                max={endDate}
+                                value={startDate}
+                                name='startDate'
+                                onChange= {this.handleChange}
+                            />
+                           </span>
+                       </span>
+                       <span className="d-flex justify-content-between">
+                            <span className="mr-2">
+                                <label>End:</label>
+                            </span>
+                           <span>
+                            <input
+                                className="form-control"
+                                type="date"
+                                aria-label="Search"
+                                name='endDate'
+                                min={startDate || min_date}
+                                onChange= {this.handleChange}
+                            />
+                           </span>
+                       </span>
                         <span>
                             <DropdownComponent />
                         </span>
                         <span>
-                            <button onClick={() => history.push('/paymentPage')} className="btn btn-primary btn-md p-2">Reserve</button>
+                            <button onClick={() => {
+                                setNumberOfDays(this.state)
+                                history.push('/paymentPage')
+                                }} className="btn btn-primary btn-md p-2">Reserve</button>
                         </span>
                     </div>
                 </div>
@@ -258,7 +311,7 @@ export class EntityPage extends React.Component {
                             <div className="container mt-3">
                                 <h3>More about the hotel:</h3>
                                 <p>
-                                    The facilities and services provided by Seom Story Pension ensure a pleasant stay for guests. Facilities like free Wi-Fi in all rooms, convenience store, kitchen, express check-in/check-out, car park are readily available for the convenience of each guest.
+                                    The facilities and services provided by us ensure a pleasant stay for guests. Facilities like free Wi-Fi in all rooms, convenience store, kitchen, express check-in/check-out, car park are readily available for the convenience of each guest.
                                 </p>
 
                             </div>
@@ -499,7 +552,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    currentHotelEntityPage: payload => dispatch(getHotelEntityPage(payload))
+    currentHotelEntityPage: payload => dispatch(getHotelEntityPage(payload)),
+    setNumberOfDays: payload => dispatch(setNumberOfDays(payload))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EntityPage)
