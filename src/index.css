@@ -248,3 +248,12 @@ input:checked + .slider:before {
 .green-color{
   color: rgb(19, 231, 47);
 }
+
+#landingPageImg{
+  background-image: url(../src/utils/bg-agoda.png);
+  /* background-repeat: no-repeat; */
+  background-size: 100% 100%;
+  padding: 100px;
+  /* opacity: 0.5; */
+  /* filter: brightness(80%); */
+}

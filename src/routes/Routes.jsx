@@ -9,11 +9,13 @@ import RecommendedPlaces from '../components/landingPageComponents/RecommendedPl
 import ApartmentsPage from '../components/entityPageComponents/ApartmentsPage.jsx'
 import EntityPage from '../components/entityPageComponents/EntityPage';
 import PaymentPage from '../components/paymentPageComponents/PaymentPage';
+import SearchForm from '../components/landingPageComponents/SearchForm';
 
 export default function Routes() {
     return (
         <div>
             <Navbar />
+            {/* <SearchForm /> */}
             <Switch>
                 <Route exact path='/' render={() => <>
                     <ExploreMore />

@@ -35,10 +35,10 @@ export class EntityPage extends React.Component {
                                     <img alt='some hotel' src="https://pix6.agoda.net/hotelImages/109/10941418/10941418_20011713540087185943.png?s=1024x768" className="w-100" />
                                 </div>
                                 <div className="row p-0 m-0 pt-3">
-                                    <div className="col-6 p-0 m-0">
+                                    <div className="col-6 p-0 mt-3">
                                         <img alt='some hotel' src="https://pix6.agoda.net/hotelImages/109/10941418/10941418_20011713540087185943.png?s=1024x768" className="w-100 p-0 m-0" />
                                     </div>
-                                    <div className="col-6 p-0 m-0 pl-1">
+                                    <div className="col-6 p-0 mt-3 pl-1">
                                         <img alt='some hotel' src="https://pix6.agoda.net/hotelImages/109/10941418/10941418_20011713540087185943.png?s=1024x768" className="w-100 p-0 m-0" />
                                     </div>
                                 </div>
@@ -281,7 +281,7 @@ export class EntityPage extends React.Component {
                             <div className="container mt-3">
                                 <h3>More about the hotel:</h3>
                                 <p>
-                                    The facilities and services provided by Seom Story Pension ensure a pleasant stay for guests. Facilities like free Wi-Fi in all rooms, convenience store, kitchen, express check-in/check-out, car park are readily available for the convenience of each guest.
+                                    The facilities and services provided by us ensure a pleasant stay for guests. Facilities like free Wi-Fi in all rooms, convenience store, kitchen, express check-in/check-out, car park are readily available for the convenience of each guest.
                                 </p>
 
                             </div>
