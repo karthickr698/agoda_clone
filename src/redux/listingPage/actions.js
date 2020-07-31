@@ -8,7 +8,8 @@ import {
     SET_NUMBER_OF_PEOPLE,
     SENDING_BILL_DATA_REQUEST,
     SENDING_BILL_DATA_SUCCESS,
-    SENDING_BILL_DATA_FAILURE
+    SENDING_BILL_DATA_FAILURE,
+    SET_NUMBER_OF_DAYS
 } from "./actionTypes";
 import axios from 'axios'
 
@@ -56,6 +57,11 @@ export const getHotels = (url) => dispatch => {
 
 export const currentHotelEntityPage = (payload) => ({
     type: GOT_HOTEL_ENTITY,
+    payload
+})
+
+export const setNumberOfDays = payload => ({
+    type: SET_NUMBER_OF_DAYS,
     payload
 })
 

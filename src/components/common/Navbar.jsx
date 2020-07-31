@@ -10,7 +10,6 @@ import { logoutUser } from "../../redux/authentication/actions";
 
 export const Navbar = props => {
   const { isAuth } = props
-  console.log("name", props.username)
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">

@@ -65,7 +65,7 @@ export class PaymentPage extends Component {
     }
 
     render() {
-        let { hotel, numberOfPeople } = this.props
+        let { hotel, numberOfPeople, numberOfDays } = this.props
         numberOfPeople = numberOfPeople || 1
         if (this.props.pay) {
             return (
@@ -116,7 +116,7 @@ export class PaymentPage extends Component {
                                         <h1>{hotel[1]}</h1>
                                         <p>5290, Iljudong-ro, Seongsan-eup, Seongsan, Jeju Island</p>
                                         <p>no. of persons: {numberOfPeople}</p>
-                                        <h3>{hotel[4] * numberOfPeople}</h3>
+                                        <h3>{hotel[4] * numberOfPeople * numberOfDays}</h3>
                                     </div>
                                 </div>
                             </div>
@@ -131,7 +131,8 @@ export class PaymentPage extends Component {
 const mapStateToProps = (state) => ({
     hotel: state.listingPageReducer.hotel,
     numberOfPeople: state.listingPageReducer.numberOfPeople,
-    pay: state.listingPageReducer.pay
+    pay: state.listingPageReducer.pay,
+    numberOfDays: state.listingPageReducer.numberOfDays
 })
 
 const mapDispatchToProps = dispatch => ({
