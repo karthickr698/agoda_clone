@@ -153,7 +153,6 @@ def getProperty():
         count=cur.fetchall()
         cur.execute('SELECT * FROM Mainproperties WHERE isHome = (%s) or isFamilyFriendly = (%s) or includesBreakfast=(%s) or canBookwithoutCC=(%s)   limit %s, %s ',(isHome,isFamilyFriendly,includesBreakfast,canBookwithoutCC,startat,perpage))
         data = cur.fetchall()
-        print(count)
         return json.dumps({"property": data,"count":count})
     elif (low2high == "1" and rating == "1"):
         cur.execute('SELECT COUNT(*) FROM Mainproperties WHERE isHome = (%s) or isFamilyFriendly = (%s) or includesBreakfast=(%s) or canBookwithoutCC=(%s) ', (isHome, isFamilyFriendly, includesBreakfast, canBookwithoutCC))
@@ -197,27 +196,10 @@ def orders():
     };
 
     dump = razorpay_client.order.create(data=datas)
-    # cur = mysql.connection.cursor()
-    # cur.execute(''' INSERT INTO orders( email, id) VALUES("%s", "%s"); ''' %( email,dump['id']))
-    # mysql.connection.commit()
-    # cur.close()
     return json.dumps({"id": dump['id']})
 
 @app.route('/verifypay',methods=['POST'])
 def verifypay():
-    # razorpay_payment_id = request.json["amount"]
-    # razorpay_order_id = request.json["currency"]
-    # razorpay_signature = request.json["receipt"]
-    # email = request.json["email"]
-    # datas = { 
-    #     "razorpay_payment_id": razorpay_payment_id,
-    #     "razorpay_order_id": razorpay_order_id,
-    #     "razorpay_signature": razorpay_signature
-    # };
-
-    # server_sign = razorpay_client.utility.verify_payment_signature(datas)
-    
-    
     return json.dumps({"message": "payment successful"})
 
 

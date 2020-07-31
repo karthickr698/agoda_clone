@@ -99,83 +99,83 @@ export default function ApartmentsPage() {
         </h2>
         <div className="mt-4">
           <div className="card-deck">
-            {['Osaka, Japan','Tokyo, Japan', 'Kuala Lumpur, Malaysia'].map(hotel => (
-                <Link to='/listingPage' style={{textDecoration:"none"}}>
-                  <div className="card">
-                    <img
-                      className="card-img-top"
-                      src="https://cdn6.agoda.net/images/accommodation/best-destinations/apartment-osaka.jpg"
-                      alt="Card cap"
-                    />
-                    <div className="card-body">
-                      <h5 className="card-title text-center">{hotel}</h5>
-                      <p className="card-text text-center text-muted">
-                        19,844 properties
+            {['Osaka, Japan', 'Tokyo, Japan', 'Kuala Lumpur, Malaysia'].map(hotel => (
+              <Link to='/listingPage' style={{ textDecoration: "none" }}>
+                <div className="card">
+                  <img
+                    className="card-img-top"
+                    src="https://cdn6.agoda.net/images/accommodation/best-destinations/apartment-osaka.jpg"
+                    alt="Card cap"
+                  />
+                  <div className="card-body">
+                    <h5 className="card-title text-center">{hotel}</h5>
+                    <p className="card-text text-center text-muted">
+                      19,844 properties
                       </p>
-                    </div>
                   </div>
-                </Link>
+                </div>
+              </Link>
             ))}
           </div>
         </div>
         <div className="mt-4">
           <div className="card-deck">
-            {['Manila, Philippines','Bangkok, Thailand', 'Pattaya, Thailand'].map(hotel => (
-                <Link to='/listingPage' style={{textDecoration:"none"}}>
-                  <div className="card">
-                    <img
-                      className="card-img-top"
-                      src="https://cdn6.agoda.net/images/accommodation/best-destinations/apartment-osaka.jpg"
-                      alt="Card cap"
-                    />
-                    <div className="card-body">
-                      <h5 className="card-title text-center">{hotel}</h5>
-                      <p className="card-text text-center text-muted">
-                        19,844 properties
+            {['Manila, Philippines', 'Bangkok, Thailand', 'Pattaya, Thailand'].map(hotel => (
+              <Link to='/listingPage' style={{ textDecoration: "none" }}>
+                <div className="card">
+                  <img
+                    className="card-img-top"
+                    src="https://cdn6.agoda.net/images/accommodation/best-destinations/apartment-osaka.jpg"
+                    alt="Card cap"
+                  />
+                  <div className="card-body">
+                    <h5 className="card-title text-center">{hotel}</h5>
+                    <p className="card-text text-center text-muted">
+                      19,844 properties
                       </p>
-                    </div>
                   </div>
-                </Link>
-              ))}
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </div>
 
-    <div className="container mt-5">
+      <div className="container mt-5">
         <h2 className="text-center font-weight-bold">
-        Other great alternatives to hotels
+          Other great alternatives to hotels
         </h2>
         <div className="card-deck mt-4">
-        <div className="card">
-          <img className="card-img-top" src="https://cdn6.agoda.net/images/accommodation/other-property-types/entire-house.jpg" alt="Card  cap" />
-          <div className="card-body">
-            <h5 className="card-title">Vacation Rentals</h5>
-            <p className="card-text">517,703 properties</p>
+          <div className="card">
+            <img className="card-img-top" src="https://cdn6.agoda.net/images/accommodation/other-property-types/entire-house.jpg" alt="Card  cap" />
+            <div className="card-body">
+              <h5 className="card-title">Vacation Rentals</h5>
+              <p className="card-text">517,703 properties</p>
+            </div>
           </div>
-        </div>
-        <div className="card">
-          <img className="card-img-top" src="https://cdn6.agoda.net/images/accommodation/other-property-types/entire-villa.jpg" alt="Card cap" />
-          <div className="card-body">
-            <h5 className="card-title">Private Villas</h5>
-            <p className="card-text">517,703 properties</p>
+          <div className="card">
+            <img className="card-img-top" src="https://cdn6.agoda.net/images/accommodation/other-property-types/entire-villa.jpg" alt="Card cap" />
+            <div className="card-body">
+              <h5 className="card-title">Private Villas</h5>
+              <p className="card-text">517,703 properties</p>
+            </div>
           </div>
-        </div>
-        <div className="card">
-          <img className="card-img-top" src="https://cdn6.agoda.net/images/accommodation/other-property-types/entire-bungalow.jpg" alt="Card cap" />
-          <div className="card-body">
-            <h5 className="card-title">Bungalows</h5>
-            <p className="card-text">517,703 properties</p>
+          <div className="card">
+            <img className="card-img-top" src="https://cdn6.agoda.net/images/accommodation/other-property-types/entire-bungalow.jpg" alt="Card cap" />
+            <div className="card-body">
+              <h5 className="card-title">Bungalows</h5>
+              <p className="card-text">517,703 properties</p>
+            </div>
           </div>
-        </div>
-        <div className="card">
-          <img className="card-img-top" src="https://cdn6.agoda.net/images/accommodation/other-property-types/entire-apartment.jpg" alt="Card cap" />
-          <div className="card-body">
-            <h5 className="card-title">Apartments</h5>
-            <p className="card-text">517,703 properties</p>
+          <div className="card">
+            <img className="card-img-top" src="https://cdn6.agoda.net/images/accommodation/other-property-types/entire-apartment.jpg" alt="Card cap" />
+            <div className="card-body">
+              <h5 className="card-title">Apartments</h5>
+              <p className="card-text">517,703 properties</p>
+            </div>
           </div>
         </div>
       </div>
-    </div> 
     </div>
   );
 }
