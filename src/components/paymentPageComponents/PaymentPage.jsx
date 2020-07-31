@@ -23,9 +23,9 @@ export class PaymentPage extends Component {
         e.preventDefault()
 
         console.log("fuck")
-        let { hotel, numberOfPeople } = this.props
+        let { hotel, numberOfPeople, numberOfDays } = this.props
         let order_res = await axios.post("https://c7b2859e52b7.ngrok.io/orders", {
-            "amount": (hotel[4] * numberOfPeople) * 100,
+            "amount": (hotel[4] * numberOfPeople * numberOfDays) * 100,
             "currency": "INR",
             "receipt": 32 + "#karthick",
             "payment_capture": "1"
