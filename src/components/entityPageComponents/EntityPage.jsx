@@ -134,7 +134,7 @@ export class EntityPage extends React.Component {
                             <div className="container p-3 border border-secondary">
                                 <div className="row">
                                     <div className="col-2">
-                                        <span className="hotel__rating p-1">8.9</span>
+                                        <span className="hotel__rating p-1">{hotel[2]}</span>
                                     </div>
                                     <div className="col-9">
                                         <h3 className="font-weight-bold">Excellent</h3>

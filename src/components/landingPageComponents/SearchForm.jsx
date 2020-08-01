@@ -16,11 +16,15 @@ export default class SearchForm extends Component {
         };
     }
     
-    handleChange = e => {
+    handleelementChange = e => {
         this.setState({ 
             [e.target.name] : [e.target.value]
         })
     }
+
+    handleChange = address => {
+        this.setState({ address });
+      };
 
     getDateRange = () => {
         const today = new Date()
@@ -88,7 +92,8 @@ export default class SearchForm extends Component {
                             placeholder=" date"
                             min={min_date}
                             max={endDate}
-                            value={startDate} />
+                            value={startDate}
+                            onChange={this.handleelementChange} />
                         </div>
                         <div className="form-group  col-4">
                             <label htmlFor> End</label>
@@ -97,6 +102,7 @@ export default class SearchForm extends Component {
                             className="form-control" 
                             id="date" name="date" 
                             placeholder=" date"
+                            onChange={this.handleelementChange}
                             min={startDate || min_date} />
                         </div>
                     </div>

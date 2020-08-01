@@ -68,7 +68,7 @@ export const setNumberOfDays = payload => ({
 export const getHotelEntityPage = id => (dispatch) => {
     console.log('called id' + id)
     return axios
-        .get("http://604b856da672.ngrok.io/getproperty/" + id)
+        .get("http://d5018f16a5e7.ngrok.io/getproperty/" + id)
         .then(res => {
             console.log(res)
             return res.data.property
@@ -93,7 +93,7 @@ export const sendingBillDataFailure = payload => ({
 
 export const sendBillData = payload => dispatch => {
     return axios
-        .post("http://604b856da672.ngrok.io/orders", {
+        .post("http://d5018f16a5e7.ngrok.io/orders", {
             email: payload.email,
             amount: payload.amount,
             currency: payload.currency,

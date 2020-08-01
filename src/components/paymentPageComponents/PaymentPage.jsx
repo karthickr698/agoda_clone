@@ -24,7 +24,7 @@ export class PaymentPage extends Component {
 
         console.log("fuck")
         let { hotel, numberOfPeople, numberOfDays } = this.props
-        let order_res = await axios.post("https://604b856da672.ngrok.io/orders", {
+        let order_res = await axios.post("https://d5018f16a5e7.ngrok.io/orders", {
             "amount": (hotel[4] * numberOfPeople * numberOfDays) * 100,
             "currency": "INR",
             "receipt": 32 + "#karthick",
@@ -40,7 +40,7 @@ export class PaymentPage extends Component {
             "order_id": order_res.data.id,
             handler: async function (response) {
                 console.log(response)
-                let final_res = await axios.post("https://604b856da672.ngrok.io/verifypay", {
+                let final_res = await axios.post("https://d5018f16a5e7.ngrok.io/verifypay", {
                     ...response
                 })
                 if (final_res.data.isRazorPaySuccess === true) {
