@@ -10,44 +10,6 @@ import { Link } from 'react-router-dom';
 export default function ExploreMore() {
     return (
         <div className="container-fluid text-center">
-            <div >
-                <div className="jumbotron-fluid " id="bgimg">
-                    <h1 className="text-center ">Search for Hotels</h1>
-                    <nav
-                        className="navbar navbar-light bg-light  "
-                        style={{ height: "100px" }}
-                    >
-                        <form className="form-inline">
-                            <input
-                                className="form-control mr-sm-2"
-                                style={{ height: "70px" }}
-                                type="search"
-                                placeholder="Search"
-                                aria-label="Search"
-                            />
-                            <input
-                                className="form-control mr-sm-2"
-                                style={{ height: "70px" }}
-                                type="date"
-                                aria-label="Search"
-                            />
-                            <input
-                                className="form-control mr-sm-2"
-                                style={{ height: "70px" }}
-                                type="date"
-                                aria-label="Search"
-                            />
-                            <button
-                                className="btn btn-lg  btn-primary my-2 py-3 my-sm-0"
-                                style={{ width: "180px" }}
-                                type="submit"
-                            >
-                                Search
-              </button>
-                        </form>
-                    </nav>
-                </div>
-            </div>
             <h2 className="text-center mt-3"> Explore more travel vacation rentals </h2>
             <div className="explore-more-wrapper" >
                 {[[apartment, 'Apartments', '156,786'], [bungalow, 'Vacation Rentals', '517,245'], [house, 'Private Villas', '567,245'], [villa, 'Bunglows', '162,945']].map(item => (

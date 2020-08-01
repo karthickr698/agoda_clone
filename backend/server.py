@@ -5,6 +5,7 @@ import time
 import json
 from flask_cors import CORS;
 import razorpay;
+from twilio.rest import Client ;
 
 app = Flask(__name__)
 razorpay_client = razorpay.Client(auth=("rzp_test_9DjEQTF0xqxKcb", "2MCoTntgfG4uA3y4unhOFGJy"))
@@ -201,6 +202,16 @@ def orders():
 @app.route('/verifypay',methods=['POST'])
 def verifypay():
     return json.dumps({"message": "payment successful"})
+
+@app.route('/sms',methods=['POST'])
+def sms():
+    account_sid = 'AC7c39e49efae3ecc622553af865662e19' 
+    auth_token = '756e4bcc8421d522695b318bf2726fc5' 
+    client = Client(account_sid, auth_token) 
+    
+    message = client.messages.create( from_='+16693335742', body='payment successful', to='+918610017133' ) 
+    
+    print(message.sid)
 
 
 

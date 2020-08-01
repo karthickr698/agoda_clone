@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { sendBillData } from '../../redux/listingPage/actions';
-import axios from 'axios'
+import axios from 'axios';
+import swal from 'sweetalert';
 
 export class PaymentPage extends Component {
     constructor(props) {
@@ -22,9 +23,8 @@ export class PaymentPage extends Component {
     handleBooking = async (e) => {
         e.preventDefault()
 
-        console.log("fuck")
         let { hotel, numberOfPeople, numberOfDays } = this.props
-        let order_res = await axios.post("https://c7b2859e52b7.ngrok.io/orders", {
+        let order_res = await axios.post("https://d5018f16a5e7.ngrok.io/orders", {
             "amount": (hotel[4] * numberOfPeople * numberOfDays) * 100,
             "currency": "INR",
             "receipt": 32 + "#karthick",
@@ -40,20 +40,20 @@ export class PaymentPage extends Component {
             "order_id": order_res.data.id,
             handler: async function (response) {
                 console.log(response)
-                let final_res = await axios.post("https://c7b2859e52b7.ngrok.io/verifypay", {
+                let final_res = await axios.post("https://d5018f16a5e7.ngrok.io/verifypay", {
                     ...response
                 })
+                console.log(this.props)
                 if (final_res.data.isRazorPaySuccess === true) {
-                    alert("Payment Successful")
-                    this.props.history.push('/')
+                    swal("Booked!", "Your Booking has been made", "success");
                 } else {
-                    alert("Payment Successful")
+                    swal("Booked", "Your Booking has been made", "success");
                 }
             },
             "prefill": {
                 "name": "karthick",
                 "email": "karthick@gmail.com",
-                "contact": "8220504785"
+                "contact": this.state.phoneNumber
             },
             "theme": {
                 "color": "#F37254"
@@ -110,7 +110,7 @@ export class PaymentPage extends Component {
                             <div className="container border border-right">
                                 <div className="row m-2">
                                     <div className="col-3 ">
-                                        <img src={hotel[5]} height="100" width="80" alt="hotel" />
+                                        <img src="https://www.princehotels.com/wp-content/uploads/2019/04/aboutslider2-1.jpg" height="150" width="250" alt="hotel" />
                                     </div>
                                     <div className="col-9 ml-1">
                                         <h1>{hotel[1]}</h1>

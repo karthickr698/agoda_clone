@@ -68,7 +68,7 @@ export const setNumberOfDays = payload => ({
 export const getHotelEntityPage = id => (dispatch) => {
     console.log('called id' + id)
     return axios
-        .get("http://c0d7dbf728b1.ngrok.io/getproperty/" + id)
+        .get("http://localhost:5000/getproperty/" + id)
         .then(res => {
             console.log(res)
             return res.data.property
