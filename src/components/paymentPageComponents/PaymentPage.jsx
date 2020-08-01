@@ -132,8 +132,8 @@ export class PaymentPage extends Component {
 const mapStateToProps = (state) => ({
     hotel: state.listingPageReducer.hotel,
     numberOfPeople: state.listingPageReducer.numberOfPeople,
-    pay: state.listingPageReducer.pay,
-    numberOfDays: state.listingPageReducer.numberOfDays
+    numberOfDays: state.listingPageReducer.numberOfDays,
+    pay: state.listingPageReducer.pay
 })
 
 const mapDispatchToProps = dispatch => ({

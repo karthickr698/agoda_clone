@@ -17,6 +17,7 @@ class ListingComponent extends Component {
     const params = new URL(window.location.href);
     const url = 'http://localhost:5000/getproperty' + params.search;
     this.props.getHotels(url);
+
   }
 
   toggleFilter = clickedFilterKey => {

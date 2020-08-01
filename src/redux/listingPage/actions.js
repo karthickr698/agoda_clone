@@ -93,7 +93,7 @@ export const sendingBillDataFailure = payload => ({
 
 export const sendBillData = payload => dispatch => {
     return axios
-        .post("http://c0d7dbf728b1.ngrok.io/orders", {
+        .post("http://d5018f16a5e7.ngrok.io/orders", {
             email: payload.email,
             amount: payload.amount,
             currency: payload.currency,
