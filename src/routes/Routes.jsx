@@ -10,6 +10,7 @@ import ApartmentsPage from '../components/entityPageComponents/ApartmentsPage.js
 import EntityPage from '../components/entityPageComponents/EntityPage';
 import PaymentPage from '../components/paymentPageComponents/PaymentPage';
 import SearchForm from '../components/landingPageComponents/SearchForm';
+import { AllBooking } from '../components/common/AllBooking';
 
 export default function Routes() {
     return (
@@ -24,6 +25,7 @@ export default function Routes() {
                 </>} />
                 <Route path='/apartments' component={ApartmentsPage} />
                 <Route exact path='/listingPage' component={ListingComponent} />
+                <Route exact path='/booking' component={AllBooking} />
                 <Route path='/listingPage/:id' render={(props) => <EntityPage {...props}/>} />
                 <Route path='/paymentPage' component={PaymentPage} />
             </Switch>

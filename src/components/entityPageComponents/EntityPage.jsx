@@ -162,7 +162,6 @@ export class EntityPage extends React.Component {
                                 </div>
                             </div>
                         </div>
-
                         <div className="row mt-4">
                             <div className="container p-2 border border-secondary">
                                 <div className="border p-5" >Google Map</div>
