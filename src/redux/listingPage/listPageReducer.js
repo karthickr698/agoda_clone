@@ -15,7 +15,9 @@ const initialState = {
     hotel: [],
     numberOfPeople: 0,
     numberOfDays: '',
-    pay: false
+    pay: false,
+    startDate: '',
+    endDate: ''
 }
 
 export default (state = initialState, { type, payload }) => {
@@ -39,6 +41,8 @@ export default (state = initialState, { type, payload }) => {
             let { startDate, endDate, min_date } = payload
             startDate = startDate[0] || min_date
             endDate = endDate[0] || '0-0-0'
+            let start_date = startDate
+            let end_date = endDate
             startDate = startDate.split('-')
             endDate = endDate.split('-')
             startDate = new Date(...startDate)
@@ -50,7 +54,9 @@ export default (state = initialState, { type, payload }) => {
             console.log("No of days : " + numberOfDays)
             return { 
                 ...state,
-                numberOfDays: numberOfDays
+                numberOfDays: numberOfDays,
+                startDate: start_date,
+                endDate: end_date
             }
 
         case SET_NUMBER_OF_PEOPLE:
