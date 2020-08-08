@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown'
 import PlacesAutocomplete from 'react-places-autocomplete';
+import { Link } from 'react-router-dom';
 
 export default class SearchForm extends Component {
 
@@ -45,12 +46,7 @@ export default class SearchForm extends Component {
                     <div className="row">
                         <div className="col-2"></div>
                         <div className="col-8">
-                            {/* <div class="input-group mb-3"> */}
-                            {/* <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">
-                                        <i class="fa fa-search" aria-hidden="true"></i>
-                                    </span>
-                                </div> */}
+
                             <PlacesAutocomplete
                                 name='address'
                                 value={this.state.address}
@@ -81,14 +77,14 @@ export default class SearchForm extends Component {
                             </PlacesAutocomplete>
                         </div>
                     </div>
-                    <div className="row">
+                    <div className="row" >
                         <div className="col-2"></div>
                         <div className="form-group  col-4">
                             <label htmlFor> Start</label>
                             <input type="date"
                                 style={{ height: "40px" }}
                                 className="form-control" id="date"
-                                name="date"
+                                name="startDate"
                                 placeholder=" date"
                                 min={min_date}
                                 max={endDate}
@@ -100,7 +96,7 @@ export default class SearchForm extends Component {
                             <input type="date"
                                 style={{ height: "40px" }}
                                 className="form-control"
-                                id="date" name="date"
+                                id="date" name="endDate"
                                 placeholder=" date"
                                 onChange={this.handleelementChange}
                                 min={startDate || min_date} />
@@ -123,7 +119,7 @@ export default class SearchForm extends Component {
                             </Dropdown>
                         </div>
                         <div className="col-2">
-                            <button type="button" class="btn btn-lg btn-primary btn-block">Search</button>
+                            <Link to='/listingPage' ><button type="button" class="btn btn-lg btn-primary btn-block">Search</button></Link>
                         </div>
                     </div>
                 </div>

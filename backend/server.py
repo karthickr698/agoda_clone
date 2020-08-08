@@ -206,12 +206,13 @@ def verifypay():
 @app.route('/sms',methods=['POST'])
 def sms():
     account_sid = 'AC7c39e49efae3ecc622553af865662e19' 
-    auth_token = '756e4bcc8421d522695b318bf2726fc5' 
+    auth_token = 'edf5dd255777f55ec7c6b48f2743ef96' 
     client = Client(account_sid, auth_token) 
     
-    message = client.messages.create( from_='+16693335742', body='payment successful', to='+918610017133' ) 
+    message = client.messages.create( from_='+16693335742', body='payment successful', to='+919087638144' ) 
     
     print(message.sid)
+    return json.dumps({"message": message.sid})
 
 
 

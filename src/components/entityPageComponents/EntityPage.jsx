@@ -2,6 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getHotelEntityPage, setNumberOfDays } from '../../redux/listingPage/actions';
 import DropdownComponent from './DropdownComponent';
+import GoogleMapReact from 'google-map-react';
+
+const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 export class EntityPage extends React.Component {
     constructor(props) {
@@ -20,26 +23,26 @@ export class EntityPage extends React.Component {
         let day = today.getDate()
         day = day < 10 ? '0' + day : day
         month = month < 10 ? '0' + month : month
-        let min_date = year+'-'+month+'-'+day
+        let min_date = year + '-' + month + '-' + day
         return min_date
     }
 
     componentDidMount() {
         const { id } = this.props.match.params
         this.props.currentHotelEntityPage(id)
-        this.setState({min_date: this.getDateRange()})
+        this.setState({ min_date: this.getDateRange() })
     }
 
     handleChange = e => {
-        this.setState({ 
-            [e.target.name] : [e.target.value]
+        this.setState({
+            [e.target.name]: [e.target.value]
         })
     }
 
     render() {
-        
+
         const { hotel, history, setNumberOfDays } = this.props
-        const {min_date, startDate, endDate } = this.state
+        const { min_date, startDate, endDate } = this.state
 
         return (
             <div className="container mt-4">
@@ -165,7 +168,37 @@ export class EntityPage extends React.Component {
 
                         <div className="row mt-4">
                             <div className="container p-2 border border-secondary">
-                                <div className="border p-5" >Google Map</div>
+                                <div className="border" style={{ height: "200px", width: "360px" }}>
+                                    <GoogleMapReact
+                                        bootstrapURLKeys={{ key: 'AIzaSyCcS0j7hDpSs-F4xDi2q6AkTD_sWqECR9M' }}
+                                        defaultCenter={{
+                                            lat: 59.95,
+                                            lng: 30.33
+                                        }}
+                                        defaultZoom={1}
+                                    >
+                                        <AnyReactComponent
+                                            lat={55.955413}
+                                            lng={30.337844}
+                                            text={<i style={{ color: "red", fontSize: "20px" }} className="fa fa-map-marker" aria-hidden="true">Reichert LLC</i>}
+                                        />
+                                        <AnyReactComponent
+                                            lat={60.965419}
+                                            lng={40.357844}
+                                            text={<i style={{ color: "red", fontSize: "20px" }} className="fa fa-map-marker" aria-hidden="true">Davis Group</i>}
+                                        />
+                                        <AnyReactComponent
+                                            lat={45.98419}
+                                            lng={50.357844}
+                                            text={<i style={{ color: "red", fontSize: "20px" }} className="fa fa-map-marker" aria-hidden="true">Fritsch</i>}
+                                        />
+                                        <AnyReactComponent
+                                            lat={50.99419}
+                                            lng={55.247844}
+                                            text={<i style={{ color: "red", fontSize: "20px" }} className="fa fa-map-marker" aria-hidden="true">Aufderhar</i>}
+                                        />
+                                    </GoogleMapReact>
+                                </div>
                                 <hr />
                                 <div className="mt-2">
                                     <h5>Popular Landmarks</h5>
@@ -215,34 +248,34 @@ export class EntityPage extends React.Component {
                             <span className="mr-2">
                                 <label>Start:</label>
                             </span>
-                           <span>
-                            <input
-                                className="form-control"
-                                type="date"
-                                aria-label="Search"
-                                min={min_date}
-                                max={endDate}
-                                value={startDate}
-                                name='startDate'
-                                onChange= {this.handleChange}
-                            />
-                           </span>
-                       </span>
-                       <span className="d-flex justify-content-between">
+                            <span>
+                                <input
+                                    className="form-control"
+                                    type="date"
+                                    aria-label="Search"
+                                    min={min_date}
+                                    max={endDate}
+                                    value={startDate}
+                                    name='startDate'
+                                    onChange={this.handleChange}
+                                />
+                            </span>
+                        </span>
+                        <span className="d-flex justify-content-between">
                             <span className="mr-2">
                                 <label>End:</label>
                             </span>
-                           <span>
-                            <input
-                                className="form-control"
-                                type="date"
-                                aria-label="Search"
-                                name='endDate'
-                                min={startDate || min_date}
-                                onChange= {this.handleChange}
-                            />
-                           </span>
-                       </span>
+                            <span>
+                                <input
+                                    className="form-control"
+                                    type="date"
+                                    aria-label="Search"
+                                    name='endDate'
+                                    min={startDate || min_date}
+                                    onChange={this.handleChange}
+                                />
+                            </span>
+                        </span>
                         <span>
                             <DropdownComponent />
                         </span>
@@ -250,7 +283,7 @@ export class EntityPage extends React.Component {
                             <button onClick={() => {
                                 setNumberOfDays(this.state)
                                 history.push('/paymentPage')
-                                }} className="btn btn-primary btn-md p-2">Reserve</button>
+                            }} className="btn btn-primary btn-md p-2">Reserve</button>
                         </span>
                     </div>
                 </div>
@@ -542,7 +575,7 @@ export class EntityPage extends React.Component {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
         )
     }
 }

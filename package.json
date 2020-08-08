@@ -13,6 +13,8 @@
     "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
     "date-fns": "^2.15.0",
+    "emailjs-com": "^2.6.3",
+    "google-map-react": "^2.0.4",
     "react": "^16.13.1",
     "react-bootstrap": "^1.2.2",
     "react-dates": "^21.8.0",
@@ -28,6 +30,7 @@
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "semantic-ui-react": "^1.0.0",
+    "sendemail": "^4.0.1",
     "sweetalert": "^2.1.2"
   },
   "scripts": {

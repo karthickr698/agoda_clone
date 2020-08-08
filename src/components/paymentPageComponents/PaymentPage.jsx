@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import { sendBillData } from '../../redux/listingPage/actions';
 import axios from 'axios';
 import swal from 'sweetalert';
+import emailjs from 'emailjs-com';
+import { Redirect } from 'react-router-dom'
+
 
 export class PaymentPage extends Component {
     constructor(props) {
@@ -12,7 +15,11 @@ export class PaymentPage extends Component {
             email: '',
             fullName: '',
             phoneNumber: '',
-            address: ''
+            address: '',
+            msg: '',
+            pay: false,
+            fail: false,
+            after: false
         }
     }
 
@@ -20,12 +27,41 @@ export class PaymentPage extends Component {
         this.setState({ [e.target.name]: [e.target.value] })
     }
 
-    handleBooking = async (e) => {
+    form = (e) => {
         e.preventDefault()
+        console.log("fuck")
+        this.setState({ pay: true })
+
+    }
+
+    handleotp = () => {
+        if (this.state.msg == "6352") {
+            console.log("fuck")
+            this.handleBooking()
+        }
+        else
+            this.setState({ fail: true })
+    }
+
+    handleBooking = async (e) => {
+        console.log("fuck")
+
+        let templateParams = {
+            from_name: 'rkarthick410@gmail.com',
+            to_name: 'karthick184r@gmail.com',
+            subject: "send",
+            message_html: "datas",
+        }
+        emailjs.send(
+            'gmail',
+            'template_xxKzOdyD',
+            templateParams,
+            'user_dRRjC8Dekxlz2UBL2EKrF'
+        )
 
         let { hotel, numberOfPeople, numberOfDays } = this.props
-        let order_res = await axios.post("https://d5018f16a5e7.ngrok.io/orders", {
-            "amount": (hotel[4] * numberOfPeople * numberOfDays) * 100,
+        let order_res = await axios.post("https://915c099709e3.ngrok.io/orders", {
+            "amount": hotel[4] * numberOfPeople,
             "currency": "INR",
             "receipt": 32 + "#karthick",
             "payment_capture": "1"
@@ -38,17 +74,11 @@ export class PaymentPage extends Component {
             "description": "Transaction",
             "image": "/logo.svg",
             "order_id": order_res.data.id,
-            handler: async function (response) {
-                console.log(response)
-                let final_res = await axios.post("https://d5018f16a5e7.ngrok.io/verifypay", {
-                    ...response
-                })
+            handler: (response) => {
                 console.log(this.props)
-                if (final_res.data.isRazorPaySuccess === true) {
-                    swal("Booked!", "Your Booking has been made", "success");
-                } else {
-                    swal("Booked", "Your Booking has been made", "success");
-                }
+                swal("Booked!", "Your Booking has been made", "success");
+                this.props.history.push('/')
+
             },
             "prefill": {
                 "name": "karthick",
@@ -62,15 +92,30 @@ export class PaymentPage extends Component {
         const paymentObject = new window.Razorpay(options)
         paymentObject.open()
 
+
+
     }
 
     render() {
+        console.log(this.state)
         let { hotel, numberOfPeople, numberOfDays } = this.props
         numberOfPeople = numberOfPeople || 1
-        if (this.props.pay) {
+        if (this.state.after) {
             return (
-                <div>
-                    done
+                <Redirect to='/' />
+            )
+        }
+        else if (this.state.pay) {
+            return (
+                <div style={{ textAlign: "center" }}>
+                    <div>
+                        Enter the OTP
+                    </div>
+                    <input name="msg" onChange={this.handleChange} value={this.state.msg} />
+                    <br />
+                    <br />
+                    {this.state.fail ? <div style={{ color: "red" }}>Otp incorrect</div> : null}
+                    <button className="btn btn-success" onClick={this.handleotp}>Submit</button>
                 </div>
             )
         }
@@ -82,7 +127,7 @@ export class PaymentPage extends Component {
                             <form>
                                 <div className="form-group">
                                     <label htmlFor="exampleInputEmail1">Full Name</label>
-                                    <input type="email" className="form-control" name='fullName' aria-describedby="emailHelp" onChange={this.handleChange} />
+                                    <input type="text" className="form-control" name='fullName' aria-describedby="emailHelp" onChange={this.handleChange} />
                                     <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
                                 </div>
                                 <div className="form-group">
@@ -103,7 +148,7 @@ export class PaymentPage extends Component {
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit" className="btn btn-primary" onClick={this.handleBooking}>Proceed to payment</button>
+                                <button type="submit" className="btn btn-primary" onClick={this.form}>Proceed to payment</button>
                             </form>
                         </div>
                         <div className="col-4">
@@ -117,7 +162,7 @@ export class PaymentPage extends Component {
                                         <p>5290, Iljudong-ro, Seongsan-eup, Seongsan, Jeju Island</p>
                                         <p>no. of persons: {numberOfPeople}</p>
                                         <p>no. of days: {numberOfDays}</p>
-                                        <h3>{hotel[4] * numberOfPeople * numberOfDays}</h3>
+                                        <h3> RS {hotel[4] * numberOfPeople}</h3>
                                     </div>
                                 </div>
                             </div>
