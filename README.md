@@ -1,68 +1,118 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p>
+  <h1 align="center">AGODA Clone</h1>
+</p>
 
-## Available Scripts
+##### AGODA end-end clone with integrationg payment gateway,Google maps,OAuth,SMS notifications.
 
-In the project directory, you can run:
+![alt text](https://i.imgur.com/adJzVeZ.png "Home Screenshot")
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- [x] Google Auto-search location
+- [x] pagination
+- [x] filtering in listing page
+- [x] Integration of Google maps
+- [x] Google Analytics
+- [x] OTP login
+- [x] Google OAuth login
+- [x] Select type of rooms
+- [x] check availability of rooms
+- [x] recommendations based on meta data
+- [x] Integrate Payment Gateway
+- [x] send emails to user on booking confirmation.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Overview of Application:
 
-### `npm test`
+1. Home Page
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+   ![N|Solid](https://i.imgur.com/adJzVeZ.png)
 
-### `npm run build`
+2. Login Page
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   ![N|Solid](https://i.imgur.com/ZvNs1Lh.png)
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+3. Listing Page
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   ![N|Solid](https://i.imgur.com/pAD8npp.png)
 
-### `npm run eject`
+4. Entity Page
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+   ![N|Solid](https://i.imgur.com/A8o7rLV.png)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+5) Payment Page
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+   ![N|Solid](https://i.imgur.com/EqXkBWN.png)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+6. Booking confirmation Page
 
-## Learn More
+   ![N|Solid](https://i.imgur.com/O3mE2rl.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Table of Contents
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- [About the Project](#about-the-project)
+  - [Built With](#built-with)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
 
-### Code Splitting
+## About The Project
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+A Clone of agoda.com. Key Features
 
-### Analyzing the Bundle Size
+- User can book hotels.
+- OAuth login and registration.
+- User can filter listing of apartments according to services provided.
+- Recommendation logic based on filters applied by user.
+- Check the availability of hotels.
+- Book a hotel by paying through payment gateway.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+### Built With
 
-### Making a Progressive Web App
+- Frontend
+  - [React](https://reactjs.org/)
+  - [Redux](https://redux.js.org/)
+  - [Bootstrap](https://getbootstrap.com/)
+- Backend
+  - [Python](https://www.python.org/)
+  - [Flask](https://flask.palletsprojects.com/en/1.1.x/)
+  - [MySQL](https://www.mysql.com/)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+## Getting Started
 
-### Advanced Configuration
+To get a local copy up and running follow these simple steps.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+### Prerequisites
 
-### Deployment
+- npm
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+```sh
+npm install npm@latest -g
+```
 
-### `npm run build` fails to minify
+- pip
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+```sh
+sudo apt install python-pip
+sudo pip install virtualenv
+```
+
+### Installation
+
+1. Clone the repo
+
+```sh
+git clone https://github.com/satishbonam/EYO-rooms.git
+```
+
+2. For Frontend,install NPM packages
+
+```sh
+npm install
+```
+
+3. For Backend,create virtual environment and install pip packages from requirements.txt
+
+```
+virtualenv venv
+pip install -r requirements.txt
+```
