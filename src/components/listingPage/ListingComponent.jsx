@@ -15,7 +15,7 @@ class ListingComponent extends Component {
 
   componentDidMount() {
     const params = new URL(window.location.href);
-    const url = 'http://localhost:5000/getproperty' + params.search;
+    const url = 'https://agoda-server.herokuapp.com/getproperty' + params.search;
     this.props.getHotels(url);
 
   }
@@ -39,7 +39,7 @@ class ListingComponent extends Component {
     newFilters.forEach(filter => newUrl.searchParams.set(filter, 1))
 
     this.props.history.push(newUrl.search)
-    this.props.getHotels('http://localhost:5000/getproperty' + newUrl.search)
+    this.props.getHotels('https://agoda-server.herokuapp.com/getproperty' + newUrl.search)
 
   };
 

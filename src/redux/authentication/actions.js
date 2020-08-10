@@ -30,7 +30,7 @@ export const signupUserEmail = payload => {
   return dispatch => {
     dispatch(signupUserRequest());
     return axios
-      .post("http://localhost:5000/user/register", {
+      .post("https://agoda-server.herokuapp.com/user/register", {
         email: payload.email,
         password: payload.password,
         firstName: payload.firstName,
@@ -77,7 +77,7 @@ export const loginUserEmail = payload => {
   return dispatch => {
     dispatch(loginUserRequest());
     return axios
-      .post("http://localhost:5000/user/login", {
+      .post("https://agoda-server.herokuapp.com/user/login", {
         email: payload.email,
         password: payload.password
       })

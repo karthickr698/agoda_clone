@@ -9,8 +9,8 @@ from twilio.rest import Client ;
 
 app = Flask(__name__)
 razorpay_client = razorpay.Client(auth=("rzp_test_9DjEQTF0xqxKcb", "2MCoTntgfG4uA3y4unhOFGJy"))
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_HOST'] = 'database-2.cqofpnfqh2cj.us-east-2.rds.amazonaws.com'
+app.config['MYSQL_USER'] = 'agoda'
 app.config['MYSQL_PASSWORD'] = 'karthick98'
 app.config['MYSQL_DB'] = 'agoda'
 

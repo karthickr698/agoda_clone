@@ -68,7 +68,7 @@ export const setNumberOfDays = payload => ({
 export const getHotelEntityPage = id => (dispatch) => {
     console.log('called id' + id)
     return axios
-        .get("http://localhost:5000/getproperty/" + id)
+        .get("https://agoda-server.herokuapp.com/getproperty/" + id)
         .then(res => {
             console.log(res)
             return res.data.property
@@ -93,7 +93,7 @@ export const sendingBillDataFailure = payload => ({
 
 export const sendBillData = payload => dispatch => {
     return axios
-        .post("http://d5018f16a5e7.ngrok.io/orders", {
+        .post("https://agoda-server.herokuapp.com/orders", {
             email: payload.email,
             amount: payload.amount,
             currency: payload.currency,

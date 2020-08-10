@@ -35,7 +35,7 @@ export class PaymentPage extends Component {
     }
 
     handleotp = () => {
-        if (this.state.msg == "6352") {
+        if (this.state.msg === "6352") {
             console.log("fuck")
             this.handleBooking()
         }
@@ -59,8 +59,8 @@ export class PaymentPage extends Component {
             'user_dRRjC8Dekxlz2UBL2EKrF'
         )
 
-        let { hotel, numberOfPeople, numberOfDays } = this.props
-        let order_res = await axios.post("https://915c099709e3.ngrok.io/orders", {
+        let { hotel, numberOfPeople } = this.props
+        let order_res = await axios.post("https://agoda-server.herokuapp.com/orders", {
             "amount": hotel[4] * numberOfPeople,
             "currency": "INR",
             "receipt": 32 + "#karthick",

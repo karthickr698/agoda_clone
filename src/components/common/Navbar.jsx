@@ -3,7 +3,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import logo from "../../utils/agoda-logo.png";
 import { Link } from "react-router-dom";
 import SigninModal from "./signIn/SigninModal";
-import Button from '@material-ui/core/Button';
 import CreateAccountModal from './signUp/CreateAccountModal';
 import { connect } from 'react-redux';
 import { logoutUser } from "../../redux/authentication/actions";
@@ -53,7 +52,7 @@ export const Navbar = props => {
             </div> */}
             {isAuth ? <button className="btn btn-outline-primary mr-1" onClick={(payload) => props.logoutUser(payload)}>signout</button> : <SigninModal />}
             {isAuth ? props.username.name : <CreateAccountModal />}
-            {numberOfPeople ? <Link to= '/booking' className="nav-link">Booking</Link> : ''}
+            {numberOfPeople ? <Link to='/booking' className="nav-link">Booking</Link> : ''}
           </form>
         </div>
       </nav>
