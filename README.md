@@ -101,7 +101,7 @@ sudo pip install virtualenv
 1. Clone the repo
 
 ```sh
-git clone https://github.com/satishbonam/EYO-rooms.git
+git clone https://github.com/karthickr698/agoda_clone.git
 ```
 
 2. For Frontend,install NPM packages
