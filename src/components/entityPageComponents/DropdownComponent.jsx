@@ -7,7 +7,8 @@ export const DropdownComponent = props => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggle = () => setDropdownOpen(prevState => !prevState);
-  const{ setNumberOfPeople, numberOfPeople } = props
+  const { setNumberOfPeople, numberOfPeople } = props
+  
 
   return (
     <Dropdown isOpen={dropdownOpen} toggle={toggle}>

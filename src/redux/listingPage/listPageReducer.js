@@ -13,7 +13,7 @@ const initialState = {
     selectedFilters: [],
     hotels: [],
     hotel: [],
-    numberOfPeople: 0,
+    numberOfPeople: 1,
     numberOfDays: '',
     pay: false,
     startDate: '',

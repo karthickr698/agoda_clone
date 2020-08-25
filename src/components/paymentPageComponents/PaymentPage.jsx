@@ -29,22 +29,13 @@ export class PaymentPage extends Component {
 
     form = (e) => {
         e.preventDefault()
-        console.log("fuck")
         this.setState({ pay: true })
 
     }
 
-    handleotp = () => {
-        if (this.state.msg === "6352") {
-            console.log("fuck")
-            this.handleBooking()
-        }
-        else
-            this.setState({ fail: true })
-    }
+    handleBooking =  async(e) => {
 
-    handleBooking = async (e) => {
-        console.log("fuck")
+        e.preventDefault()
 
         let templateParams = {
             from_name: 'rkarthick410@gmail.com',
@@ -60,22 +51,25 @@ export class PaymentPage extends Component {
         )
 
         let { hotel, numberOfPeople } = this.props
-        let order_res = await axios.post("https://agoda-server.herokuapp.com/orders", {
-            "amount": hotel[4] * numberOfPeople,
-            "currency": "INR",
-            "receipt": 32 + "#karthick",
-            "payment_capture": "1"
-        })
+        let order_res = await axios({
+            method: 'post',
+            url: 'https://agoda-server.herokuapp.com/orders',
+            data: {
+                "amount": hotel[4] * numberOfPeople,
+                "currency": "INR",
+                "receipt": "32#karthick",
+                "payment_capture": "1"
+            }
+        });
         const options = {
             "key": "rzp_test_9DjEQTF0xqxKcb",
-            "amount": "9000",
+            "amount": hotel[4] * numberOfPeople*100,
             "currency": "INR",
             "name": "Book Trip",
             "description": "Transaction",
             "image": "/logo.svg",
-            "order_id": order_res.data.id,
+            "order_id": order_res.id,
             handler: (response) => {
-                console.log(this.props)
                 swal("Booked!", "Your Booking has been made", "success");
                 this.props.history.push('/')
 
@@ -97,26 +91,11 @@ export class PaymentPage extends Component {
     }
 
     render() {
-        console.log(this.state)
         let { hotel, numberOfPeople, numberOfDays } = this.props
         numberOfPeople = numberOfPeople || 1
         if (this.state.after) {
             return (
                 <Redirect to='/' />
-            )
-        }
-        else if (this.state.pay) {
-            return (
-                <div style={{ textAlign: "center" }}>
-                    <div>
-                        Enter the OTP
-                    </div>
-                    <input name="msg" onChange={this.handleChange} value={this.state.msg} />
-                    <br />
-                    <br />
-                    {this.state.fail ? <div style={{ color: "red" }}>Otp incorrect</div> : null}
-                    <button className="btn btn-success" onClick={this.handleotp}>Submit</button>
-                </div>
             )
         }
         else {
@@ -148,7 +127,7 @@ export class PaymentPage extends Component {
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit" className="btn btn-primary" onClick={this.form}>Proceed to payment</button>
+                                <button type="submit" className="btn btn-primary" onClick={this.handleBooking}>Proceed to payment</button>
                             </form>
                         </div>
                         <div className="col-4">
