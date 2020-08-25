@@ -19,8 +19,8 @@ class DevelopmentConfig(Config):
 class TestingConfig(Config):
     DEBUG = True
     TESTING = True
-    SQLALCHEMY_DATABASE_URI = 'mysql://root:karthick98@localhost/agoda'
     PRESERVE_CONTEXT_ON_EXCEPTION = False
+    SQLALCHEMY_DATABASE_URI = 'mysql://root:karthick98@localhost/agoda'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
