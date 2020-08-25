@@ -27,11 +27,9 @@ export default (state = initialState, { type, payload }) => {
             return { ...state, selectedFilters: payload }
 
         case ADD_ALL_HOTELS:
-            console.log(payload)
             return { ...state, hotels: payload }
 
         case GOT_HOTEL_ENTITY:
-            console.log(payload[0])
             return {
                 ...state,
                 hotel: [...payload[0]]
@@ -51,7 +49,6 @@ export default (state = initialState, { type, payload }) => {
             endDate = parseInt(endDate.getTime() / 1000)
             let numberOfDays = Math.ceil((endDate - startDate) / (60*60*24))
             numberOfDays = numberOfDays < 0 ? 1 : numberOfDays + 1
-            console.log("No of days : " + numberOfDays)
             return { 
                 ...state,
                 numberOfDays: numberOfDays,
